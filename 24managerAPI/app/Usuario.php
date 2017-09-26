@@ -10,7 +10,7 @@ use Illuminate\Contracts\Auth\Authenticatable as AuthenticatableContract;
 use Illuminate\Contracts\Auth\Access\Authorizable as AuthorizableContract;
 use Illuminate\Contracts\Auth\CanResetPassword as CanResetPasswordContract;
 
-class Tec_user extends Model implements AuthenticatableContract,
+class Usuario extends Model implements AuthenticatableContract,
                                     AuthorizableContract,
                                     CanResetPasswordContract
 {
@@ -21,32 +21,33 @@ class Tec_user extends Model implements AuthenticatableContract,
      *
      * @var string
      */
-    protected $table = 'tecprecinc_user_insp';
+    protected $table = 'usuarios';
 
     // Eloquent asume que cada tabla tiene una clave primaria con una columna llamada id.
     // Si éste no fuera el caso entonces hay que indicar cuál es nuestra clave primaria en la tabla:
-    protected $primaryKey = 'uid';
+    //protected $primaryKey = 'id';
 
-    public $timestamps = false;
+    //public $timestamps = false;
 
     /**
      * The attributes that are mass assignable.
      *
      * @var array
      */
-    protected $fillable = ['user', 'password'];
+    protected $fillable = ['user', 'password', 'correo', 'nombre',
+     'telefono', 'sexo', 'tipo'];
 
     /**
      * The attributes excluded from the model's JSON form.
      *
      * @var array
      */
-    protected $hidden = ['password'];
+    //protected $hidden = [];
 
-    // Relación de Tec_user con TecUserInsp:
-    public function tecuserinsp()
+    // Relación de usuario con pedidos:
+    public function pedidos()
     {
-        // Una user tiene un unico registro en la tabla tec_user_insp
-        return $this->hasOne('App\TecUserInsp', 'uid');
+        // Una usuario tiene muchos pedidos
+        return $this->hasMany('App\Pedido', 'usuario_id');
     }
 }

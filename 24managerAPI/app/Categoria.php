@@ -4,30 +4,27 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Parse extends Model
+class Categoria extends Model
 {
-    /**
+	/**
      * The database table used by the model.
      *
      * @var string
      */
-    protected $table = 'messages';
+    protected $table = 'categorias';
 
     // Eloquent asume que cada tabla tiene una clave primaria con una columna llamada id.
     // Si éste no fuera el caso entonces hay que indicar cuál es nuestra clave primaria en la tabla:
     //protected $primaryKey = 'id';
 
-    public $timestamps = false;
+    //public $timestamps = false;
 
     /**
      * The attributes that are mass assignable.
      *
      * @var array
      */
-    protected $fillable = ['objectId', 'fileType', '__type', 'name',
-                         'name', 'telefono', 'recipientIds', 'email',
-                         'recipientNames', 'fileTime', 'nombre',
-                         'descripcion', 'createdAt', 'updatedAt'];
+    protected $fillable = ['nombre', 'imagen'];
 
     /**
      * The attributes excluded from the model's JSON form.
@@ -35,4 +32,18 @@ class Parse extends Model
      * @var array
      */
     //protected $hidden = [];
+
+    // Relación de categoria con pedidos:
+    public function pedidos()
+    {
+        // 1 categoria puede estar en varios pedidos
+        return $this->hasMany('App\Pedido', 'categoria_id');
+    }
+
+     // Relación de categoria con subcategorias:
+    public function subcategorias()
+    {
+        // 1 categoria puede tener varias subcategorias
+        return $this->hasMany('App\Subcategoria', 'categoria_id');
+    }
 }

@@ -4,25 +4,28 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class TecMarcaExtintor extends Model
+class Socio extends Model
 {
     /**
      * The database table used by the model.
      *
      * @var string
      */
-    protected $table = 'tec_marca_extintor';
+    protected $table = 'socios';
 
     // Eloquent asume que cada tabla tiene una clave primaria con una columna llamada id.
     // Si éste no fuera el caso entonces hay que indicar cuál es nuestra clave primaria en la tabla:
     //protected $primaryKey = 'id';
+
+    //public $timestamps = false;
 
     /**
      * The attributes that are mass assignable.
      *
      * @var array
      */
-    protected $fillable = ['cod_marca', 'marca'];
+    protected $fillable = ['correo', 'nombre',
+     'telefono', 'horario', 'ubicacion'];
 
     /**
      * The attributes excluded from the model's JSON form.
@@ -31,10 +34,17 @@ class TecMarcaExtintor extends Model
      */
     //protected $hidden = [];
 
-	// Relación de TecMarcaExtintor con TecExtintor:
-	public function tecextintores()
-	{
-		// De una misma marca pueden existir varios extintores
-		return $this->hasMany('App\TecExtintor', 'id_marca');
-	}
+    // Relación de socio con pedidos:
+    public function pedidos()
+    {
+        // Una socio puede tener asociados muchos pedidos
+        return $this->hasMany('App\Pedido', 'socio_id');
+    }
+
+    // Relación de socio con servicios:
+    public function servicios()
+    {
+        // Una socio puede ofrecer muchos servicios
+        return $this->hasMany('App\Servicio', 'socio_id');
+    }
 }
