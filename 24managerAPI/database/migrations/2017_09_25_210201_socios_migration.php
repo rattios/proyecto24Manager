@@ -14,7 +14,7 @@ class SociosMigration extends Migration
     {
         Schema::create('socios', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('correo');
+            $table->string('correo')->unique();
             $table->string('nombre');
             $table->string('telefono');
             $table->string('horario');

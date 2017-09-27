@@ -14,7 +14,7 @@ class SubcategoriasMigration extends Migration
     {
         Schema::create('subcategorias', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('nombre');
+            $table->string('nombre')->unique();
             $table->string('imagen');
             $table->float('costo');
 

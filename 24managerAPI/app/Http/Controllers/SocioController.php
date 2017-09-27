@@ -6,9 +6,8 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
-use Illuminate\Support\Facades\DB;
 
-class UsuarioController extends Controller
+class SocioController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -38,30 +37,7 @@ class UsuarioController extends Controller
      */
     public function store(Request $request)
     {
-        // Listado de campos recibidos teóricamente.
-        $user=$request->input('user'); 
-        $password=$request->input('password'); 
-        $correo=$request->input('correo'); 
-        $nombre=$request->input('nombre');
-        $telefono=$request->input('telefono');
-        $sexo=$request->input('sexo');
-        $tipo=$request->input('tipo');
-
-        /*Primero creo una instancia en la tabla usuarios*/
-        $usuario = new \App\Usuario;
-        $usuario->user = $user;
-        $usuario->password = $password;
-        $usuario->correo = $correo;
-        $usuario->nombre = $nombre;
-        $usuario->telefono = $telefono;
-        $usuario->sexo = $sexo;
-        $usuario->tipo = $tipo;
-
-        if($usuario->save()){
-           return response()->json(['status'=>'ok'], 200);
-        }else{
-            return response()->json(['error'=>'Error al crear el usuario.'], 500);
-        } 
+        //
     }
 
     /**

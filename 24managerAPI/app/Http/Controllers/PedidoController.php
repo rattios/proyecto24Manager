@@ -6,9 +6,8 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
-use Illuminate\Support\Facades\DB;
 
-class UsuarioController extends Controller
+class PedidoController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -39,13 +38,17 @@ class UsuarioController extends Controller
     public function store(Request $request)
     {
         // Listado de campos recibidos teóricamente.
-        $user=$request->input('user'); 
-        $password=$request->input('password'); 
-        $correo=$request->input('correo'); 
-        $nombre=$request->input('nombre');
-        $telefono=$request->input('telefono');
-        $sexo=$request->input('sexo');
-        $tipo=$request->input('tipo');
+        $direccion=$request->input('direccion'); 
+        $descripcion=$request->input('descripcion'); 
+        $referencia=$request->input('referencia'); 
+        $lat=$request->input('lat');
+        $lng=$request->input('lng');
+        $costo=$request->input('costo');
+        $estado=$request->input('estado');
+        $categoria_id=$request->input('categoria_id');
+        $subcategoria_id=$request->input('subcategoria_id');
+        $usuario_id=$request->input('usuario_id');
+        $socio_id=$request->input('socio_id');
 
         /*Primero creo una instancia en la tabla usuarios*/
         $usuario = new \App\Usuario;

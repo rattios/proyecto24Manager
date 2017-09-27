@@ -190,6 +190,28 @@ Route::get('/', function () {
     //$tecuserinsp = \App\Tec_user::find(1)->tecuserinsp;
     //echo $tecuserinsp;
 
+
+//--------------------------------------------------------
+    //Pruebas relaciones 24 manger
+
+    //Prueba de Relación de subcat con cat
+    //$subcat = \App\Categoria::find(1)->subcategorias;
+    //echo $subcat;
+
+    //cargar una cat con sus subcat
+    //$cat = App\Categoria::find(1)->with('subcategorias')->first();
+    //echo $cat;
+
+    //cargar todas las cat con sus subcat
+    //$cat = App\Categoria::with('subcategorias')->get();
+    //echo $cat;
+
+    //$subcat = App\Categoria::find(1)->subcategorias()->get();
+    //echo $subcat;
+
+    //$cat = App\Categoria::find(3)->with('subcategorias')->get();
+    //echo $cat;
+
     
 });
 
@@ -197,108 +219,35 @@ Route::group(  ['middleware' =>'cors'], function(){
 
     //Parse
     //Route::get('/parse','ParseController@llenarTablaMessages');
-    Route::get('/parse/emails','ParseController@getEmails');
-    Route::get('/parse/telefonos','ParseController@getTelefonos');
-    Route::get('/parse/registros/{email}','ParseController@getRegistros');
-    //SorteoWeb
-    Route::get('/sorteo/web/emails','SorteoWebController@getEmails');
-    Route::get('/sorteo/web/emails/ordenados','SorteoWebController@getEmailsOrdenados');
-    Route::get('/sorteo/web/telefonos','SorteoWebController@getTelefonos');
-    Route::get('/sorteo/web/registros/{email}','SorteoWebController@getRegistros');
-    //Cliente
-    Route::get('/cruce/clientes','ClienteController@clientes');
-    Route::get('/lista/clientes','ClienteController@listaClientes');
-    Route::get('/cruce/clientes/telefonos','ClienteController@cruceTelefonos');
-    Route::post('/cliente','ClienteController@store');
-    Route::get('/clientes/participaciones/{email}','ClienteController@getParticipaciones');
-    Route::get('/clientes/registrar/sinTelefono','ClienteController@registarSinTelefono');
+    //Route::get('/parse/emails','ParseController@getEmails');
+    //Route::get('/parse/telefonos','ParseController@getTelefonos');
+    //Route::get('/parse/registros/{email}','ParseController@getRegistros');
 
+    //----Pruebas UsuarioController
+    Route::get('/usuarios','UsuarioController@index');
+    Route::post('/usuarios','UsuarioController@store');
+    Route::put('/usuarios/{id}','UsuarioController@edit');
+    Route::delete('/usuarios/{id}','UsuarioController@destroy');
 
+    //----Pruebas CategoriaController
+    Route::get('/categorias','CategoriaController@index');
+    Route::post('/categorias','CategoriaController@store');
+    Route::put('/categorias/{id}','CategoriaController@update');
+    Route::delete('/categorias/{id}','CategoriaController@destroy');
+    Route::get('/categorias/{id}','CategoriaController@show');
 
-    //-------------------------------------------------------------------
-
-	//Route::post('/login','LoginController@userAuth');
-    Route::post('/login/web','LoginController@loginWeb');
-    Route::post('/login/app','LoginController@loginApp');
-
-    Route::get('/inspecciones/notificaciones','NotificacionesController@index');
-
-    Route::post('/inspecciones/validar/token','InspectorController@validarToken');
-
-    Route::post('/inspecciones/mail','MailController@enviarMail');
-    Route::get('/inspecciones/reporte_email/{remito}','SupervisorController@dataReporte');
-
-    //Pruebas
-    Route::get('/inspecciones/resetter_app/{id_operador}','InspectorController@getResetterApp');
-    Route::post('/inspecciones/resetter_app/{id_operador}','InspectorController@setResetterApp');
-    Route::post('/inspecciones/resetter/inspectores','InspectorController@setResetterAppPanel');
-
-
+    //----Pruebas SubcategoriaController
+    Route::get('/subcategorias','SubcategoriaController@index');
+    Route::post('/subcategorias','SubcategoriaController@store');
+    Route::put('/subcategorias/{id}','SubcategoriaController@update');
+    Route::delete('/subcategorias/{id}','SubcategoriaController@destroy');
+    Route::get('/subcategorias/{id}','SubcategoriaController@show');
     
     Route::group(['middleware' => 'jwt-auth'], function(){
 
-    //----Pruebas SupervisorController
-    //Route::get('/inspecciones/agendar','SupervisorController@agendarInspecciones');
-    //Route::get('/inspecciones/validar','SupervisorController@validarInspPendientes');
-    //Route::get('/inspecciones/bloquear','SupervisorController@bloquearInspEmpInactivas');
-    //Route::get('/inspecciones/lista','SupervisorController@listaInspPendientes');
-
-    Route::get('/inspecciones/programar','SupervisorController@programarInspeccion');
-    Route::get('/inspecciones/inspectores','SupervisorController@inspectores');
-    Route::get('/inspecciones/inspector/{id_operador}','SupervisorController@inspector');
-    Route::put('/inspecciones/inspector/{id_operador}/editar','SupervisorController@editarInspector');
-    Route::get('/inspecciones/consola','SupervisorController@consola');
-    Route::get('/inspecciones/periodoActual','SupervisorController@listaInspPeriodoActual');
-    Route::get('/inspecciones/resagadas','SupervisorController@inspResagadas');
-    Route::get('/inspecciones/paraAnular','SupervisorController@inspParaAnular');    
-    //Route::get('/inspecciones/enCurso','SupervisorController@listaInspEnCurso');
-    Route::get('/inspecciones/noAsignadas','SupervisorController@listaInspNoAsignadas');
-    Route::get('/inspecciones/enCampo','SupervisorController@listaInspEnCampo');
-    Route::get('/inspecciones/ejecutadas','SupervisorController@listaInspEjecutadas');
-    //Route::get('/inspecciones/anuladas','SupervisorController@listaAnuladasYparaAnular');
-    Route::get('/inspecciones/bloqueadas','SupervisorController@listaBloqueadas');
-    Route::get('/inspecciones/anuladas','SupervisorController@listaAnuladas');
-    Route::get('/inspecciones/agendaInspector/{id_operador}','SupervisorController@agendaDeInspector');
-    Route::get('/inspecciones/vistaAgenda','SupervisorController@vistaAgenda');
-    Route::get('/inspecciones/historialCalendarioInspector/{id_operador}','SupervisorController@historialCalendarioDeInspector');
-    Route::get('/inspecciones/historialLineaTiempoInspector/{id_operador}','SupervisorController@historialLineaTiempoDeInspector');
-    Route::get('/inspecciones/{id_inspeccion}/detalles','SupervisorController@detalleDeInsp');
-    Route::put('/inspecciones/asignar/{id_inspeccion}','SupervisorController@asignarInspeccion');
-    Route::put('/inspecciones/{id_inspeccion}/estado','SupervisorController@modificarEstado');
-    Route::put('/inspecciones/{id_inspeccion}/estadoV2','SupervisorController@modificarEstadoV2');
-    Route::put('/inspecciones/{id_inspeccion}/activar','SupervisorController@activarInspeccion');
-    Route::put('/inspecciones/editar/{id_inspeccion}','SupervisorController@editarDetalleDeInsp');
-
-    //Programa anual
-    //Route::get('/inspecciones/empresasActivas','SupervisorController@listaEmpresasActivas');
-    //Route::get('/inspecciones/mantenimientos/extintores/empresa/{id_empresa}','SupervisorController@mantenimientos');
-    //Route::put('/inspecciones/generarPrograma/empresa/{id_empresa}','SupervisorController@generarPrograma');
-    Route::get('/inspecciones/dataPrograma/empresa/{id_empresa}','SupervisorController@dataProgramaAnual');
-    Route::put('/inspecciones/guardarPrograma/empresa/{id_empresa}','SupervisorController@guardarProgramaAnual');
-    Route::get('/inspecciones/leerPrograma/empresa/{id_empresa}','SupervisorController@leerProgramaAnual');
-    Route::get('/inspecciones/extintoresNuevos/empresa/{id_empresa}','SupervisorController@extintoresNuevos');
-    Route::put('/inspecciones/actualizarPrograma/empresa/{id_empresa}','SupervisorController@actualizarProgramaAnual');
-
-    //Reportes
-    Route::get('/inspecciones/reportes','SupervisorController@reportes');
-    Route::get('/inspecciones/reporte/{remito}','SupervisorController@dataReporte');
-    Route::get('/inspecciones/reporte/empresa/{remito}','SupervisorController@dataReporteEmpresa');
-    Route::get('/inspecciones/reportes/empresa/{id_empresa}','SupervisorController@reportesEmpresa');
     
-    //----Pruebas InspectorController
-    Route::get('/inspecciones/sincronizar/{id_operador}','InspectorController@sincronizar');
-    Route::put('/inspecciones/ejecutar/{id_inspeccion}','InspectorController@ejecutarInsp');
-    Route::put('/inspecciones/push/operador/{id_operador}','InspectorController@actualizarPush');
-    Route::get('/inspecciones/estado/{id_inspeccion}','InspectorController@getEstadoInsp');
 
-    //----Pruebas NotificacionesController
-    Route::post('/inspecciones/notificaciones','NotificacionesController@store');
-
-    //----Pruebas UsuarioController
-    Route::get('/inspecciones/usuarios','UsuarioController@index');
-    Route::post('/inspecciones/usuarios','UsuarioController@store');
-    Route::put('/inspecciones/usuarios/{uid}','UsuarioController@edit');
-    Route::delete('/inspecciones/usuarios/{uid}','UsuarioController@destroy');
+    
 
     });
 });
