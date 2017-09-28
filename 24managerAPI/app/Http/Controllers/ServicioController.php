@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
-class NotificacionesController extends Controller
+class ServicioController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -16,11 +16,27 @@ class NotificacionesController extends Controller
      */
     public function index()
     {
-        $tokens = \App\InspTokenNotificaciones::get();
+        //cargar todos los servicios
+        $servicios = \App\Servicio::all();
 
-        //return response()->json(['tokens'=>$tokens], 200);
+        if(count($servicios) == 0){
+            return response()->json(['error'=>'No existen servicios.'], 404);          
+        }else{
+            return response()->json(['status'=>'ok', 'servicios'=>$servicios], 200);
+        } 
+    }
 
-        return $tokens;
+    public function serviciosSocio()
+    {
+        //cargar todos los servicios con su socio
+        $servicios = \App\Servicio::with('socio')->get();
+
+        if(count($servicios) == 0){
+            return response()->json(['error'=>'No existen servicios.'], 404);          
+        }else{
+            return response()->json(['status'=>'ok', 'servicios'=>$servicios], 200);
+        } 
+        
     }
 
     /**
@@ -41,24 +57,7 @@ class NotificacionesController extends Controller
      */
     public function store(Request $request)
     {
-        $tokenNotificaciones = $request->input('tokenNotificaciones');
-
-        $aux = \App\InspTokenNotificaciones::where('token', $tokenNotificaciones)->get();
-
-        if(count($aux) != 0){
-            return response()->json(['status'=>'ok ya existe'], 200);
-        }
-
-        $notificaciones = new \App\InspTokenNotificaciones;
-
-        $notificaciones->token = $tokenNotificaciones;
-
-        // Almacenamos en la base de datos el registro.
-        if($notificaciones->save()){
-            return response()->json(['status'=>'ok'], 200);
-        }else{
-            return response()->json(['error'=>'No se pudo guardar el token para las nitificaciones.'], 304);
-        }
+        //
     }
 
     /**

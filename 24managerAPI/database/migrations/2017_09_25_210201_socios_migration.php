@@ -17,7 +17,6 @@ class SociosMigration extends Migration
             $table->string('correo')->unique();
             $table->string('nombre');
             $table->string('telefono');
-            $table->string('horario');
             $table->string('ubicacion');
             $table->timestamps();
         });

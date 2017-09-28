@@ -15,6 +15,7 @@ class ServiciosMigration extends Migration
         Schema::create('servicios', function (Blueprint $table) {
             $table->increments('id');
             $table->string('servicio');
+            $table->string('horario');
 
             $table->integer('socio_id')->unsigned();
             $table->foreign('socio_id')->references('id')->on('socios');

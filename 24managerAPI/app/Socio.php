@@ -25,7 +25,7 @@ class Socio extends Model
      * @var array
      */
     protected $fillable = ['correo', 'nombre',
-     'telefono', 'horario', 'ubicacion'];
+     'telefono', 'ubicacion'];
 
     /**
      * The attributes excluded from the model's JSON form.

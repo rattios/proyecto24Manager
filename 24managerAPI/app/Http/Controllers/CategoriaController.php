@@ -16,6 +16,19 @@ class CategoriaController extends Controller
      */
     public function index()
     {
+        //cargar todas las cat
+        $categorias = \App\Categoria::all();
+
+        if(count($categorias) == 0){
+            return response()->json(['error'=>'No existen categorías.'], 404);          
+        }else{
+            return response()->json(['status'=>'ok', 'categorias'=>$categorias], 200);
+        } 
+        
+    }
+
+    public function categoriasSubcategorias()
+    {
         //cargar todas las cat con sus subcat
         $categorias = \App\Categoria::with('subcategorias')->get();
 
@@ -90,9 +103,20 @@ class CategoriaController extends Controller
      */
     public function show($id)
     {
-
         //cargar una cat
-        //$categoria = \App\Categoria::where('id', $id);
+        $categoria = \App\Categoria::find($id);
+
+        if(count($categoria)==0){
+            return response()->json(['error'=>'No existe la categoría con id '.$id], 404);          
+        }else{
+            return response()->json(['status'=>'ok', 'categoria'=>$categoria], 200);
+        } 
+    }
+
+    public function categoriaSubcategorias($id)
+    {
+
+        //cargar una cat con sus subcat
         $categoria = \App\Categoria::find($id);
 
         if(count($categoria)==0){
@@ -148,6 +172,14 @@ class CategoriaController extends Controller
         // Actualización parcial de campos.
         if ($nombre != null && $nombre!='')
         {
+            $aux = \App\Categoria::where('nombre', $request->input('nombre'))
+            ->where('id', '<>', $categoria->id)->get();
+
+            if(count($aux)!=0){
+               // Devolvemos un código 409 Conflict. 
+                return response()->json(['error'=>'Ya existe otra categoría con ese nombre.'], 409);
+            }
+
             $categoria->nombre = $nombre;
             $bandera=true;
         }
@@ -174,7 +206,6 @@ class CategoriaController extends Controller
             // Este código 304 no devuelve ningún body, así que si quisiéramos que se mostrara el mensaje usaríamos un código 200 en su lugar.
             return response()->json(['error'=>'No se ha modificado ningún dato la categoría.'],304);
         }
- 
 
     }
 

@@ -151,6 +151,14 @@ class SubcategoriaController extends Controller
 
         if ($nombre != null && $nombre!='')
         {
+            $aux = \App\Subcategoria::where('nombre', $request->input('nombre'))
+            ->where('id', '<>', $subcategoria->id)->get();
+
+            if(count($aux)!=0){
+               // Devolvemos un código 409 Conflict. 
+                return response()->json(['error'=>'Ya existe otra subcategoría con ese nombre.'], 409);
+            }
+
             $subcategoria->nombre = $nombre;
             $bandera=true;
         }
