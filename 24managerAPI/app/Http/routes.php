@@ -266,6 +266,16 @@ Route::group(  ['middleware' =>'cors'], function(){
     Route::get('/servicios/{id}','ServicioController@show');
     Route::get('/servicios/{id}/socio','ServicioController@servicioSocio');
     
+    //----Pruebas PedidoController
+    Route::get('/pedidos','PedidoController@index');
+    Route::get('/pedidos/socio','PedidoController@serviciosSocio');
+    Route::post('/pedidos','PedidoController@store');
+    Route::put('/pedidos/{id}','PedidoController@update');
+    Route::delete('/pedidos/{id}','PedidoController@destroy');
+    Route::get('/pedidos/{id}','PedidoController@show');
+    Route::get('/pedidos/{id}/socio','PedidoController@servicioSocio');
+    
+
     Route::group(['middleware' => 'jwt-auth'], function(){
 
     });

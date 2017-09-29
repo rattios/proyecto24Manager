@@ -62,6 +62,12 @@ class SubcategoriaController extends Controller
            // Devolvemos un código 409 Conflict. 
             return response()->json(['error'=>'Ya existe una subcategoría con ese nombre.'], 409);
         }
+
+        $aux2 = \App\Categoria::find($request->input('categoria_id'));
+        if(count($aux2) == 0){
+           // Devolvemos un código 409 Conflict. 
+            return response()->json(['error'=>'No existe la categoría a la cual se quiere asociar la subcategoría.'], 409);
+        }
         
         /*Primero creo una instancia en la tabla subcategorias*/
         /*$subcategoria = new \App\Subcategoria;

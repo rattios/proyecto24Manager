@@ -24,8 +24,8 @@ class Servicio extends Model
      *
      * @var array
      */
-    protected $fillable = ['servicio', 'horario', 'socio_id',
-     'subcategoria_id'];
+    protected $fillable = ['servicio', 'horario', 'dias',
+     'socio_id', 'subcategoria_id'];
 
     /**
      * The attributes excluded from the model's JSON form.
@@ -53,5 +53,12 @@ class Servicio extends Model
     {
         // 1 servicio puede tener distintas calificaiones
         return $this->hasMany('App\Calificacion', 'servicio_id');
+    }
+
+    // Relación de servicio con pedidos:
+    public function pedidos()
+    {
+        // 1 servicio puede ser solicitado por muchos pedidos
+        return $this->hasMany('App\Pedido', 'servicio_id');
     }
 }

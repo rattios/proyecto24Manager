@@ -67,7 +67,7 @@ class ServicioController extends Controller
 
         // Primero comprobaremos si estamos recibiendo todos los campos.
         if ( !$request->input('servicio') || !$request->input('horario') ||
-            !$request->input('subcategoria_id'))
+            !$request->input('dias') || !$request->input('subcategoria_id'))
         {
             // Se devuelve un array errors con los errores encontrados y cabecera HTTP 422 Unprocessable Entity – [Entidad improcesable] Utilizada para errores de validación.
             return response()->json(['error'=>'Faltan datos necesarios para el proceso de alta.'],422);
@@ -78,6 +78,12 @@ class ServicioController extends Controller
         if(count($aux)!=0){
            // Devolvemos un código 409 Conflict. 
             return response()->json(['error'=>'Este servicio ya está asociado al socio.'], 409);
+        }
+
+        $aux2 = \App\Subcategoria::find($request->input('subcategoria_id'));
+        if(count($aux2) == 0){
+           // Devolvemos un código 409 Conflict. 
+            return response()->json(['error'=>'No existe la subcategoría a la cual se quiere asociar el servicio del socio.'], 409);
         }
 
         //Creamos el servicio al socio que se paso por parametro
@@ -151,6 +157,7 @@ class ServicioController extends Controller
         // Listado de campos recibidos teóricamente.
         $serv=$request->input('servicio');
         $horario=$request->input('horario');
+        $dias=$request->input('dias');
 
         // Creamos una bandera para controlar si se ha modificado algún dato.
         $bandera = false;
@@ -165,6 +172,12 @@ class ServicioController extends Controller
         if ($horario != null && $horario!='')
         {
             $servicio->horario = $horario;
+            $bandera=true;
+        }
+
+        if ($dias != null && $dias!='')
+        {
+            $servicio->dias = $dias;
             $bandera=true;
         }
 
@@ -206,12 +219,12 @@ class ServicioController extends Controller
         if ( sizeof($pedidos) > 0)
         {
             // Devolvemos un código 409 Conflict. 
-            return response()->json(['error'=>'Esta categoría posee servicio y no puede ser eliminada.'], 409);
+            return response()->json(['error'=>'Este servicio posee relaciones y no puede ser eliminado.'], 409);
         }
 
-        // Eliminamos la categoria si no tiene relaciones.
+        // Eliminamos el servicio si no tiene relaciones.
         $servicio->delete();
 
-        return response()->json(['status'=>'ok', 'message'=>'Se ha eliminado correctamente la servicio.'], 200);
+        return response()->json(['status'=>'ok', 'message'=>'Se ha eliminado correctamente el servicio.'], 200);
     }
 }

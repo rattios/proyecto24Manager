@@ -16,7 +16,14 @@ class PedidoController extends Controller
      */
     public function index()
     {
-        //
+        //cargar todos los pedidos
+        $pedidos = \App\Pedido::all();
+
+        if(count($pedidos) == 0){
+            return response()->json(['error'=>'No existen pedidos.'], 404);          
+        }else{
+            return response()->json(['status'=>'ok', 'pedidos'=>$pedidos], 200);
+        } 
     }
 
     /**
@@ -37,34 +44,54 @@ class PedidoController extends Controller
      */
     public function store(Request $request)
     {
-        // Listado de campos recibidos teóricamente.
-        $direccion=$request->input('direccion'); 
-        $descripcion=$request->input('descripcion'); 
-        $referencia=$request->input('referencia'); 
-        $lat=$request->input('lat');
-        $lng=$request->input('lng');
-        $costo=$request->input('costo');
-        $estado=$request->input('estado');
-        $categoria_id=$request->input('categoria_id');
-        $subcategoria_id=$request->input('subcategoria_id');
-        $usuario_id=$request->input('usuario_id');
-        $socio_id=$request->input('socio_id');
+        //NOTA:El parametro estado se debe pasar en el body del la peticion.
 
-        /*Primero creo una instancia en la tabla usuarios*/
-        $usuario = new \App\Usuario;
-        $usuario->user = $user;
-        $usuario->password = $password;
-        $usuario->correo = $correo;
-        $usuario->nombre = $nombre;
-        $usuario->telefono = $telefono;
-        $usuario->sexo = $sexo;
-        $usuario->tipo = $tipo;
+        // Primero comprobaremos si estamos recibiendo todos los campos.
+        if ( !$request->input('direccion') || !$request->input('descripcion') || !$request->input('referencia') ||
+             !$request->input('costo') ||
+            !$request->input('estado') || !$request->input('categoria_id') || !$request->input('subcategoria_id') ||
+            !$request->input('usuario_id') || !$request->input('socio_id') || !$request->input('servicio_id'))
+        {
+            // Se devuelve un array errors con los errores encontrados y cabecera HTTP 422 Unprocessable Entity – [Entidad improcesable] Utilizada para errores de validación.
+            return response()->json(['error'=>'Faltan datos necesarios para el proceso de alta.'],422);
+        }
 
-        if($usuario->save()){
-           return response()->json(['status'=>'ok'], 200);
+        //validaciones
+        $aux2 = \App\Categoria::find($request->input('categoria_id'));
+        if(count($aux2) == 0){
+           // Devolvemos un código 409 Conflict. 
+            return response()->json(['error'=>'No existe la categoría a la cual se quiere asociar la subcategoría.'], 409);
+        }
+
+        $aux3 = \App\Subcategoria::find($request->input('subcategoria_id'));
+        if(count($aux3) == 0){
+           // Devolvemos un código 409 Conflict. 
+            return response()->json(['error'=>'No existe la subcategoría a la cual se quiere asociar la subcategoría.'], 409);
+        }
+
+        $aux4 = \App\User::find($request->input('usuario_id'));
+        if(count($aux4) == 0){
+           // Devolvemos un código 409 Conflict. 
+            return response()->json(['error'=>'No existe el usuario al cual se quiere asociar el pedido.'], 409);
+        }
+
+        $aux5 = \App\Socio::find($request->input('socio_id'));
+        if(count($aux5) == 0){
+           // Devolvemos un código 409 Conflict. 
+            return response()->json(['error'=>'No existe el socio al cual se quiere asociar el pedido.'], 409);
+        }
+
+        $aux6 = \App\Servicio::find($request->input('servicio_id'));
+        if(count($aux6) == 0){
+           // Devolvemos un código 409 Conflict. 
+            return response()->json(['error'=>'No existe el servicio al cual se quiere asociar el pedido.'], 409);
+        }        
+
+        if($nuevoPedido=\App\Pedido::create($request->all())){
+           return response()->json(['status'=>'ok', 'pedido'=>$nuevoPedido], 200);
         }else{
-            return response()->json(['error'=>'Error al crear el usuario.'], 500);
-        } 
+            return response()->json(['error'=>'Error al crear el pedido.'], 500);
+        }
     }
 
     /**
@@ -75,7 +102,14 @@ class PedidoController extends Controller
      */
     public function show($id)
     {
-        //
+        //cargar un pedido
+        $pedido = \App\Pedido::find($id);
+
+        if(count($pedido)==0){
+            return response()->json(['error'=>'No existe el pedido con id '.$id], 404);          
+        }else{
+            return response()->json(['status'=>'ok', 'pedido'=>$pedido], 200);
+        }
     }
 
     /**
@@ -98,7 +132,87 @@ class PedidoController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        // Comprobamos si el pedido que nos están pasando existe o no.
+        $pedido=\App\Pedido::find($id);
+
+        if (count($pedido)==0)
+        {
+            // Devolvemos error codigo http 404
+            return response()->json(['error'=>'No existe el pedido con id '.$id], 404);
+        }      
+
+        // Listado de campos recibidos teóricamente.
+        $direccion=$request->input('direccion'); 
+        $descripcion=$request->input('descripcion'); 
+        $referencia=$request->input('referencia'); 
+        $lat=$request->input('lat');
+        $lng=$request->input('lng');
+        //$costo=$request->input('costo');
+        $estado=$request->input('estado');
+        //$categoria_id=$request->input('categoria_id');
+        //$subcategoria_id=$request->input('subcategoria_id');
+        //$usuario_id=$request->input('usuario_id');
+        //$socio_id=$request->input('socio_id');
+        //$servicio_id=$request->input('servicio_id');
+
+
+
+        // Creamos una bandera para controlar si se ha modificado algún dato.
+        $bandera = false;
+
+        // Actualización parcial de campos.
+        if ($direccion != null && $direccion!='')
+        {
+            $pedido->direccion = $direccion;
+            $bandera=true;
+        }
+
+        if ($descripcion != null && $descripcion!='')
+        {
+            $pedido->descripcion = $descripcion;
+            $bandera=true;
+        }
+
+        if ($referencia != null && $referencia!='')
+        {
+            $pedido->referencia = $referencia;
+            $bandera=true;
+        }
+
+        if ($lat != null && $lat!='')
+        {
+            $pedido->lat = $lat;
+            $bandera=true;
+        }
+
+        if ($lng != null && $lng!='')
+        {
+            $pedido->lng = $lng;
+            $bandera=true;
+        }
+
+        if ($estado != null && $estado!='')
+        {
+            $pedido->estado = $estado;
+            $bandera=true;
+        }
+
+        if ($bandera)
+        {
+            // Almacenamos en la base de datos el registro.
+            if ($pedido->save()) {
+                return response()->json(['status'=>'ok','pedido'=>$pedido], 200);
+            }else{
+                return response()->json(['error'=>'Error al actualizar el pedido.'], 500);
+            }
+            
+        }
+        else
+        {
+            // Se devuelve un array errors con los errores encontrados y cabecera HTTP 304 Not Modified – [No Modificada] Usado cuando el cacheo de encabezados HTTP está activo
+            // Este código 304 no devuelve ningún body, así que si quisiéramos que se mostrara el mensaje usaríamos un código 200 en su lugar.
+            return response()->json(['error'=>'No se ha modificado ningún dato al pedido.'],304);
+        }
     }
 
     /**
@@ -109,6 +223,26 @@ class PedidoController extends Controller
      */
     public function destroy($id)
     {
-        //
+        // Comprobamos si el pedido que nos están pasando existe o no.
+        $pedido=\App\Pedido::find($id);
+
+        if (count($pedido)==0)
+        {
+            // Devolvemos error codigo http 404
+            return response()->json(['error'=>'No existe el pedido con id '.$id], 404);
+        } 
+       
+        $calificacion = $pedido->calificacion;
+
+        if (sizeof($calificacion) > 0 )
+        {
+            // Eliminamos la calificacion del pedido.
+            $calificacion->delete();
+        }
+
+        // Eliminamos el pedido.
+        $pedido->delete();
+
+        return response()->json(['status'=>'ok', 'message'=>'Se ha eliminado correctamente el pedido.'], 200);
     }
 }

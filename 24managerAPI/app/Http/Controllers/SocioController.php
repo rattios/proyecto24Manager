@@ -84,6 +84,12 @@ class SocioController extends Controller
             return response()->json(['error'=>'Ya existe un socio con esas credenciales.'], 409);
         }
 
+        $aux2 = \App\Subcategoria::find($request->input('subcategoria_id'));
+        if(count($aux2) == 0){
+           // Devolvemos un código 409 Conflict. 
+            return response()->json(['error'=>'No existe la subcategoría a la cual se quiere asociar el servicio del socio.'], 409);
+        }
+
         if($nuevoSocio=\App\Socio::create($request->all())){
             //Creamos el servicio al socio que se esta dando de alta
             $servicio = $nuevoSocio->servicios()->create($request->all());

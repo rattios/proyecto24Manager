@@ -33,6 +33,9 @@ class PedidosMigration extends Migration
 
             $table->integer('socio_id')->unsigned();
             $table->foreign('socio_id')->references('id')->on('socios');
+
+            $table->integer('servicio_id')->unsigned();
+            $table->foreign('servicio_id')->references('id')->on('servicios');
             
             $table->timestamps();
         });

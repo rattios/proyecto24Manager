@@ -26,7 +26,7 @@ class Pedido extends Model
      */
     protected $fillable = ['direccion', 'descripcion', 'referencia', 'lat',
      'lng', 'costo', 'estado', 'categoria_id', 'subcategoria_id', 
-     'usuario_id', 'socio_id'];
+     'usuario_id', 'socio_id', 'servicio_id'];
 
     /**
      * The attributes excluded from the model's JSON form.
@@ -68,5 +68,12 @@ class Pedido extends Model
     {
         // 1 pedido tiene una calificacion
         return $this->hasOne('App\Calificacion', 'pedido_id');
+    }
+
+    // Relación de pedidos con servicios:
+    public function servicio()
+    {
+        // 1 pedido solicita un servicio
+        return $this->belongsTo('App\Servicio', 'servicio_id');
     }
 }
