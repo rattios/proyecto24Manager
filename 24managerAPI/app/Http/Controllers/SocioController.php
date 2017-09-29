@@ -164,7 +164,7 @@ class SocioController extends Controller
      */
     public function update(Request $request, $id)
     {
-        // Comprobamos si la categoria que nos están pasando existe o no.
+        // Comprobamos si el socio que nos están pasando existe o no.
         $socio = \App\Socio::find($id);
 
         if(count($socio)==0){
