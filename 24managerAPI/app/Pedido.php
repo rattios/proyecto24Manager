@@ -39,7 +39,7 @@ class Pedido extends Model
 	public function usuario()
 	{
 		// 1 pedido pertenece a un usuario
-		return $this->belongsTo('App\Usuario', 'usuario_id');
+		return $this->belongsTo('App\User', 'usuario_id');
 	}
 
 	// Relación de pedidos con socios:
@@ -60,7 +60,7 @@ class Pedido extends Model
     public function subcategoria()
     {
         // 1 pedido pertenece a una subcategoria
-        return $this->belongsTo('App\Subategoria', 'subcategoria_id');
+        return $this->belongsTo('App\Subcategoria', 'subcategoria_id');
     }
 
     // Relación de pedidos con calificaciones:

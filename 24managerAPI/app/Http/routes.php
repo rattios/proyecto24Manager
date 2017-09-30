@@ -268,12 +268,14 @@ Route::group(  ['middleware' =>'cors'], function(){
     
     //----Pruebas PedidoController
     Route::get('/pedidos','PedidoController@index');
+    Route::get('/pedidos/informacion','PedidoController@pedidosInformacion');
     Route::get('/pedidos/socio','PedidoController@serviciosSocio');
     Route::post('/pedidos','PedidoController@store');
     Route::put('/pedidos/{id}','PedidoController@update');
     Route::delete('/pedidos/{id}','PedidoController@destroy');
     Route::get('/pedidos/{id}','PedidoController@show');
     Route::get('/pedidos/{id}/socio','PedidoController@servicioSocio');
+    Route::get('/pedidos/{id}/informacion','PedidoController@pedidoInformacion');
     
 
     Route::group(['middleware' => 'jwt-auth'], function(){

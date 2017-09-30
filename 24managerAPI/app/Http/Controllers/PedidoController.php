@@ -26,6 +26,20 @@ class PedidoController extends Controller
         } 
     }
 
+    public function pedidosInformacion()
+    {
+        //cargar todos los pedidos con toda su informacion asociada
+        $pedidos = \App\Pedido::with('usuario')->with('servicio')
+                ->with('socio')->with('categoria')
+                ->with('subcategoria')->with('calificacion')->get();
+
+        if(count($pedidos) == 0){
+            return response()->json(['error'=>'No existen pedidos.'], 404);          
+        }else{
+            return response()->json(['status'=>'ok', 'pedidos'=>$pedidos], 200);
+        }
+    }
+
     /**
      * Show the form for creating a new resource.
      *
@@ -46,10 +60,12 @@ class PedidoController extends Controller
     {
         //NOTA:El parametro estado se debe pasar en el body del la peticion.
 
+        $estado = $request->input('estado');
+
         // Primero comprobaremos si estamos recibiendo todos los campos.
-        if ( !$request->input('direccion') || !$request->input('descripcion') || !$request->input('referencia') ||
-             !$request->input('costo') ||
-            !$request->input('estado') || !$request->input('categoria_id') || !$request->input('subcategoria_id') ||
+        if (!$request->input('direccion') || !$request->input('descripcion') || !$request->input('referencia') ||
+            !$request->input('costo') ||
+            $estado == null || !$request->input('categoria_id') || !$request->input('subcategoria_id') ||
             !$request->input('usuario_id') || !$request->input('socio_id') || !$request->input('servicio_id'))
         {
             // Se devuelve un array errors con los errores encontrados y cabecera HTTP 422 Unprocessable Entity – [Entidad improcesable] Utilizada para errores de validación.
@@ -104,6 +120,20 @@ class PedidoController extends Controller
     {
         //cargar un pedido
         $pedido = \App\Pedido::find($id);
+
+        if(count($pedido)==0){
+            return response()->json(['error'=>'No existe el pedido con id '.$id], 404);          
+        }else{
+            return response()->json(['status'=>'ok', 'pedido'=>$pedido], 200);
+        }
+    }
+
+    public function pedidoInformacion($id)
+    {
+        //cargar un pedido con toda su informacion asociada
+        $pedido = \App\Pedido::where('id', $id)->with('usuario')->with('servicio')
+                ->with('socio')->with('categoria')
+                ->with('subcategoria')->with('calificacion')->get();
 
         if(count($pedido)==0){
             return response()->json(['error'=>'No existe el pedido con id '.$id], 404);          
