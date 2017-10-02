@@ -203,7 +203,7 @@ class UsuarioController extends Controller
 
         if ($password != null && $password!='')
         {
-            $usuario->password = $password;
+            $usuario->password = Hash::make($request->input('password'));
             $bandera=true;
         }
 

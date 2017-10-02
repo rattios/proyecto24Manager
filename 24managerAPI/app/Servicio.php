@@ -24,7 +24,7 @@ class Servicio extends Model
      *
      * @var array
      */
-    protected $fillable = ['servicio', 'horario', 'dias',
+    protected $fillable = ['servicio', 'horario', 'dias', 'costo',
      'socio_id', 'subcategoria_id'];
 
     /**

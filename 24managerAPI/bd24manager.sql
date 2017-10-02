@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 30-09-2017 a las 02:12:58
+-- Tiempo de generación: 02-10-2017 a las 20:26:39
 -- Versión del servidor: 10.1.21-MariaDB
 -- Versión de PHP: 5.6.30
 
@@ -36,6 +36,13 @@ CREATE TABLE `calificaciones` (
   `updated_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
+--
+-- Volcado de datos para la tabla `calificaciones`
+--
+
+INSERT INTO `calificaciones` (`id`, `comentario`, `puntaje`, `servicio_id`, `pedido_id`, `created_at`, `updated_at`) VALUES
+(1, 'buen servicio', 8.00, 1, 1, '2017-10-01 21:38:26', '2017-10-01 21:38:26');
+
 -- --------------------------------------------------------
 
 --
@@ -55,7 +62,7 @@ CREATE TABLE `categorias` (
 --
 
 INSERT INTO `categorias` (`id`, `nombre`, `imagen`, `created_at`, `updated_at`) VALUES
-(1, 'mecanica', 'ingcatmecanica', '2017-09-29 22:09:25', '2017-09-29 22:09:25');
+(1, 'categoria2', 'imgcat2', '2017-10-01 21:11:49', '2017-10-01 21:11:49');
 
 -- --------------------------------------------------------
 
@@ -106,9 +113,9 @@ CREATE TABLE `pedidos` (
   `direccion` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `descripcion` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `referencia` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
-  `lat` double(8,2) NOT NULL,
-  `lng` double(8,2) NOT NULL,
-  `costo` double(8,2) NOT NULL,
+  `lat` double(8,2) DEFAULT NULL,
+  `lng` double(8,2) DEFAULT NULL,
+  `total` double(8,2) NOT NULL,
   `estado` int(11) NOT NULL,
   `categoria_id` int(10) UNSIGNED NOT NULL,
   `subcategoria_id` int(10) UNSIGNED NOT NULL,
@@ -123,9 +130,9 @@ CREATE TABLE `pedidos` (
 -- Volcado de datos para la tabla `pedidos`
 --
 
-INSERT INTO `pedidos` (`id`, `direccion`, `descripcion`, `referencia`, `lat`, `lng`, `costo`, `estado`, `categoria_id`, `subcategoria_id`, `usuario_id`, `socio_id`, `servicio_id`, `created_at`, `updated_at`) VALUES
-(1, 'los chorros', 'casa 2 plantas', 'hotel rio milla', 123.00, 4321.00, 1500.00, 0, 1, 3, 1, 1, 1, '2017-09-30 01:55:28', '2017-09-30 01:55:28'),
-(5, 'los chorros', 'casa 2 plantas', 'hotel rio milla', 123.00, 4321.00, 1500.00, 1, 1, 3, 1, 1, 1, '2017-09-30 03:45:30', '2017-09-30 03:45:30');
+INSERT INTO `pedidos` (`id`, `direccion`, `descripcion`, `referencia`, `lat`, `lng`, `total`, `estado`, `categoria_id`, `subcategoria_id`, `usuario_id`, `socio_id`, `servicio_id`, `created_at`, `updated_at`) VALUES
+(1, 'los chorros', 'casa 2 plantas', 'hotel rio milla', 123.00, 4321.00, 1500.00, 0, 1, 1, 1, 1, 1, '2017-10-01 21:29:40', '2017-10-01 21:29:40'),
+(2, 'la mata', 'casa 1', 'bomba ', NULL, NULL, 1500.00, 0, 1, 1, 1, 1, 1, '2017-10-01 21:32:05', '2017-10-01 21:32:05');
 
 -- --------------------------------------------------------
 
@@ -138,6 +145,7 @@ CREATE TABLE `servicios` (
   `servicio` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `horario` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `dias` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `costo` double(8,2) NOT NULL,
   `socio_id` int(10) UNSIGNED NOT NULL,
   `subcategoria_id` int(10) UNSIGNED NOT NULL,
   `created_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
@@ -148,9 +156,9 @@ CREATE TABLE `servicios` (
 -- Volcado de datos para la tabla `servicios`
 --
 
-INSERT INTO `servicios` (`id`, `servicio`, `horario`, `dias`, `socio_id`, `subcategoria_id`, `created_at`, `updated_at`) VALUES
-(1, 'motores', '2-4', 'lmijv', 1, 3, '2017-09-29 22:25:07', '2017-09-29 22:25:07'),
-(2, 'bicicleta', '6', 'lmij', 1, 3, '2017-09-30 02:09:43', '2017-09-30 02:09:43');
+INSERT INTO `servicios` (`id`, `servicio`, `horario`, `dias`, `costo`, `socio_id`, `subcategoria_id`, `created_at`, `updated_at`) VALUES
+(1, 'motores', '2-4', 'lmijv', 1500.00, 1, 1, '2017-10-01 21:16:41', '2017-10-01 21:16:41'),
+(2, 'bicicleta', '6', 'lmij', 2000.00, 1, 1, '2017-10-01 21:35:55', '2017-10-01 21:35:55');
 
 -- --------------------------------------------------------
 
@@ -173,7 +181,7 @@ CREATE TABLE `socios` (
 --
 
 INSERT INTO `socios` (`id`, `correo`, `nombre`, `telefono`, `ubicacion`, `created_at`, `updated_at`) VALUES
-(1, 'correo@socio1.com', 'socio1', '123', 'merida', '2017-09-29 22:25:07', '2017-09-29 22:25:07');
+(1, 'correo@socio1.com', 'socio1', '123', 'merida', '2017-10-01 21:16:41', '2017-10-01 21:16:41');
 
 -- --------------------------------------------------------
 
@@ -196,7 +204,7 @@ CREATE TABLE `subcategorias` (
 --
 
 INSERT INTO `subcategorias` (`id`, `nombre`, `imagen`, `costo`, `categoria_id`, `created_at`, `updated_at`) VALUES
-(3, 'motos', 'imgsubcatmotos', 212.00, 1, '2017-09-29 22:18:03', '2017-09-29 22:18:03');
+(1, 'subcategoriax', 'imgsubcatx', 212.00, 1, '2017-10-01 21:12:04', '2017-10-01 21:12:04');
 
 -- --------------------------------------------------------
 
@@ -238,7 +246,7 @@ CREATE TABLE `usuarios` (
 --
 
 INSERT INTO `usuarios` (`id`, `user`, `password`, `correo`, `nombre`, `telefono`, `sexo`, `tipo`, `created_at`, `updated_at`) VALUES
-(1, 'freddy', '$2y$10$qAZqrMYOzeV7svLVKTQKj.InQvMSSH7mSvBXJndkHoVqWLzn.QSVS', 'ramirez.fred@hotmail.com', 'freddy', '04247027209', 'm', 1, '2017-09-29 22:07:45', '2017-09-29 22:07:45');
+(1, 'freddy', '$2y$10$XHJS8YGNr3XVbma9dSUDSOcYZPGbi9jtV1.WTmZQYnHuOGxg0ye92', 'ramirez.fred@hotmail.com', 'freddy', '04247027209', 'm', 1, '2017-10-01 21:10:48', '2017-10-01 21:10:48');
 
 --
 -- Índices para tablas volcadas
@@ -323,7 +331,7 @@ ALTER TABLE `usuarios`
 -- AUTO_INCREMENT de la tabla `calificaciones`
 --
 ALTER TABLE `calificaciones`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 --
 -- AUTO_INCREMENT de la tabla `categorias`
 --
@@ -333,7 +341,7 @@ ALTER TABLE `categorias`
 -- AUTO_INCREMENT de la tabla `pedidos`
 --
 ALTER TABLE `pedidos`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 --
 -- AUTO_INCREMENT de la tabla `servicios`
 --
@@ -348,7 +356,7 @@ ALTER TABLE `socios`
 -- AUTO_INCREMENT de la tabla `subcategorias`
 --
 ALTER TABLE `subcategorias`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 --
 -- AUTO_INCREMENT de la tabla `users`
 --

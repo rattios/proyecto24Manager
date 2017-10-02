@@ -17,9 +17,9 @@ class PedidosMigration extends Migration
             $table->string('direccion');
             $table->string('descripcion');
             $table->string('referencia');
-            $table->float('lat');
-            $table->float('lng');
-            $table->float('costo');
+            $table->float('lat')->nullable();
+            $table->float('lng')->nullable();
+            $table->float('total');
             $table->integer('estado');
 
             $table->integer('categoria_id')->unsigned();

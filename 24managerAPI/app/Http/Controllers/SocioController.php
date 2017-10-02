@@ -72,6 +72,7 @@ class SocioController extends Controller
         if (!$request->input('correo') || !$request->input('nombre') ||
             !$request->input('telefono') || !$request->input('ubicacion') ||
             !$request->input('servicio') || !$request->input('horario') ||
+            !$request->input('dias') || !$request->input('costo') ||
             !$request->input('subcategoria_id'))
         {
             // Se devuelve un array errors con los errores encontrados y cabecera HTTP 422 Unprocessable Entity – [Entidad improcesable] Utilizada para errores de validación.

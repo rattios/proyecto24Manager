@@ -64,7 +64,6 @@ class PedidoController extends Controller
 
         // Primero comprobaremos si estamos recibiendo todos los campos.
         if (!$request->input('direccion') || !$request->input('descripcion') || !$request->input('referencia') ||
-            !$request->input('costo') ||
             $estado == null || !$request->input('categoria_id') || !$request->input('subcategoria_id') ||
             !$request->input('usuario_id') || !$request->input('socio_id') || !$request->input('servicio_id'))
         {
@@ -103,8 +102,31 @@ class PedidoController extends Controller
             return response()->json(['error'=>'No existe el servicio al cual se quiere asociar el pedido.'], 409);
         }        
 
-        if($nuevoPedido=\App\Pedido::create($request->all())){
+        /*if($nuevoPedido=\App\Pedido::create($request->all())){
            return response()->json(['status'=>'ok', 'pedido'=>$nuevoPedido], 200);
+        }else{
+            return response()->json(['error'=>'Error al crear el pedido.'], 500);
+        }*/
+
+        /*Primero creo una instancia en la tabla subcategorias*/
+        $pedido = new \App\Pedido;
+
+        // Listado de campos recibidos teóricamente.
+        $pedido->direccion=$request->input('direccion'); 
+        $pedido->descripcion=$request->input('descripcion'); 
+        $pedido->referencia=$request->input('referencia'); 
+        $pedido->lat=$request->input('lat');
+        $pedido->lng=$request->input('lng');
+        $pedido->total=$aux6->costo;
+        $pedido->estado=$request->input('estado');
+        $pedido->categoria_id=$request->input('categoria_id');
+        $pedido->subcategoria_id=$request->input('subcategoria_id');
+        $pedido->usuario_id=$request->input('usuario_id');
+        $pedido->socio_id=$request->input('socio_id');
+        $pedido->servicio_id=$request->input('servicio_id');
+
+        if($pedido->save()){
+           return response()->json(['status'=>'ok', 'pedido'=>$pedido], 200);
         }else{
             return response()->json(['error'=>'Error al crear el pedido.'], 500);
         }

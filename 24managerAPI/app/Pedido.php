@@ -25,7 +25,7 @@ class Pedido extends Model
      * @var array
      */
     protected $fillable = ['direccion', 'descripcion', 'referencia', 'lat',
-     'lng', 'costo', 'estado', 'categoria_id', 'subcategoria_id', 
+     'lng', 'total', 'estado', 'categoria_id', 'subcategoria_id', 
      'usuario_id', 'socio_id', 'servicio_id'];
 
     /**
