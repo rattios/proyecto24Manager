@@ -19,7 +19,7 @@ class PedidosMigration extends Migration
             $table->string('referencia');
             $table->float('lat')->nullable();
             $table->float('lng')->nullable();
-            $table->float('total');
+            $table->float('total')->nullable();
             $table->integer('estado');
 
             $table->integer('categoria_id')->unsigned();
@@ -31,10 +31,10 @@ class PedidosMigration extends Migration
             $table->integer('usuario_id')->unsigned();
             $table->foreign('usuario_id')->references('id')->on('usuarios');
 
-            $table->integer('socio_id')->unsigned();
+            $table->integer('socio_id')->unsigned()->nullable();
             $table->foreign('socio_id')->references('id')->on('socios');
 
-            $table->integer('servicio_id')->unsigned();
+            $table->integer('servicio_id')->unsigned()->nullable();
             $table->foreign('servicio_id')->references('id')->on('servicios');
             
             $table->timestamps();

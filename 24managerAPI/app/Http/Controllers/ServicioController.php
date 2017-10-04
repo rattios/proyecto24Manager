@@ -39,6 +39,29 @@ class ServicioController extends Controller
         
     }
 
+    public function serviciosSocioSubcat($subcategoria_id)
+    {
+        //validar si existe la subcategoria
+        $subcategoria = \App\Subcategoria::find($subcategoria_id);
+
+        if(count($subcategoria)==0){
+            return response()->json(['error'=>'No existe la subcategoría con id '.$subcategoria_id], 404);          
+        }
+
+        //cargar todos los servicios con su socio que pertenescan a la misma subcategoria
+        $servicios = \App\Servicio::where('subcategoria_id', $subcategoria_id)
+            ->with('socio')->get();
+
+        if(count($servicios) == 0){
+            return response()->json(['error'=>'No existen servicios en esa subcategoría.'], 404);          
+        }else{
+            return response()->json(['status'=>'ok', 'servicios'=>$servicios], 200);
+        } 
+        
+    }
+
+
+
     /**
      * Show the form for creating a new resource.
      *

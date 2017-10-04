@@ -56,7 +56,7 @@ class PedidoController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function storeFull(Request $request)
     {
         //NOTA:El parametro estado se debe pasar en el body del la peticion.
 
@@ -124,6 +124,67 @@ class PedidoController extends Controller
         $pedido->usuario_id=$request->input('usuario_id');
         $pedido->socio_id=$request->input('socio_id');
         $pedido->servicio_id=$request->input('servicio_id');
+
+        if($pedido->save()){
+           return response()->json(['status'=>'ok', 'pedido'=>$pedido], 200);
+        }else{
+            return response()->json(['error'=>'Error al crear el pedido.'], 500);
+        }
+    }
+
+    public function store(Request $request)
+    {
+        //NOTA:El parametro estado se debe pasar en el body del la peticion.
+
+        $estado = $request->input('estado');
+
+        // Primero comprobaremos si estamos recibiendo todos los campos.
+        if (!$request->input('direccion') || !$request->input('descripcion') || !$request->input('referencia') ||
+            $estado == null || !$request->input('categoria_id') || !$request->input('subcategoria_id') ||
+            !$request->input('usuario_id'))
+        {
+            // Se devuelve un array errors con los errores encontrados y cabecera HTTP 422 Unprocessable Entity – [Entidad improcesable] Utilizada para errores de validación.
+            return response()->json(['error'=>'Faltan datos necesarios para el proceso de alta.'],422);
+        }
+
+        //validaciones
+        $aux2 = \App\Categoria::find($request->input('categoria_id'));
+        if(count($aux2) == 0){
+           // Devolvemos un código 409 Conflict. 
+            return response()->json(['error'=>'No existe la categoría a la cual se quiere asociar la subcategoría.'], 409);
+        }
+
+        $aux3 = \App\Subcategoria::find($request->input('subcategoria_id'));
+        if(count($aux3) == 0){
+           // Devolvemos un código 409 Conflict. 
+            return response()->json(['error'=>'No existe la subcategoría a la cual se quiere asociar la subcategoría.'], 409);
+        }
+
+        $aux4 = \App\User::find($request->input('usuario_id'));
+        if(count($aux4) == 0){
+           // Devolvemos un código 409 Conflict. 
+            return response()->json(['error'=>'No existe el usuario al cual se quiere asociar el pedido.'], 409);
+        }     
+
+        /*if($nuevoPedido=\App\Pedido::create($request->all())){
+           return response()->json(['status'=>'ok', 'pedido'=>$nuevoPedido], 200);
+        }else{
+            return response()->json(['error'=>'Error al crear el pedido.'], 500);
+        }*/
+
+        /*Primero creo una instancia en la tabla subcategorias*/
+        $pedido = new \App\Pedido;
+
+        // Listado de campos recibidos teóricamente.
+        $pedido->direccion=$request->input('direccion'); 
+        $pedido->descripcion=$request->input('descripcion'); 
+        $pedido->referencia=$request->input('referencia'); 
+        $pedido->lat=$request->input('lat');
+        $pedido->lng=$request->input('lng');
+        $pedido->estado=$request->input('estado');
+        $pedido->categoria_id=$request->input('categoria_id');
+        $pedido->subcategoria_id=$request->input('subcategoria_id');
+        $pedido->usuario_id=$request->input('usuario_id');
 
         if($pedido->save()){
            return response()->json(['status'=>'ok', 'pedido'=>$pedido], 200);
@@ -205,7 +266,7 @@ class PedidoController extends Controller
         //$subcategoria_id=$request->input('subcategoria_id');
         //$usuario_id=$request->input('usuario_id');
         //$socio_id=$request->input('socio_id');
-        //$servicio_id=$request->input('servicio_id');
+        $servicio_id=$request->input('servicio_id');
 
 
 
@@ -246,6 +307,32 @@ class PedidoController extends Controller
         if ($estado != null && $estado!='')
         {
             $pedido->estado = $estado;
+            $bandera=true;
+        }
+
+        /*if ($socio_id != null && $socio_id!='')
+        {
+            $aux5 = \App\Socio::find($request->input('socio_id'));
+            if(count($aux5) == 0){
+               // Devolvemos un código 409 Conflict. 
+                return response()->json(['error'=>'No existe el socio al cual se quiere asociar el pedido.'], 409);
+            }
+
+            $pedido->socio_id = $socio_id;
+            $bandera=true;
+        }*/
+
+        if ($servicio_id != null && $servicio_id!='')
+        {
+            $aux6 = \App\Servicio::find($request->input('servicio_id'));
+            if(count($aux6) == 0){
+               // Devolvemos un código 409 Conflict. 
+                return response()->json(['error'=>'No existe el servicio al cual se quiere asociar el pedido.'], 409);
+            } 
+
+            $pedido->total=$aux6->costo;
+            $pedido->servicio_id = $servicio_id;
+            $pedido->socio_id = $aux6->socio_id;
             $bandera=true;
         }
 

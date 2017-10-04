@@ -224,9 +224,7 @@ Route::group(  ['middleware' =>'cors'], function(){
     Route::post('/login/web','LoginController@loginWeb');
     Route::post('/login/app','LoginController@loginApp');
 
-    Route::group(['middleware' => 'jwt-auth'], function(){
-
-        //----Pruebas UsuarioController
+            //----Pruebas UsuarioController
         Route::get('/usuarios','UsuarioController@index');
         Route::get('/usuarios/pedidos','UsuarioController@usuariosPedidos');
         Route::post('/usuarios','UsuarioController@store');
@@ -270,6 +268,7 @@ Route::group(  ['middleware' =>'cors'], function(){
         Route::delete('/servicios/{id}','ServicioController@destroy');
         Route::get('/servicios/{id}','ServicioController@show');
         Route::get('/servicios/{id}/socio','ServicioController@servicioSocio');
+        Route::get('/servicios/socio/subcategoria/{subcategoria_id}','ServicioController@serviciosSocioSubcat');
         
         //----Pruebas PedidoController
         Route::get('/pedidos','PedidoController@index');
@@ -287,5 +286,9 @@ Route::group(  ['middleware' =>'cors'], function(){
         Route::delete('/calificaciones/{pedido_id}','CalificacionController@destroy');
         Route::get('/calificaciones/{pedido_id}','CalificacionController@show');
     
+
+    Route::group(['middleware' => 'jwt-auth'], function(){
+
+
     });
 });

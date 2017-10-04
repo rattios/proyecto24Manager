@@ -304,6 +304,13 @@
 		<p>Headers: Authorization : Bearer + token</p>
 		<p>Cuerpo de consulta (body):</p>
 
+		<h4>Obtener servicios con socio que pertenescan a la misma subcategoria</h4>
+		<p>Retorna todos los servicios con el socio que los ofrece y que pertenescan a la subcategoria subcategoria_id.</p>
+		<p>URL: http://localhost/gitHub/proyecto24Manager/24managerAPI/public/servicios/socio/subcategoria/{subcategoria_id}</p>
+		<p>Metodo: GET</p>
+		<p>Headers: Authorization : Bearer + token</p>
+		<p>Cuerpo de consulta (body):</p>
+
 		<h4>Crear servicio</h4>
 		<p>Crea un servicio al socio socio_id.</p>
 		<p>URL: http://localhost/gitHub/proyecto24Manager/24managerAPI/public/servicios/{socio_id}</p>
@@ -383,8 +390,8 @@
 			<li>categoria_id (Requerido)</li>
 			<li>subcategoria_id (Requerido)</li>
 			<li>usuario_id (Requerido)</li>
-			<li>socio_id (Requerido)</li>
-			<li>servicio_id (Requerido)</li>
+			<!-- <li>socio_id (Requerido)</li>
+			<li>servicio_id (Requerido)</li> -->
 			<li>estado (Requerido)</li>
 		</ul>
 
@@ -415,6 +422,8 @@
 			<li>lat (No requerido)</li>
 			<li>lng (No requerido)</li>
 			<li>estado (No requerido)</li>
+			<!-- <li>socio_id (No Requerido)</li> -->
+			<li>servicio_id (No Requerido)</li>
 		</ul>
 
 		<h4>Eliminar pedido</h4>
