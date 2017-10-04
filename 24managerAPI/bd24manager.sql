@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 02-10-2017 a las 20:26:39
+-- Tiempo de generación: 05-10-2017 a las 00:41:17
 -- Versión del servidor: 10.1.21-MariaDB
 -- Versión de PHP: 5.6.30
 
@@ -36,13 +36,6 @@ CREATE TABLE `calificaciones` (
   `updated_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
---
--- Volcado de datos para la tabla `calificaciones`
---
-
-INSERT INTO `calificaciones` (`id`, `comentario`, `puntaje`, `servicio_id`, `pedido_id`, `created_at`, `updated_at`) VALUES
-(1, 'buen servicio', 8.00, 1, 1, '2017-10-01 21:38:26', '2017-10-01 21:38:26');
-
 -- --------------------------------------------------------
 
 --
@@ -62,7 +55,7 @@ CREATE TABLE `categorias` (
 --
 
 INSERT INTO `categorias` (`id`, `nombre`, `imagen`, `created_at`, `updated_at`) VALUES
-(1, 'categoria2', 'imgcat2', '2017-10-01 21:11:49', '2017-10-01 21:11:49');
+(1, 'categoria2', 'imgcat2', '2017-10-02 21:35:56', '2017-10-02 21:35:56');
 
 -- --------------------------------------------------------
 
@@ -115,13 +108,13 @@ CREATE TABLE `pedidos` (
   `referencia` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `lat` double(8,2) DEFAULT NULL,
   `lng` double(8,2) DEFAULT NULL,
-  `total` double(8,2) NOT NULL,
+  `total` double(8,2) DEFAULT NULL,
   `estado` int(11) NOT NULL,
   `categoria_id` int(10) UNSIGNED NOT NULL,
   `subcategoria_id` int(10) UNSIGNED NOT NULL,
   `usuario_id` int(10) UNSIGNED NOT NULL,
-  `socio_id` int(10) UNSIGNED NOT NULL,
-  `servicio_id` int(10) UNSIGNED NOT NULL,
+  `socio_id` int(10) UNSIGNED DEFAULT NULL,
+  `servicio_id` int(10) UNSIGNED DEFAULT NULL,
   `created_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
   `updated_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
@@ -131,8 +124,7 @@ CREATE TABLE `pedidos` (
 --
 
 INSERT INTO `pedidos` (`id`, `direccion`, `descripcion`, `referencia`, `lat`, `lng`, `total`, `estado`, `categoria_id`, `subcategoria_id`, `usuario_id`, `socio_id`, `servicio_id`, `created_at`, `updated_at`) VALUES
-(1, 'los chorros', 'casa 2 plantas', 'hotel rio milla', 123.00, 4321.00, 1500.00, 0, 1, 1, 1, 1, 1, '2017-10-01 21:29:40', '2017-10-01 21:29:40'),
-(2, 'la mata', 'casa 1', 'bomba ', NULL, NULL, 1500.00, 0, 1, 1, 1, 1, 1, '2017-10-01 21:32:05', '2017-10-01 21:32:05');
+(1, 'los chorros', 'casa 2 plantas', 'hotel rio milla', 123.00, 4321.00, 2000.00, 1, 1, 1, 1, 1, 2, '2017-10-02 21:41:51', '2017-10-03 01:34:44');
 
 -- --------------------------------------------------------
 
@@ -157,8 +149,9 @@ CREATE TABLE `servicios` (
 --
 
 INSERT INTO `servicios` (`id`, `servicio`, `horario`, `dias`, `costo`, `socio_id`, `subcategoria_id`, `created_at`, `updated_at`) VALUES
-(1, 'motores', '2-4', 'lmijv', 1500.00, 1, 1, '2017-10-01 21:16:41', '2017-10-01 21:16:41'),
-(2, 'bicicleta', '6', 'lmij', 2000.00, 1, 1, '2017-10-01 21:35:55', '2017-10-01 21:35:55');
+(1, 'motores', '2-4', 'lmijv', 1500.00, 1, 1, '2017-10-03 01:28:14', '2017-10-03 01:28:14'),
+(2, 'bicicleta', '6', 'lmij', 2000.00, 1, 1, '2017-10-03 01:28:25', '2017-10-03 01:28:25'),
+(3, 'motores2', '2-4', 'lmijv', 1500.00, 2, 1, '2017-10-03 01:57:17', '2017-10-03 01:57:17');
 
 -- --------------------------------------------------------
 
@@ -181,7 +174,8 @@ CREATE TABLE `socios` (
 --
 
 INSERT INTO `socios` (`id`, `correo`, `nombre`, `telefono`, `ubicacion`, `created_at`, `updated_at`) VALUES
-(1, 'correo@socio1.com', 'socio1', '123', 'merida', '2017-10-01 21:16:41', '2017-10-01 21:16:41');
+(1, 'correo@socio1.com', 'socio1', '123', 'merida', '2017-10-03 01:28:14', '2017-10-03 01:28:14'),
+(2, 'correo@socio2.com', 'socio2', '123', 'merida2', '2017-10-03 01:57:17', '2017-10-03 01:57:17');
 
 -- --------------------------------------------------------
 
@@ -204,7 +198,8 @@ CREATE TABLE `subcategorias` (
 --
 
 INSERT INTO `subcategorias` (`id`, `nombre`, `imagen`, `costo`, `categoria_id`, `created_at`, `updated_at`) VALUES
-(1, 'subcategoriax', 'imgsubcatx', 212.00, 1, '2017-10-01 21:12:04', '2017-10-01 21:12:04');
+(1, 'subcategoriax', 'imgsubcatx', 212.00, 1, '2017-10-02 21:36:12', '2017-10-02 21:36:12'),
+(2, 'subcategoria2', 'imgsubcat2', 123.00, 1, '2017-10-03 01:56:12', '2017-10-03 01:56:12');
 
 -- --------------------------------------------------------
 
@@ -246,7 +241,7 @@ CREATE TABLE `usuarios` (
 --
 
 INSERT INTO `usuarios` (`id`, `user`, `password`, `correo`, `nombre`, `telefono`, `sexo`, `tipo`, `created_at`, `updated_at`) VALUES
-(1, 'freddy', '$2y$10$XHJS8YGNr3XVbma9dSUDSOcYZPGbi9jtV1.WTmZQYnHuOGxg0ye92', 'ramirez.fred@hotmail.com', 'freddy', '04247027209', 'm', 1, '2017-10-01 21:10:48', '2017-10-01 21:10:48');
+(1, 'freddy', '$2y$10$i9cCBJejcDVfLc1AwQYuqOw.gERs2S3B2NGxJO0mdytijZVuhRAZa', 'ramirez.fred@hotmail.com', 'freddy', '04247027209', 'm', 1, '2017-10-02 21:35:46', '2017-10-02 21:35:46');
 
 --
 -- Índices para tablas volcadas
@@ -331,7 +326,7 @@ ALTER TABLE `usuarios`
 -- AUTO_INCREMENT de la tabla `calificaciones`
 --
 ALTER TABLE `calificaciones`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT de la tabla `categorias`
 --
@@ -341,22 +336,22 @@ ALTER TABLE `categorias`
 -- AUTO_INCREMENT de la tabla `pedidos`
 --
 ALTER TABLE `pedidos`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 --
 -- AUTO_INCREMENT de la tabla `servicios`
 --
 ALTER TABLE `servicios`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 --
 -- AUTO_INCREMENT de la tabla `socios`
 --
 ALTER TABLE `socios`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 --
 -- AUTO_INCREMENT de la tabla `subcategorias`
 --
 ALTER TABLE `subcategorias`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 --
 -- AUTO_INCREMENT de la tabla `users`
 --
