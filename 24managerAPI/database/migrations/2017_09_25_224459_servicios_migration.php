@@ -16,8 +16,8 @@ class ServiciosMigration extends Migration
             $table->increments('id');
             $table->string('servicio');
             $table->string('horario');
-            $table->string('dias');
-            $table->float('costo');
+            $table->string('dias')->nullable();
+            //$table->float('costo');
 
             $table->integer('socio_id')->unsigned();
             $table->foreign('socio_id')->references('id')->on('socios');

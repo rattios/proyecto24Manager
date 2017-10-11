@@ -90,7 +90,7 @@ class ServicioController extends Controller
 
         // Primero comprobaremos si estamos recibiendo todos los campos.
         if ( !$request->input('servicio') || !$request->input('horario') ||
-            !$request->input('dias') || !$request->input('costo') ||
+            !$request->input('dias') || /*!$request->input('costo') ||*/
             !$request->input('subcategoria_id'))
         {
             // Se devuelve un array errors con los errores encontrados y cabecera HTTP 422 Unprocessable Entity – [Entidad improcesable] Utilizada para errores de validación.
@@ -182,7 +182,7 @@ class ServicioController extends Controller
         $serv=$request->input('servicio');
         $horario=$request->input('horario');
         $dias=$request->input('dias');
-        $costo=$request->input('costo');
+        //$costo=$request->input('costo');
 
         // Creamos una bandera para controlar si se ha modificado algún dato.
         $bandera = false;
@@ -206,11 +206,11 @@ class ServicioController extends Controller
             $bandera=true;
         }
 
-        if ($costo != null && $costo!='')
+        /*if ($costo != null && $costo!='')
         {
             $servicio->costo = $costo;
             $bandera=true;
-        }
+        }*/
 
         if ($bandera)
         {

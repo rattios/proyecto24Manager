@@ -222,9 +222,20 @@ Route::group(  ['middleware' =>'cors'], function(){
 
     //----Pruebas LoginController
     Route::post('/login/web','LoginController@loginWeb');
-    Route::post('/login/app','LoginController@loginApp');
+    Route::post('/login/app','LoginController@loginApp'); 
 
-            //----Pruebas UsuarioController
+    //----Pruebas PasswordController
+    Route::get('/password/cliente/{correo}','PasswordController@generarCodigo');
+    Route::get('/password/codigo/{codigo}','PasswordController@validarCodigo');
+     
+    //Registro de clientes   
+    Route::post('/clientes','UsuarioController@storeCliente');
+    //Registro de socios
+    Route::post('/socios','SocioController@store');
+
+    Route::group(['middleware' => 'jwt-auth'], function(){
+
+        //----Pruebas UsuarioController
         Route::get('/usuarios','UsuarioController@index');
         Route::get('/usuarios/pedidos','UsuarioController@usuariosPedidos');
         Route::post('/usuarios','UsuarioController@store');
@@ -237,7 +248,7 @@ Route::group(  ['middleware' =>'cors'], function(){
         Route::get('/socios','SocioController@index');
         Route::get('/socios/servicios','SocioController@sociosServicios');
         Route::get('/socios/pedidos','SocioController@sociosPedidos');
-        Route::post('/socios','SocioController@store');
+        //Route::post('/socios','SocioController@store');
         Route::put('/socios/{id}','SocioController@update');
         Route::delete('/socios/{id}','SocioController@destroy');
         Route::get('/socios/{id}','SocioController@show');
@@ -285,10 +296,6 @@ Route::group(  ['middleware' =>'cors'], function(){
         Route::put('/calificaciones/{pedido_id}','CalificacionController@update');
         Route::delete('/calificaciones/{pedido_id}','CalificacionController@destroy');
         Route::get('/calificaciones/{pedido_id}','CalificacionController@show');
-    
-
-    Route::group(['middleware' => 'jwt-auth'], function(){
-
 
     });
 });

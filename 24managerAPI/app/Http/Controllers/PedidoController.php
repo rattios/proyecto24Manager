@@ -56,6 +56,8 @@ class PedidoController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
+
+    //Nota: no esta en uso
     public function storeFull(Request $request)
     {
         //NOTA:El parametro estado se debe pasar en el body del la peticion.
@@ -185,6 +187,7 @@ class PedidoController extends Controller
         $pedido->categoria_id=$request->input('categoria_id');
         $pedido->subcategoria_id=$request->input('subcategoria_id');
         $pedido->usuario_id=$request->input('usuario_id');
+        $pedido->total=$aux3->costo;
 
         if($pedido->save()){
            return response()->json(['status'=>'ok', 'pedido'=>$pedido], 200);
@@ -330,7 +333,7 @@ class PedidoController extends Controller
                 return response()->json(['error'=>'No existe el servicio al cual se quiere asociar el pedido.'], 409);
             } 
 
-            $pedido->total=$aux6->costo;
+            //$pedido->total=$aux6->costo;
             $pedido->servicio_id = $servicio_id;
             $pedido->socio_id = $aux6->socio_id;
             $bandera=true;

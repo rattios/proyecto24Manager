@@ -84,7 +84,7 @@ class SubcategoriaController extends Controller
         } */
 
         if($nuevaSubcategoria=\App\Subcategoria::create($request->all())){
-           return response()->json(['status'=>'ok', 'subcategoria'=>$nuevaSubcategoria], 200);
+           return response()->json(['status'=>'ok', 'subcategoria'=>json_decode($nuevaSubcategoria)], 200);
         }else{
             return response()->json(['error'=>'Error al crear la subcategoría.'], 500);
         }

@@ -20,7 +20,8 @@ class UsuariosMigration extends Migration
             $table->string('nombre');
             $table->string('telefono');
             $table->string('sexo');
-            $table->integer('tipo');
+            $table->integer('tipo'); //0=admin, 1=cliente
+            $table->string('codigo_verificacion')->nullable();
             $table->timestamps();
         });
     }

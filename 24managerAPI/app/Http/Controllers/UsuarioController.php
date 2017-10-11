@@ -18,7 +18,7 @@ class UsuarioController extends Controller
      */
     public function index()
     {
-        //cargar todas los usuarios
+        //cargar todos los usuarios
         $usuarios = \App\User::all();
 
         if(count($usuarios) == 0){
@@ -108,6 +108,42 @@ class UsuarioController extends Controller
         }else{
             return response()->json(['error'=>'Error al crear el usuario.'], 500);
         } */
+    }
+
+    public function storeCliente(Request $request)
+    {
+        // Primero comprobaremos si estamos recibiendo todos los campos.
+        if ( !$request->input('user') || !$request->input('password') ||
+            !$request->input('correo') || !$request->input('nombre') ||
+            !$request->input('telefono') || !$request->input('sexo') )
+        {
+            // Se devuelve un array errors con los errores encontrados y cabecera HTTP 422 Unprocessable Entity – [Entidad improcesable] Utilizada para errores de validación.
+            return response()->json(['error'=>'Faltan datos necesarios para el proceso de alta.'],422);
+        } 
+        
+        $aux = \App\User::where('user', $request->input('user'))
+            ->orWhere('correo', $request->input('correo'))->get();
+        if(count($aux)!=0){
+           // Devolvemos un código 409 Conflict. 
+            return response()->json(['error'=>'Ya existe un usuario con esas credenciales.'], 409);
+        }
+
+        /*Primero creo una instancia en la tabla usuarios*/
+        $usuario = new \App\User;
+        $usuario->user = $request->input('user');
+        $usuario->password = Hash::make($request->input('password'));
+        $usuario->correo = $request->input('correo');
+        $usuario->nombre = $request->input('nombre');
+        $usuario->telefono = $request->input('telefono');
+        $usuario->sexo = $request->input('sexo');
+        $usuario->tipo = 1;
+
+        if($usuario->save()){
+           return response()->json(['status'=>'ok', 'usuario'=>$usuario], 200);
+        }else{
+            return response()->json(['error'=>'Error al crear el usuario.'], 500);
+        }
+
     }
 
     /**

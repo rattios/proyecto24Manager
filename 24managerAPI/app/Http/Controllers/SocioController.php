@@ -16,7 +16,7 @@ class SocioController extends Controller
      */
     public function index()
     {
-        //cargar todas los socios
+        //cargar todos los socios
         $socios = \App\Socio::all();
 
         if(count($socios) == 0){
@@ -32,8 +32,15 @@ class SocioController extends Controller
         $socios = \App\Socio::with('servicios')->get();
 
         if(count($socios) == 0){
+
             return response()->json(['error'=>'No existen socios.'], 404);          
         }else{
+            for ($i=0; $i < count($socios); $i++) { 
+                for ($j=0; $j < count($socios[$i]->servicios); $j++) { 
+                    //return $socios[$i]->servicios[$j]->horario;
+                    $socios[$i]->servicios[$j]->horario=json_decode($socios[$i]->servicios[$j]->horario);
+                } 
+            }
             return response()->json(['status'=>'ok', 'socios'=>$socios], 200);
         } 
     }
@@ -71,24 +78,84 @@ class SocioController extends Controller
         // Primero comprobaremos si estamos recibiendo todos los campos.
         if (!$request->input('correo') || !$request->input('nombre') ||
             !$request->input('telefono') || !$request->input('ubicacion') ||
-            !$request->input('servicio') || !$request->input('horario') ||
-            !$request->input('dias') || !$request->input('costo') ||
-            !$request->input('subcategoria_id'))
+            !$request->input('servicios'))
         {
             // Se devuelve un array errors con los errores encontrados y cabecera HTTP 422 Unprocessable Entity – [Entidad improcesable] Utilizada para errores de validación.
-            return response()->json(['error'=>'Faltan datos necesarios para el proceso de alta.'],422);
+            return response()->json(['Faltan datos necesarios para el proceso de alta.'],422);
         } 
         
         $aux = \App\Socio::where('correo', $request->input('correo'))->get();
         if(count($aux)!=0){
            // Devolvemos un código 409 Conflict. 
-            return response()->json(['error'=>'Ya existe un socio con esas credenciales.'], 409);
+            return response()->json(['Ya existe un socio con esas credenciales.'], 409);
+        }
+
+        //Verificar que todas las subcategorias que se estan pasando existen
+        $servicios = json_decode($request->input('servicios'));
+        for ($i=0; $i < count($servicios) ; $i++) { 
+            $aux2 = \App\Subcategoria::find($servicios[$i]->subcategoria_id);
+            if(count($aux2) == 0){
+               // Devolvemos un código 409 Conflict. 
+                return response()->json(['error'=>'No existe la subcategoría con id '.$servicios[$i]->subcategoria_id], 409);
+            }   
+        }
+
+        
+
+        if($nuevoSocio=\App\Socio::create($request->all())){
+         //if (true) {
+    
+            $serviciosAux = [];
+            $count=0;
+            // return $servicios[0]->subcategoria_id;
+            // return $servicios[1]->subcategoria_id;
+            //Crear los servicios al socio
+            
+            for ($i=0; $i < count($servicios) ; $i++) {
+
+                $nuevoServicio = new \App\Servicio;
+
+                $nuevoServicio->servicio = $servicios[$i]->servicio;
+                $nuevoServicio->socio_id = $nuevoSocio->id;
+                $nuevoServicio->subcategoria_id = $servicios[$i]->subcategoria_id;
+                $nuevoServicio->horario = json_encode($servicios[$i]->horario);
+                //$nuevoServicio->dias = $servicios[$i]->dias;
+
+                $nuevoServicio->save();
+                $count++;
+
+                array_push($serviciosAux, $nuevoServicio);
+            }
+            //return response()->json(['status'=>'ok', 'servicios'=>$serviciosAux, 'count'=>$count,'countS'=>count($servicios)], 200);
+            return response()->json(['status'=>'ok', 'socio'=>$nuevoSocio, 'servicios'=>$serviciosAux, 'count'=>$count], 200);
+        }else{
+            return response()->json(['Error al crear el socio.'], 500);
+        }
+    }
+
+    public function storePrimera(Request $request)
+    {
+        // Primero comprobaremos si estamos recibiendo todos los campos.
+        if (!$request->input('correo') || !$request->input('nombre') ||
+            !$request->input('telefono') || !$request->input('ubicacion') ||
+            !$request->input('servicio') || !$request->input('horario') ||
+            !$request->input('dias') || !$request->input('costo') ||
+            !$request->input('subcategoria_id'))
+        {
+            // Se devuelve un array errors con los errores encontrados y cabecera HTTP 422 Unprocessable Entity – [Entidad improcesable] Utilizada para errores de validación.
+            return response()->json(['Faltan datos necesarios para el proceso de alta.'],422);
+        } 
+        
+        $aux = \App\Socio::where('correo', $request->input('correo'))->get();
+        if(count($aux)!=0){
+           // Devolvemos un código 409 Conflict. 
+            return response()->json(['Ya existe un socio con esas credenciales.'], 409);
         }
 
         $aux2 = \App\Subcategoria::find($request->input('subcategoria_id'));
         if(count($aux2) == 0){
            // Devolvemos un código 409 Conflict. 
-            return response()->json(['error'=>'No existe la subcategoría a la cual se quiere asociar el servicio del socio.'], 409);
+            return response()->json(['No existe la subcategoría a la cual se quiere asociar el servicio del socio.'], 409);
         }
 
         if($nuevoSocio=\App\Socio::create($request->all())){
@@ -97,7 +164,7 @@ class SocioController extends Controller
 
             return response()->json(['status'=>'ok', 'socio'=>$nuevoSocio, 'servicio'=>$servicio], 200);
         }else{
-            return response()->json(['error'=>'Error al crear el socio.'], 500);
+            return response()->json(['Error al crear el socio.'], 500);
         }
     }
 
@@ -129,7 +196,13 @@ class SocioController extends Controller
         }else{
 
             //cargar los servicios del socio
-            $socio->servicios = $socio->servicios()->get();
+            $servicios = $socio->servicios()->get();
+
+            for ($i=0; $i < count($servicios) ; $i++) { 
+                $servicios[$i]->horario=json_decode($servicios[$i]->horario);
+            }
+
+            $socio->servicios = $servicios;
 
             return response()->json(['status'=>'ok', 'socio'=>$socio], 200);
         } 

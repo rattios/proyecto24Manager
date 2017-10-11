@@ -19,7 +19,7 @@ class PedidosMigration extends Migration
             $table->string('referencia');
             $table->float('lat')->nullable();
             $table->float('lng')->nullable();
-            $table->float('total')->nullable();
+            $table->float('total');
             $table->integer('estado');
 
             $table->integer('categoria_id')->unsigned();
