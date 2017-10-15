@@ -16,6 +16,10 @@ export class UserProfileComponent implements OnInit {
     public sortBy = "nombre";
     public sortOrder = "asc";
     public usuarios:any;
+    public editUsuario='';
+    public editCorreo='';
+    public editNombre='';
+    public editSexo='';
 
     constructor(private http: HttpClient) {
     }
@@ -40,8 +44,11 @@ export class UserProfileComponent implements OnInit {
          );
     }
 
-    public getSocios(){
-      
+    public getUsuario(usuario){
+        this.editCorreo = usuario.correo;
+        this.editNombre = usuario.nombre;
+        this.editUsuario = usuario.user;
+        this.editSexo = usuario.sexo;
     }
     public toInt(num: string) {
         return +num;

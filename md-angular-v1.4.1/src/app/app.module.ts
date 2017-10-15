@@ -7,6 +7,8 @@ import { RouterModule } from '@angular/router';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import { MatButtonModule, MatMenuModule, MatToolbarModule, MatIconModule,MatCardModule } from '@angular/material';
 import {NG2DataTableModule} from "angular2-datatable-pagination";
+import { Ng2SearchPipeModule } from 'ng2-search-filter';
+import {BootstrapModalModule} from 'ng2-bootstrap-modal';
 
 import { AppRoutingModule } from './app.routing';
 import { ComponentsModule } from './components/components.module';
@@ -58,7 +60,9 @@ import { DataFilterPipe } from "./data-filter.pipe";
     MatCardModule,
     MatToolbarModule,
     MatIconModule,
-    NG2DataTableModule
+    NG2DataTableModule,
+    Ng2SearchPipeModule,
+    BootstrapModalModule
 
 
   ],

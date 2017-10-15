@@ -52,10 +52,10 @@
                         <div class="">
                             <div class="col-xs-8 "></div>
                             <div class="col-xs-4 form-group form-black label-floating is-empty">
-                                <label class="control-label">Filtrar por nombre:</label>
+                                <label class="control-label">Filtrar:</label>
                                 <input type="text" class="form-control" [(ngModel)]="filterQuery">
                             </div>
-                            <table class="table" [mfData]="data | dataFilter : filterQuery" #mf="mfDataTable"
+                            <table class="table" [mfData]="data" #mf="mfDataTable"
                                    [mfRowsOnPage]="rowsOnPage" [(mfSortBy)]="sortBy" [mfIsServerPagination]="false" [(mfSortOrder)]="sortOrder">
                                 <thead>
                                 <tr>
@@ -64,15 +64,15 @@
                                         <mfDefaultSorter by="name">Nombre</mfDefaultSorter>
                                     </th>
                                     <th style="font-weight: bold">
-                                        <mfDefaultSorter by="email">Email</mfDefaultSorter>
+                                        <mfDefaultSorter by="email">Correo</mfDefaultSorter>
                                     </th>
                                     <th style="font-weight: bold">
-                                        <mfDefaultSorter by="age">Age</mfDefaultSorter>
+                                        <mfDefaultSorter by="age">Costo</mfDefaultSorter>
                                     </th>
                                     <th style="font-weight: bold">
-                                        <mfDefaultSorter [by]="sortByWordLength" style="font-weight: bold">City</mfDefaultSorter>
+                                        <mfDefaultSorter  style="font-weight: bold">Ubicación</mfDefaultSorter>
                                     </th>
-                                    <th style="font-weight: bold"><mfDefaultSorter by="Acciones">Acciones</mfDefaultSorter></th>
+                                    <th style="font-weight: bold"><!-- <mfDefaultSorter by="Acciones">Acciones</mfDefaultSorter> --></th>
                                 </tr>
                                <!--  <tr>
                                     <th colspan="5">
@@ -81,7 +81,7 @@
                                 </tr> -->
                                 </thead>
                                 <tbody>
-                                <tr *ngFor="let item of mf.data">
+                                <tr *ngFor="let item of mf.data | filter : filterQuery">
                                     <!-- <td>
                                         <button (click)="remove(item)" class="btn btn-danger">x</button>
                                     </td> -->
@@ -90,8 +90,12 @@
                                     <td>{{item.age}}</td>
                                     <td>{{item.city | uppercase}}</td>
                                     <td class="td-actions text-right">
-                                        <button type="button" rel="tooltip" title="Edit Task" class="btn btn-primary btn-simple btn-xs">
-                                            <i class="material-icons">edit</i>
+                                        
+                                        <button type="button" rel="tooltip" title="Edit Task" class="btn btn-success btn-simple btn-xs">
+                                            <i class="material-icons">check_circle</i>
+                                        </button>
+                                        <button type="button" rel="tooltip" title="Edit Task" class="btn btn-info btn-simple btn-xs">
+                                            <i class="material-icons">remove_red_eye</i>
                                         </button>
                                         <button type="button" rel="tooltip" title="Remove" class="btn btn-danger btn-simple btn-xs" (click)="remove(item)">
                                             <i class="material-icons">close</i>
@@ -112,7 +116,22 @@
                     </div>
                 </div> 
         </div>
-        <div class="row">
+        <!-- <div class="modal-dialog">
+                <div class="modal-content">
+                   <div class="modal-header">
+                     <button type="button" class="close" (click)="close()" >&times;</button>
+                     <h4 class="modal-title">{{title || 'Confirm'}}</h4>
+                   </div>
+                   <div class="modal-body">
+                     <p>{{message || 'Are you sure?'}}</p>
+                   </div>
+                   <div class="modal-footer">
+                     <button type="button" class="btn btn-primary" (click)="confirm()">OK</button>
+                     <button type="button" class="btn btn-default" (click)="close()" >Cancel</button>
+                   </div>
+                 </div>
+              </div> -->
+        <!-- <div class="row">
             <div class="col-md-2">
             </div>
             <div class="col-md-8">
@@ -168,26 +187,6 @@
                                 </div>
                             </div>
 
-                            <!-- <div class="row">
-                                <div class="col-md-4">
-                                    <div class="form-group form-black label-floating is-empty">
-                                        <label class="control-label">City</label>
-                                        <input type="text" class="form-control" >
-                                    </div>
-                                </div>
-                                <div class="col-md-4">
-                                    <div class="form-group form-black label-floating is-empty">
-                                        <label class="control-label">Country</label>
-                                        <input type="text" class="form-control" >
-                                    </div>
-                                </div>
-                                <div class="col-md-4">
-                                    <div class="form-group form-black label-floating is-empty">
-                                        <label class="control-label">Postal Code</label>
-                                        <input type="text" class="form-control" >
-                                    </div>
-                                </div>
-                            </div> -->
 
                             <div class="row">
                                 <div class="col-md-12">
@@ -209,7 +208,7 @@
             </div>
             <div class="col-md-2">
             </div>
-        </div>
+        </div> -->
 
     </div>
     </div>
