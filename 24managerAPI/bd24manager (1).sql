@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 05-10-2017 a las 00:41:17
+-- Tiempo de generación: 16-10-2017 a las 17:14:19
 -- Versión del servidor: 10.1.21-MariaDB
 -- Versión de PHP: 5.6.30
 
@@ -49,13 +49,6 @@ CREATE TABLE `categorias` (
   `created_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
   `updated_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
-
---
--- Volcado de datos para la tabla `categorias`
---
-
-INSERT INTO `categorias` (`id`, `nombre`, `imagen`, `created_at`, `updated_at`) VALUES
-(1, 'categoria2', 'imgcat2', '2017-10-02 21:35:56', '2017-10-02 21:35:56');
 
 -- --------------------------------------------------------
 
@@ -108,7 +101,7 @@ CREATE TABLE `pedidos` (
   `referencia` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `lat` double(8,2) DEFAULT NULL,
   `lng` double(8,2) DEFAULT NULL,
-  `total` double(8,2) DEFAULT NULL,
+  `total` double(8,2) NOT NULL,
   `estado` int(11) NOT NULL,
   `categoria_id` int(10) UNSIGNED NOT NULL,
   `subcategoria_id` int(10) UNSIGNED NOT NULL,
@@ -118,13 +111,6 @@ CREATE TABLE `pedidos` (
   `created_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
   `updated_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
-
---
--- Volcado de datos para la tabla `pedidos`
---
-
-INSERT INTO `pedidos` (`id`, `direccion`, `descripcion`, `referencia`, `lat`, `lng`, `total`, `estado`, `categoria_id`, `subcategoria_id`, `usuario_id`, `socio_id`, `servicio_id`, `created_at`, `updated_at`) VALUES
-(1, 'los chorros', 'casa 2 plantas', 'hotel rio milla', 123.00, 4321.00, 2000.00, 1, 1, 1, 1, 1, 2, '2017-10-02 21:41:51', '2017-10-03 01:34:44');
 
 -- --------------------------------------------------------
 
@@ -136,22 +122,12 @@ CREATE TABLE `servicios` (
   `id` int(10) UNSIGNED NOT NULL,
   `servicio` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `horario` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
-  `dias` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
-  `costo` double(8,2) NOT NULL,
+  `dias` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
   `socio_id` int(10) UNSIGNED NOT NULL,
   `subcategoria_id` int(10) UNSIGNED NOT NULL,
   `created_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
   `updated_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
-
---
--- Volcado de datos para la tabla `servicios`
---
-
-INSERT INTO `servicios` (`id`, `servicio`, `horario`, `dias`, `costo`, `socio_id`, `subcategoria_id`, `created_at`, `updated_at`) VALUES
-(1, 'motores', '2-4', 'lmijv', 1500.00, 1, 1, '2017-10-03 01:28:14', '2017-10-03 01:28:14'),
-(2, 'bicicleta', '6', 'lmij', 2000.00, 1, 1, '2017-10-03 01:28:25', '2017-10-03 01:28:25'),
-(3, 'motores2', '2-4', 'lmijv', 1500.00, 2, 1, '2017-10-03 01:57:17', '2017-10-03 01:57:17');
 
 -- --------------------------------------------------------
 
@@ -169,14 +145,6 @@ CREATE TABLE `socios` (
   `updated_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
---
--- Volcado de datos para la tabla `socios`
---
-
-INSERT INTO `socios` (`id`, `correo`, `nombre`, `telefono`, `ubicacion`, `created_at`, `updated_at`) VALUES
-(1, 'correo@socio1.com', 'socio1', '123', 'merida', '2017-10-03 01:28:14', '2017-10-03 01:28:14'),
-(2, 'correo@socio2.com', 'socio2', '123', 'merida2', '2017-10-03 01:57:17', '2017-10-03 01:57:17');
-
 -- --------------------------------------------------------
 
 --
@@ -192,14 +160,6 @@ CREATE TABLE `subcategorias` (
   `created_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
   `updated_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
-
---
--- Volcado de datos para la tabla `subcategorias`
---
-
-INSERT INTO `subcategorias` (`id`, `nombre`, `imagen`, `costo`, `categoria_id`, `created_at`, `updated_at`) VALUES
-(1, 'subcategoriax', 'imgsubcatx', 212.00, 1, '2017-10-02 21:36:12', '2017-10-02 21:36:12'),
-(2, 'subcategoria2', 'imgsubcat2', 123.00, 1, '2017-10-03 01:56:12', '2017-10-03 01:56:12');
 
 -- --------------------------------------------------------
 
@@ -232,16 +192,10 @@ CREATE TABLE `usuarios` (
   `telefono` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `sexo` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `tipo` int(11) NOT NULL,
+  `codigo_verificacion` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
   `created_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
   `updated_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
-
---
--- Volcado de datos para la tabla `usuarios`
---
-
-INSERT INTO `usuarios` (`id`, `user`, `password`, `correo`, `nombre`, `telefono`, `sexo`, `tipo`, `created_at`, `updated_at`) VALUES
-(1, 'freddy', '$2y$10$i9cCBJejcDVfLc1AwQYuqOw.gERs2S3B2NGxJO0mdytijZVuhRAZa', 'ramirez.fred@hotmail.com', 'freddy', '04247027209', 'm', 1, '2017-10-02 21:35:46', '2017-10-02 21:35:46');
 
 --
 -- Índices para tablas volcadas
@@ -331,27 +285,27 @@ ALTER TABLE `calificaciones`
 -- AUTO_INCREMENT de la tabla `categorias`
 --
 ALTER TABLE `categorias`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT de la tabla `pedidos`
 --
 ALTER TABLE `pedidos`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT de la tabla `servicios`
 --
 ALTER TABLE `servicios`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT de la tabla `socios`
 --
 ALTER TABLE `socios`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT de la tabla `subcategorias`
 --
 ALTER TABLE `subcategorias`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT de la tabla `users`
 --
@@ -361,7 +315,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT de la tabla `usuarios`
 --
 ALTER TABLE `usuarios`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
 --
 -- Restricciones para tablas volcadas
 --

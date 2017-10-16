@@ -9,6 +9,9 @@ use App\Http\Controllers\Controller;
 use DateTime;
 use Tymon\JWTAuth\Exceptions\JWTException;
 use Tymon\JWTAuth\Facades\JWTAuth;
+use Mail;
+use Session;
+use Redirect;
 
 
 /*Controlador para manejar el olvido de password desde la app*/
@@ -56,7 +59,13 @@ class PasswordController extends Controller
             $cliente->codigo_verificacion = $rand;
             $cliente->save();
 
+            $data = array( 'codigo_verificacion' => $rand);
+
             //Enviamos el correo con el codigo aleatorio
+            Mail::send('emails.contact', $data, function($msj) use ($correo){
+                $msj->subject('Código de verificación');
+                $msj->to($correo);
+            });
 
             //Informar al cliente despues de enviar el correo con el codigo
             return response()->json(['status'=>'ok', 'message'=>'Código de verificación enviado a '.$correo,
@@ -87,7 +96,7 @@ class PasswordController extends Controller
                 $minDiff = $cliente->updated_at->diff($fechaActual)->i;
 
                 /*Si es menor a 5 min se da acceso*/
-                if ($minDiff <= 5) {
+                if ($minDiff <= 1) {
 
                     if (!$token = JWTAuth::fromUser($cliente)) {
                         return response()->json(['error' => 'could_not_create_token'], 401);
