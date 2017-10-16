@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient, HttpParams } from '@angular/common/http';
+import { DialogComponent, DialogService } from "ng2-bootstrap-modal";
 
 @Component({
   selector: 'app-servicios',
@@ -23,6 +24,7 @@ export class ServiciosComponent implements OnInit {
             .subscribe((data)=> {
                 setTimeout(()=> {
                     this.data = data;
+                    console.log(this.data);
                 }, 2000);
             });
     }

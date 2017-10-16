@@ -33,32 +33,32 @@
                         <div class="">
                             <div class="col-xs-8 "></div>
                             <div class="col-xs-4 form-group form-black label-floating is-empty">
-                                <label class="control-label">Filtrar por nombre:</label>
+                                <label class="control-label">Filtrar:</label>
                                 <input type="text" class="form-control" [(ngModel)]="filterQuery">
                             </div>
-                            <table class="table" [mfData]="data | dataFilter : filterQuery" #mf="mfDataTable"
+                            <table class="table" [mfData]="data" #mf="mfDataTable"
                                    [mfRowsOnPage]="rowsOnPage" [(mfSortBy)]="sortBy" [mfIsServerPagination]="false" [(mfSortOrder)]="sortOrder">
                                 <thead>
                                 <tr>
                                     <!--  -->
                                     <th style="font-weight: bold;">
-                                        <mfDefaultSorter by="name">Nombre</mfDefaultSorter>
+                                        <mfDefaultSorter by="nombre">Nombre</mfDefaultSorter>
                                     </th>
                                     <th style="font-weight: bold">
-                                        <mfDefaultSorter by="email">Email</mfDefaultSorter>
+                                        <mfDefaultSorter by="correo">Correo</mfDefaultSorter>
                                     </th>
                                     <th style="font-weight: bold">
-                                        <mfDefaultSorter by="age">Teléfono</mfDefaultSorter>
+                                        <mfDefaultSorter by="telefono">Teléfono</mfDefaultSorter>
                                     </th>
                                     <th style="font-weight: bold">
                                         <mfDefaultSorter [by]="sortByWordLength" style="font-weight: bold">Dirección</mfDefaultSorter>
                                     </th>
-                                    <th style="font-weight: bold"><mfDefaultSorter by="Acciones">Acciones</mfDefaultSorter></th>
+                                    <th style="font-weight: bold"><!-- <mfDefaultSorter by="Acciones">Acciones</mfDefaultSorter> --></th>
                                 </tr>
 
                                 </thead>
                                 <tbody>
-                                <tr *ngFor="let item of mf.data">
+                                <tr *ngFor="let item of mf.data | filter : filterQuery">
                                     <!-- <td>
                                         <button (click)="remove(item)" class="btn btn-danger">x</button>
                                     </td> -->
@@ -67,8 +67,8 @@
                                     <td>{{item.telefono}}</td>
                                     <td>{{item.ubicacion | uppercase}}</td>
                                     <td class="td-actions text-right">
-                                        <button type="button" rel="tooltip" title="Edit Task" class="btn btn-primary btn-simple btn-xs">
-                                            <i class="material-icons">edit</i>
+                                        <button type="button" rel="tooltip" title="Edit Task" class="btn btn-info btn-simple btn-xs" (click)="getSocio(item)">
+                                            <i class="material-icons">remove_red_eye</i>
                                         </button>
                                         <button type="button" rel="tooltip" title="Remove" class="btn btn-danger btn-simple btn-xs" (click)="remove(item)">
                                             <i class="material-icons">close</i>
@@ -89,7 +89,7 @@
                     </div>
                 </div> 
         </div>
-        <div class="row">
+         <div class="row"> 
             <div class="col-md-8">
                 <div class="card">
                     <div class="card-header" data-background-color="purple">
@@ -99,69 +99,79 @@
                     <div class="card-content">
                         <form>
                             <div class="row">
-                                <div class="col-md-5">
+
+                                <div class="col-md-4">
+                                    <label class="control-label">Nombre</label>
                                     <div class="form-group form-black label-floating is-empty">
-                                        <label class="control-label">Servicio</label>
-                                        <input type="text" class="form-control" disabled>
+                                        {{editNombre}}
+                                        <!-- <input type="text" class="form-control" [(ngModel)]="editNombre" name="editNombre"> -->
+                                    </div>
+                                </div>
+
+                                <div class="col-md-4">
+                                    <label class="control-label">Teléfono</label>
+                                    <div class="form-group form-black label-floating is-empty">
+                                        {{editTelefono}}
+                                        <!-- <input type="text" class="form-control" [(ngModel)]="editTelefono" name="editTelefono"> -->
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <label class="control-label">Correo</label>
+                                    <div class="form-group form-black label-floating is-empty">
+                                        {{editCorreo}}
+                                        <!-- <input type="email" class="form-control" [(ngModel)]="editCorreo" name="editCorreo" disabled> -->
+                                    </div>
+                                </div>
+                            </div>
+
+
+                             <div class="row">
+                                <div class="col-md-12">
+                                    <label class="control-label">Ubicación</label>
+                                    <div class="form-group form-black label-floating is-empty">
+                                        {{editUbicacion}}
+                                        <!-- <input type="text" class="form-control" [(ngModel)]="editUbicacion" name="editUbicacion"> -->
+                                    </div>
+                                </div>
+                            </div> 
+
+
+                            <div class="row" *ngFor="let serv of editServicio">
+                                <div class="col-md-3">
+                                    <label class="control-label">Servicio</label>
+                                    <div class="form-group form-black label-floating is-empty">
+                                        <!-- <label class="control-label">Servicio</label> -->
+                                        <!-- <input type="text" class="form-control" [(ngModel)]="serv.servicio" name="editServicio"> -->
+                                        {{serv.servicio}}
                                     </div>
                                 </div>
                                 <div class="col-md-3">
+                                    <label class="control-label">SubCategoria</label>
                                     <div class="form-group form-black label-floating is-empty">
-                                        <label class="control-label">Costo</label>
-                                        <input type="text" class="form-control" >
+                                        <!-- <label class="control-label">SubCategoria</label> -->
+                                        <!-- <input type="text" class="form-control" [(ngModel)]="serv.subcategoria_id" name="editCosto"> -->
+                                        {{serv.subcategoria_id}}
                                     </div>
                                 </div>
-                                <div class="col-md-4">
-                                    <div class="form-group form-black label-floating is-empty">
-                                        <label class="control-label">Email</label>
-                                        <input type="email" class="form-control" >
+                                <div class="col-md-6">
+                                    <div class="row">
+                                        <div class="col-md-4"><label class="control-label">Dia</label></div>
+                                        <div class="col-md-4"><label class="control-label">Hora de inicio</label></div>
+                                        <div class="col-md-4"><label class="control-label">Hora de finalización</label></div>
                                     </div>
-                                </div>
-                            </div>
-
-                            <div class="row">
-                                <div class="col-md-4">
-                                    <div class="form-group form-black label-floating is-empty">
-                                        <label class="control-label">Nombre</label>
-                                        <input type="text" class="form-control" >
-                                    </div>
-                                </div>
-                                <div class="col-md-4">
-                                    <div class="form-group form-black label-floating is-empty">
-                                        <label class="control-label">Ubicación</label>
-                                        <input type="text" class="form-control" >
-                                    </div>
-                                </div>
-                                <div class="col-md-4">
-                                    <div class="form-group form-black label-floating is-empty">
-                                        <label class="control-label">Teléfono</label>
-                                        <input type="text" class="form-control" >
-                                    </div>
-                                </div>
-                            </div>
-
-                            <!-- <div class="row">
-                                <div class="col-md-12">
-                                    <div class="form-group form-black label-floating is-empty">
-                                        <label class="control-label">Ubicación</label>
-                                        <input type="text" class="form-control" >
-                                    </div>
-                                </div>
-                            </div> -->
-
-                            <div class="row">
-                                <div class="col-md-12">
-                                    <div class="form-group">
-                                        <label>Descripción</label>
-                                        <div class="form-group form-black label-floating is-empty">
-                                            <label class="control-label"> Breve descripción...</label>
-                                            <textarea class="form-control" rows="5"></textarea>
+                                    <div *ngFor="let horario of serv.horario">
+                                        <div class="row">
+                                            <div class="col-md-4">{{horario.dia}}</div>
+                                            <div class="col-md-4">{{horario.horaInicio}}</div>
+                                            <div class="col-md-4">{{horario.horaFin}}</div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
 
-                            <button type="submit" class="btn btn-danger pull-right">Actualizar Perfil</button>
+                        
+
+                            <!-- <button type="submit" class="btn btn-danger pull-right">Actualizar Perfil</button> -->
                             <div class="clearfix"></div>
                         </form>
                     </div>
@@ -177,9 +187,9 @@
 
                     <div class="content">
                         <h6 class="category text-gray">Información</h6>
-                        <h4 class="card-title">Socio</h4>
+                        <h4 class="card-title">{{editNombre}}</h4>
                         <p class="card-content">
-                            Pequena descripción
+                            
                         </p>
 
                     </div>

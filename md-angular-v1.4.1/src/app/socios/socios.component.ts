@@ -14,6 +14,12 @@ export class SociosComponent implements OnInit {
     public sortBy = "nombre";
     public sortOrder = "asc";
     public socios:any;
+    public editServicio: any;
+    public editCosto = "";
+    public editCorreo = "";
+    public editNombre = "";
+    public editTelefono = "";
+    public editUbicacion = "";
 
     constructor(private http: HttpClient) {
     }
@@ -21,32 +27,31 @@ export class SociosComponent implements OnInit {
 
     ngOnInit(): void {
     	this.http.get('http://rattios.com/24managerAPI/public/socios/servicios')
-	       .toPromise()
-	       .then(
-	         data => { // Success
-	           console.log(data);
-	           this.data = data;
-	           this.socios=data;
-	           this.data=this.socios.socios;
-	           console.log(this.socios);
-
-	         },
-	         msg => { // Error
-	         	console.log(msg.error.error);
-
-	         }
-	       );
+           .subscribe((data)=> {
+                setTimeout(()=> {
+               this.socios=data;
+               this.data=this.socios.socios;
+               console.log(this.data);
+                }, 2000);
+            });
     }
 
-    public getSocios(){
-    	
+    public getSocio(socio){
+
+        this.editServicio = socio.servicios;
+        this.editCosto = socio.costo;
+        this.editCorreo = socio.correo;
+        this.editNombre = socio.nombre;
+        this.editTelefono = socio.telefono;
+        this.editUbicacion = socio.ubicacion;
+
     }
     public toInt(num: string) {
         return +num;
     }
 
     public sortByWordLength = (a: any) => {
-        return a.city.length;
+        return a.nombre.length;
     }
 
     public remove(item) {
