@@ -9,9 +9,32 @@ use App\Usuario;
 use Illuminate\Http\Request;
 use Tymon\JWTAuth\Exceptions\JWTException;
 use Tymon\JWTAuth\Facades\JWTAuth;
+//use JWTAuth;
+use Exception;
 
 class LoginController extends Controller
 {
+
+    /*Funcion para verificar la valides de un token que se pasa en el request*/
+    public function validarToken(Request $request)
+    {
+
+        try {
+            $user = JWTAuth::toUser($request->input('token'));
+        } catch (Exception $e) {
+            if ($e instanceof \Tymon\JWTAuth\Exceptions\TokenInvalidException){
+                return 0;
+            }else if ($e instanceof \Tymon\JWTAuth\Exceptions\TokenExpiredException){
+                return 0;
+            }else if ($e instanceof \Tymon\JWTAuth\Exceptions\JWTException){
+                return 0;
+            }else{
+                return 0;
+            }
+        }
+
+        return 1;
+    }
 
     public function loginWeb(Request $request)
     {

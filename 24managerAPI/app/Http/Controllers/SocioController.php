@@ -29,7 +29,7 @@ class SocioController extends Controller
     public function sociosServicios()
     {
         //cargar todos los socios con sus servicios
-        $socios = \App\Socio::with('servicios')->get();
+        $socios = \App\Socio::with('servicios.subcategoria')->get();
 
         if(count($socios) == 0){
 

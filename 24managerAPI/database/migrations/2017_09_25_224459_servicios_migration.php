@@ -15,7 +15,7 @@ class ServiciosMigration extends Migration
         Schema::create('servicios', function (Blueprint $table) {
             $table->increments('id');
             $table->string('servicio');
-            $table->string('horario');
+            $table->text('horario');
             $table->string('dias')->nullable();
             //$table->float('costo');
 
