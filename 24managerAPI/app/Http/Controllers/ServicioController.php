@@ -22,6 +22,11 @@ class ServicioController extends Controller
         if(count($servicios) == 0){
             return response()->json(['error'=>'No existen servicios.'], 404);          
         }else{
+
+            for ($i=0; $i < count($servicios) ; $i++) { 
+                $servicios[$i]->horario=json_decode($servicios[$i]->horario);
+            }
+
             return response()->json(['status'=>'ok', 'servicios'=>$servicios], 200);
         } 
     }
@@ -34,6 +39,11 @@ class ServicioController extends Controller
         if(count($servicios) == 0){
             return response()->json(['error'=>'No existen servicios.'], 404);          
         }else{
+
+            for ($i=0; $i < count($servicios) ; $i++) { 
+                $servicios[$i]->horario=json_decode($servicios[$i]->horario);
+            }
+
             return response()->json(['status'=>'ok', 'servicios'=>$servicios], 200);
         } 
         
@@ -49,13 +59,63 @@ class ServicioController extends Controller
         }
 
         //cargar todos los servicios con su socio que pertenescan a la misma subcategoria
-        $servicios = \App\Servicio::where('subcategoria_id', $subcategoria_id)
+        $serviciosAux = \App\Servicio::where('subcategoria_id', $subcategoria_id)
             ->with('socio')->get();
 
-        if(count($servicios) == 0){
+        if(count($serviciosAux) == 0){
             return response()->json(['error'=>'No existen servicios en esa subcategoría.'], 404);          
         }else{
-            return response()->json(['status'=>'ok', 'servicios'=>$servicios], 200);
+
+            for ($i=0; $i < count($serviciosAux) ; $i++) { 
+                $serviciosAux[$i]->horario=json_decode($serviciosAux[$i]->horario);
+            }
+
+            //G Formato de 24 horas de una hora sin ceros iniciales 0 hasta 23
+            //H Formato de 24 horas de una hora con ceros iniciales 00 hasta 23
+            $horaActual = date('G');
+
+            //w Representación numérica del día de la semana 0 (para domingo) hasta 6 (para sábado)
+            $diaActualSem = date('w');
+
+            switch ($diaActualSem) {
+                case 0:
+                    $hoy = 'Domingo';
+                    break;
+                case 1:
+                    $hoy = 'Lunes';
+                    break;
+                case 2:
+                    $hoy = 'Martes';
+                    break;
+                case 3:
+                    $hoy = 'Miercoles';
+                    break;
+                case 4:
+                    $hoy = 'Jueves';
+                    break;
+                case 5:
+                    $hoy = 'Viernes';
+                    break;
+                case 6:
+                    $hoy = 'Sabado';
+                    break;
+            }
+
+            $servicios = [];
+
+            for ($i=0; $i < count($serviciosAux) ; $i++) { 
+                for ($j=0; $j <count($serviciosAux[$i]->horario) ; $j++) { 
+                    if ($serviciosAux[$i]->horario[$j]->dia == $hoy &&
+                         $serviciosAux[$i]->horario[$j]->horaInicio <= intval($horaActual) &&
+                          $serviciosAux[$i]->horario[$j]->horaFin >= intval($horaActual)) {
+
+                        array_push($servicios, $serviciosAux[$i]);
+                    }
+                }
+            }
+
+            return response()->json(['status'=>'ok', 'horaActual'=>$horaActual,
+             'serviciosFiltrados'=>$servicios, 'servicios'=>$serviciosAux], 200);
         } 
         
     }
@@ -90,7 +150,7 @@ class ServicioController extends Controller
 
         // Primero comprobaremos si estamos recibiendo todos los campos.
         if ( !$request->input('servicio') || !$request->input('horario') ||
-            !$request->input('dias') || /*!$request->input('costo') ||*/
+            /*!$request->input('dias') || !$request->input('costo') ||*/
             !$request->input('subcategoria_id'))
         {
             // Se devuelve un array errors con los errores encontrados y cabecera HTTP 422 Unprocessable Entity – [Entidad improcesable] Utilizada para errores de validación.
@@ -111,9 +171,14 @@ class ServicioController extends Controller
         }
 
         //Creamos el servicio al socio que se paso por parametro
-        $servicio = $socio->servicios()->create($request->all());
+        //$servicio = $socio->servicios()->create($request->all());
 
-        return response()->json(['status'=>'ok', 'servicio'=>$servicio], 200);
+        $nuevoServicio->servicio = $request->input('servicio');
+        $nuevoServicio->socio_id = $socio->id;
+        $nuevoServicio->subcategoria_id = $request->input('subcategoria_id');
+        $nuevoServicio->horario = json_encode($request->input('horario'));
+
+        return response()->json(['status'=>'ok', 'servicio'=>$nuevoServicio], 200);
         
     }
 
@@ -131,6 +196,7 @@ class ServicioController extends Controller
         if(count($servicio)==0){
             return response()->json(['error'=>'No existe el servicio con id '.$id], 404);          
         }else{
+            $servicio->horario = json_decode($servicio->horario);
             return response()->json(['status'=>'ok', 'servicio'=>$servicio], 200);
         } 
     }
@@ -143,6 +209,7 @@ class ServicioController extends Controller
         if(count($servicio)==0){
             return response()->json(['error'=>'No existe el servicio con id '.$id], 404);          
         }else{
+            $servicio->horario = json_decode($servicio->horario);
 
             //cargar los servicios del socio
             $servicio->socio = $servicio->socio()->get();
@@ -196,7 +263,7 @@ class ServicioController extends Controller
 
         if ($horario != null && $horario!='')
         {
-            $servicio->horario = $horario;
+            $servicio->horario = json_encode($horario);
             $bandera=true;
         }
 

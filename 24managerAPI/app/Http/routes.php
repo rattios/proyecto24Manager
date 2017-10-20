@@ -31,15 +31,15 @@ Route::group(  ['middleware' =>'cors'], function(){
     Route::get('/password/codigo/{codigo}','PasswordController@validarCodigo');
      
     //Registro de clientes   
-    Route::post('/clientes','UsuarioController@storeCliente');
+    Route::post('/clientes','UsuarioController@storeCliente');//Crea clientes para la app
     //Registro de socios
     Route::post('/socios','SocioController@store');
     Route::get('/categorias/subcategorias','CategoriaController@categoriasSubcategorias');
 
         //----Pruebas UsuarioController
         Route::get('/usuarios','UsuarioController@index');
-        Route::get('/usuarios/pedidos','UsuarioController@usuariosPedidos');
-        Route::post('/usuarios','UsuarioController@store');
+        Route::get('/usuarios/pedidos','UsuarioController@usuariosClientesPedidos');
+        Route::post('/usuarios','UsuarioController@store');//Crea admis para el panel
         Route::put('/usuarios/{id}','UsuarioController@update');
         Route::delete('/usuarios/{id}','UsuarioController@destroy');
         Route::get('/usuarios/{id}','UsuarioController@show');

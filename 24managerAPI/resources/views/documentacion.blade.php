@@ -31,6 +31,34 @@
 			<li>password (Requerido)</li>
 		</ul>
 
+		<h3>-----Validacion de token-----</h3>
+
+		<h4>Validar token</h4>
+		<p>Metodo para validar un token que se pasa en el cuerpo de la consulta.</p>
+		<p>URL: http://localhost/gitHub/proyecto24Manager/24managerAPI/public/validar/token</p>
+		<p>Metodo: POST</p>
+		<p>Headers:</p>
+		<p>Cuerpo de consulta (body):</p>
+		<ul>
+			<li>token (Requerido)</li>
+		</ul>
+
+		<h3>-----Gestion de olvido de password-----</h3>
+
+		<h4>Generar codigo de verificacion</h4>
+		<p>Metodo para generar un codigo aleatorio de verificacion para el usuario con el email de la url con una validez de 5 min.</p>
+		<p>URL: http://localhost/gitHub/proyecto24Manager/24managerAPI/public/password/cliente/{email}</p>
+		<p>Metodo: GET</p>
+		<p>Headers:</p>
+		<p>Cuerpo de consulta (body):</p>
+
+		<h4>Validar codigo de verificaion</h4>
+		<p>Metodo para obtener acceso al cambio de password, mediante el codigo de verificacion de la url.</p>
+		<p>URL: http://localhost/gitHub/proyecto24Manager/24managerAPI/public/password/codigo/{codigo}</p>
+		<p>Metodo: GET</p>
+		<p>Headers:</p>
+		<p>Cuerpo de consulta (body):</p>
+
 		<h3>-----Gestion de usuarios-----</h3>
 
 		<h4>Obtener usuarios</h4>
@@ -47,19 +75,35 @@
 		<p>Headers: Authorization : Bearer + token</p>
 		<p>Cuerpo de consulta (body):</p>
 
-		<h4>Crear usuario</h4>
-		<p>Crea un usuario.</p>
+		<h4>Crear usuario (admin/cliente)</h4>
+		<p>Crea un usuario de tipo admin o cliente.</p>
 		<p>URL: http://localhost/gitHub/proyecto24Manager/24managerAPI/public/usuarios</p>
 		<p>Metodo: POST</p>
 		<p>Headers: Authorization : Bearer + token</p>
 		<p>Cuerpo de consulta (body):</p>
 		<ul>
 			<li>user (Requerido): Usuario</li>
+			<li>password (Requerido)</li>
 			<li>nombre (Requerido)</li>
 			<li>correo (Requerido)</li>
 			<li>telefono (Requerido)</li>
 			<li>sexo (Requerido)</li>
 			<li>tipo (Requerido): 0 (administrador) 1 (cliente)</li>
+		</ul>
+
+		<h4>Crear usuario (cliente)</h4>
+		<p>Crea un usuario de tipo cliente.</p>
+		<p>URL: http://localhost/gitHub/proyecto24Manager/24managerAPI/public/clientes</p>
+		<p>Metodo: POST</p>
+		<p>Headers:</p>
+		<p>Cuerpo de consulta (body):</p>
+		<ul>
+			<li>user (Requerido): Usuario</li>
+			<li>password (Requerido)</li>
+			<li>nombre (Requerido)</li>
+			<li>correo (Requerido)</li>
+			<li>telefono (Requerido)</li>
+			<li>sexo (Requerido)</li>
 		</ul>
 
 		<h4>Obtener usuario</h4>
@@ -111,7 +155,7 @@
 		<p>Retorna todas las categorias con sus subcategorias.</p>
 		<p>URL: http://localhost/gitHub/proyecto24Manager/24managerAPI/public/categorias/subcategorias</p>
 		<p>Metodo: GET</p>
-		<p>Headers: Authorization : Bearer + token</p>
+		<p>Headers:</p>
 		<p>Cuerpo de consulta (body):</p>
 
 		<h4>Crear categoria</h4>
@@ -233,18 +277,18 @@
 		<p>Crea un socio.</p>
 		<p>URL: http://localhost/gitHub/proyecto24Manager/24managerAPI/public/socios</p>
 		<p>Metodo: POST</p>
-		<p>Headers: Authorization : Bearer + token</p>
+		<p>Headers:</p>
 		<p>Cuerpo de consulta (body):</p>
 		<ul>
 			<li>correo (Requerido)</li>
 			<li>nombre (Requerido)</li>
 			<li>telefono (Requerido)</li>
 			<li>ubicacion (Requerido)</li>
-			<li>servicio (Requerido)</li>
-			<li>horario (Requerido)</li>
-			<li>dias (Requerido)</li>
-			<li>costo (Requerido)</li>
-			<li>subcategoria_id (Requerido)</li>
+			<li>servicios (Requerido): [{
+									        "servicio": {servicio},
+									        "subcategoria_id": {subcategoria_id},
+									        "horario": {horario}
+									    }]</li>
 		</ul>
 
 		<h4>Obtener socio</h4>
@@ -306,6 +350,7 @@
 
 		<h4>Obtener servicios con socio que pertenescan a la misma subcategoria</h4>
 		<p>Retorna todos los servicios con el socio que los ofrece y que pertenescan a la subcategoria subcategoria_id.</p>
+		<p>Tambien retorna filtrados todos los servicios con el socio que los ofrece y que pertenescan a la subcategoria subcategoria_id y que estan disponibles para el dia y la hora actual.</p>
 		<p>URL: http://localhost/gitHub/proyecto24Manager/24managerAPI/public/servicios/socio/subcategoria/{subcategoria_id}</p>
 		<p>Metodo: GET</p>
 		<p>Headers: Authorization : Bearer + token</p>
@@ -320,8 +365,7 @@
 		<ul>
 			<li>servicio (Requerido)</li>
 			<li>horario (Requerido)</li>
-			<li>dias (Requerido)</li>
-			<li>costo (Requerido)</li>
+			<li>dias (No requerido)</li>
 			<li>subcategoria_id (Requerido)</li>
 		</ul>
 
@@ -349,7 +393,6 @@
 			<li>servicio (No requerido)</li>
 			<li>horario (No requerido)</li>
 			<li>dias (No requerido)</li>
-			<li>costo (No requerido)</li>
 		</ul>
 
 		<h4>Eliminar servicio</h4>
@@ -387,12 +430,12 @@
 			<li>referencia (Requerido)</li>
 			<li>lat (No requerido)</li>
 			<li>lng (No requerido)</li>
-			<li>categoria_id (Requerido)</li>
-			<li>subcategoria_id (Requerido)</li>
 			<li>usuario_id (Requerido)</li>
 			<!-- <li>socio_id (Requerido)</li>
 			<li>servicio_id (Requerido)</li> -->
 			<li>estado (Requerido)</li>
+			<li>solicitud (Requerido): [{"categoria_id": {categoria_id},
+									     "subcategoria_id": {subcategoria_id}}]</li>
 		</ul>
 
 		<h4>Obtener pedido</h4>

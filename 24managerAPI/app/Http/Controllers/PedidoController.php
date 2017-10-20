@@ -142,24 +142,27 @@ class PedidoController extends Controller
 
         // Primero comprobaremos si estamos recibiendo todos los campos.
         if (!$request->input('direccion') || !$request->input('descripcion') || !$request->input('referencia') ||
-            $estado == null || !$request->input('categoria_id') || !$request->input('subcategoria_id') ||
-            !$request->input('usuario_id'))
+            $estado == null || !$request->input('solicitud') || !$request->input('usuario_id'))
         {
             // Se devuelve un array errors con los errores encontrados y cabecera HTTP 422 Unprocessable Entity – [Entidad improcesable] Utilizada para errores de validación.
             return response()->json(['error'=>'Faltan datos necesarios para el proceso de alta.'],422);
         }
 
-        //validaciones
-        $aux2 = \App\Categoria::find($request->input('categoria_id'));
-        if(count($aux2) == 0){
-           // Devolvemos un código 409 Conflict. 
-            return response()->json(['error'=>'No existe la categoría a la cual se quiere asociar la subcategoría.'], 409);
-        }
+        /*Verificar que todas las  categorias y subcategorias
+         que se estan pasando en el arreglo solicitud existen*/
+        $solicitud = json_decode($request->input('solicitud'));
+        for ($i=0; $i < count($solicitud) ; $i++) { 
+            $aux2 = \App\Categoria::find($solicitud[$i]->categoria_id);
+            if(count($aux2) == 0){
+               // Devolvemos un código 409 Conflict. 
+                return response()->json(['error'=>'No existe la categoría con id '.$solicitud[$i]->categoria_id], 409);
+            }
 
-        $aux3 = \App\Subcategoria::find($request->input('subcategoria_id'));
-        if(count($aux3) == 0){
-           // Devolvemos un código 409 Conflict. 
-            return response()->json(['error'=>'No existe la subcategoría a la cual se quiere asociar la subcategoría.'], 409);
+            $aux3 = \App\Subcategoria::find($solicitud[$i]->subcategoria_id);
+            if(count($aux3) == 0){
+               // Devolvemos un código 409 Conflict. 
+                return response()->json(['error'=>'No existe la subcategoría con id '.$solicitud[$i]->subcategoria_id], 409);
+            } 
         }
 
         $aux4 = \App\User::find($request->input('usuario_id'));
@@ -174,26 +177,37 @@ class PedidoController extends Controller
             return response()->json(['error'=>'Error al crear el pedido.'], 500);
         }*/
 
-        /*Primero creo una instancia en la tabla subcategorias*/
-        $pedido = new \App\Pedido;
+        $count = 0;
 
-        // Listado de campos recibidos teóricamente.
-        $pedido->direccion=$request->input('direccion'); 
-        $pedido->descripcion=$request->input('descripcion'); 
-        $pedido->referencia=$request->input('referencia'); 
-        $pedido->lat=$request->input('lat');
-        $pedido->lng=$request->input('lng');
-        $pedido->estado=$request->input('estado');
-        $pedido->categoria_id=$request->input('categoria_id');
-        $pedido->subcategoria_id=$request->input('subcategoria_id');
-        $pedido->usuario_id=$request->input('usuario_id');
-        $pedido->total=$aux3->costo;
+        /*Se crean tantos pedidos como solicitudes se tengan en el arreglo solicitud*/
+        for ($i=0; $i < count($solicitud) ; $i++) { 
+            $aux3 = \App\Subcategoria::find($solicitud[$i]->subcategoria_id);
+            
+            /*Primero creo una instancia en la tabla pedido*/
+            $pedido = new \App\Pedido;
 
-        if($pedido->save()){
-           return response()->json(['status'=>'ok', 'pedido'=>$pedido], 200);
-        }else{
-            return response()->json(['error'=>'Error al crear el pedido.'], 500);
+            // Listado de campos recibidos teóricamente.
+            $pedido->direccion=$request->input('direccion'); 
+            $pedido->descripcion=$request->input('descripcion'); 
+            $pedido->referencia=$request->input('referencia'); 
+            $pedido->lat=$request->input('lat');
+            $pedido->lng=$request->input('lng');
+            $pedido->estado=$request->input('estado');
+            $pedido->categoria_id=$solicitud[$i]->categoria_id;
+            $pedido->subcategoria_id=$solicitud[$i]->subcategoria_id;
+            $pedido->usuario_id=$request->input('usuario_id');
+            $pedido->total=$aux3->costo;
+
+            if($pedido->save()){
+               $count= $count+1;
+            }else{
+                return response()->json(['error'=>'Error al crear uno de los pedidos.',
+                    'pedidosCreados'=>$count], 500);
+            }
         }
+
+        return response()->json(['status'=>'ok', 'pedidosCreados'=>$count], 200);
+        
     }
 
     /**

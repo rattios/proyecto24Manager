@@ -100,8 +100,6 @@ class SocioController extends Controller
             }   
         }
 
-        
-
         if($nuevoSocio=\App\Socio::create($request->all())){
          //if (true) {
     
@@ -133,6 +131,7 @@ class SocioController extends Controller
         }
     }
 
+    /*Nota: no esta en uso*/
     public function storePrimera(Request $request)
     {
         // Primero comprobaremos si estamos recibiendo todos los campos.

@@ -28,14 +28,14 @@ class UsuarioController extends Controller
         } 
     }
 
-    public function usuariosPedidos()
+    public function usuariosClientesPedidos()
     {
-        //cargar todos los usuarios con sus pedidos
+        //cargar todos los usuarios clientes con sus pedidos
         //$usuarios = \App\User::all();
-        $usuarios = \App\User::with('pedidos')->get();
+        $usuarios = \App\User::where('tipo',1)->with('pedidos')->get();
 
         if(count($usuarios) == 0){
-            return response()->json(['error'=>'No existen usuarios.'], 404);          
+            return response()->json(['error'=>'No existen usuarios clientes.'], 404);          
         }else{
             return response()->json(['status'=>'ok', 'usuarios'=>$usuarios], 200);
         } 
