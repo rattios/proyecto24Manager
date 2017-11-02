@@ -1,9 +1,9 @@
 <div class="logo">
-    <a routerLink='../Panel-principal' class="simple-text">
+    <a routerLink='../Panel-principal' class="simple-text" style="color: #FFF">
         <div class="logo-img">
             <img src="/assets/img/manappger-.png"/>
         </div>
-        MANAPPGER
+        <p></p> MANAPPGER
     </a>
 </div>
 <div class="sidebar-wrapper">
@@ -50,8 +50,8 @@
         <ul class="nav">
             <li routerLinkActive="active" *ngFor="let menuItem of menuItems" class="{{menuItem.class}}" [routerLinkActiveOptions]="{exact: true}">
                 <a  [routerLink]="[menuItem.path]">
-                    <i class="material-icons">{{menuItem.icon}}</i>
-                    <p>{{menuItem.title}}</p>
+                    <i class="material-icons" style="color: #FFF">{{menuItem.icon}}</i>
+                    <p style="color: #FFF">{{menuItem.title}}</p>
                 </a>
             </li>
         </ul>

@@ -1,14 +1,16 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-//import { HttpModule } from '@angular/http';
+import { HttpModule } from '@angular/http';
 import { HttpClientModule } from '@angular/common/http';
 import { RouterModule } from '@angular/router';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import { MatButtonModule, MatMenuModule, MatToolbarModule, MatIconModule,MatCardModule } from '@angular/material';
 import {NG2DataTableModule} from "angular2-datatable-pagination";
 import { Ng2SearchPipeModule } from 'ng2-search-filter';
-import {BootstrapModalModule} from 'ng2-bootstrap-modal';
+import { BsModalModule } from 'ng2-bs3-modal';
+import { AgmCoreModule } from '@agm/core';
+import { LoadingModule, ANIMATION_TYPES } from 'ngx-loading';
 
 import { AppRoutingModule } from './app.routing';
 import { ComponentsModule } from './components/components.module';
@@ -28,6 +30,7 @@ import { SociosComponent } from './socios/socios.component';
 import { HistorialComponent } from './historial/historial.component';
 import { ServiciosComponent } from './servicios/servicios.component';
 import { DataFilterPipe } from "./data-filter.pipe";
+import { EncursoComponent } from './encurso/encurso.component';
 
 @NgModule({
   declarations: [
@@ -45,11 +48,13 @@ import { DataFilterPipe } from "./data-filter.pipe";
     HistorialComponent,
     ServiciosComponent,
     DataFilterPipe,
+    EncursoComponent,
 
   ],
   imports: [
     BrowserModule,
     FormsModule,
+    HttpModule,
     HttpClientModule,
     ComponentsModule,
     RouterModule,
@@ -62,7 +67,18 @@ import { DataFilterPipe } from "./data-filter.pipe";
     MatIconModule,
     NG2DataTableModule,
     Ng2SearchPipeModule,
-    BootstrapModalModule
+    BsModalModule,
+    AgmCoreModule.forRoot({
+      apiKey: 'AIzaSyCYRs2BEem6ZYKDj9MjUmDeeoQqwxr-tJ8'
+    }),
+    LoadingModule.forRoot({
+        animationType: ANIMATION_TYPES.wanderingCubes,
+        backdropBackgroundColour: 'rgba(0,0,0,0.5)', 
+        backdropBorderRadius: '8px',
+        primaryColour: '#ffffff', 
+        secondaryColour: '#ffffff', 
+        tertiaryColour: '#ffffff'
+    })
 
 
   ],

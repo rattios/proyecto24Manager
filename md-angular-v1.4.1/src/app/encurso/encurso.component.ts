@@ -5,12 +5,13 @@ import { DialogComponent, DialogService } from "ng2-bootstrap-modal";
 declare const $: any;
 
 @Component({
-  selector: 'app-servicios',
-  templateUrl: './servicios.component.html',
-  styleUrls: ['./servicios.component.css']
+  selector: 'app-encurso',
+  templateUrl: './encurso.component.html',
+  styleUrls: ['./encurso.component.css']
 })
-export class ServiciosComponent implements OnInit {
+export class EncursoComponent implements OnInit {
 
+  
     public data: any;
     public filterQuery = "";
     public rowsOnPage = 5;
@@ -44,7 +45,7 @@ export class ServiciosComponent implements OnInit {
 
     ngOnInit(): void {
         this.loading=true;
-        this.http.get("http://manappger.internow.com.mx/api/public/pedidos/informacion0?token="+localStorage.getItem('manappger_token'))
+        this.http.get("http://manappger.internow.com.mx/api/public/pedidos/informacion1?token="+localStorage.getItem('manappger_token'))
             .subscribe((data)=> {
                console.log(data);
              this.socios=data;
@@ -98,8 +99,7 @@ export class ServiciosComponent implements OnInit {
                 this.productList[i].tam=this.productList[i].pedidos.length;
               }
               this.init();
-            //},250);
-            this.loading=false;
+              this.loading=false;
             
             });
     }
@@ -144,7 +144,7 @@ export class ServiciosComponent implements OnInit {
         }
         
     }
-    public asignarUsuario(usuario,i){
+    public asignarUsuario(usuario){
         this.IDmodal=usuario.id;
         this.serviciosFiltradosModal = [];
         this.serviciosModal = [];
@@ -155,28 +155,25 @@ export class ServiciosComponent implements OnInit {
                     this.serviciosModal = data;
                     this.serviciosFiltradosModal = data;
                     this.serviciosModal = this.serviciosModal.servicios;
-                    for (var i = 0; i < this.serviciosModal.length; ++i) {
-                      this.serviciosModal[i].i=i;
-                    }
                     this.serviciosFiltradosModal = this.serviciosFiltradosModal.serviciosFiltrados;
                     console.log(this.serviciosModal);
                     console.log(this.serviciosFiltradosModal);
             });
 
     }
-    public asignarSocio(servicio){
+    public Terminar(servicio,i){
         console.log(servicio);
         var datos={
-            servicio_id:servicio.id,
-            estado:1
+            //servicio_id:servicio.id,
+            estado:2
         }
 
-        this.http.put("http://manappger.internow.com.mx/api/public/pedidos/"+this.IDmodal+"?token="+localStorage.getItem('manappger_token'), datos)
+        this.http.put("http://manappger.internow.com.mx/api/public/pedidos/"+servicio.id+"?token="+localStorage.getItem('manappger_token'), datos)
             .subscribe((data)=> {
-                    this.showNotification('top','center','Se ha asignado el pedido con éxito',2);
-                    console.log(data);
-                    this.pedidosUsuario.splice(servicio.i, 1);
-                    this.resetTable();
+                    this.showNotification('top','center','Pedido finalizado con éxito',2);
+                    console.log(data)
+                    this.pedidosUsuario.splice(i, 1);
+                    this.resetTable()
                      
             },
            msg => { // Error
@@ -187,10 +184,8 @@ export class ServiciosComponent implements OnInit {
          );
     }
 
-
-
     public resetTable(){
-      this.http.get("http://manappger.internow.com.mx/api/public/pedidos/informacion0?token="+localStorage.getItem('manappger_token'))
+    	this.http.get("http://manappger.internow.com.mx/api/public/pedidos/informacion1?token="+localStorage.getItem('manappger_token'))
             .subscribe((data)=> {
                console.log(data);
              this.socios=data;
@@ -248,6 +243,7 @@ export class ServiciosComponent implements OnInit {
             
             });
     }
+
     public toInt(num: string) {
         return +num;
     }
@@ -347,5 +343,6 @@ export class ServiciosComponent implements OnInit {
          this.currentIndex = index;
          this.refreshItems();
     }
+
 
 }

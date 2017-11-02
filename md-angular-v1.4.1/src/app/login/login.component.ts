@@ -14,8 +14,8 @@ import 'rxjs/add/operator/map'
 export class LoginComponent implements OnInit {
 
   public people:any;
-  user= 'rattios'
-  password='123456789';
+  user= ''
+  password='';
   public token:any;
 
   constructor(private http: HttpClient,private router: Router) {
@@ -37,13 +37,13 @@ export class LoginComponent implements OnInit {
     	password: this.password
     }
 
-     this.http.post('http://rattios.com/24managerAPI/public/login/app', datos)
+     this.http.post('http://manappger.internow.com.mx/api/public/login/web', datos)
        .toPromise()
        .then(
          data => { // Success
            console.log(data);
            this.token=data;
-           localStorage.setItem('manappger', this.token.token);
+           localStorage.setItem('manappger_token', this.token.token);
            //console.log(res.token);
            this.people='exito...';
            this.router.navigate(['/Panel-principal']);

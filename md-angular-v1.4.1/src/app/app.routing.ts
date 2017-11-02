@@ -15,6 +15,7 @@ import { LoginComponent } from './login/login.component';
 import { SociosComponent } from './socios/socios.component';
 import { HistorialComponent } from './historial/historial.component';
 import { ServiciosComponent } from './servicios/servicios.component';
+import { EncursoComponent } from './encurso/encurso.component';
 
 const routes: Routes =[
     { path: '',          redirectTo: '/login', pathMatch: 'full' },
@@ -23,6 +24,7 @@ const routes: Routes =[
     { path: 'Socios',     component: SociosComponent },
     { path: 'Servicios',     component: ServiciosComponent },
     { path: 'Historial-servicios',     component: HistorialComponent },
+    { path: 'En-curso',     component: EncursoComponent },
     { path: 'table-list',     component: TableListComponent },
     { path: 'typography',     component: TypographyComponent },
     { path: 'icons',          component: IconsComponent },

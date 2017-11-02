@@ -1,3 +1,4 @@
+<ngx-loading [show]="loading" [config]="{ backdropBorderRadius: '14px' }"></ngx-loading>
 <div class="wrapper">
 <div class="sidebar" data-color='blue' data-image="" style="background-color: #000 !important">
         <app-sidebar></app-sidebar>
@@ -32,59 +33,57 @@
                         </div>
                         <div class="">
                             <div class="col-xs-8 "></div>
-                            <div class="col-xs-4 form-group form-black label-floating is-empty">
-                                <label class="control-label">Filtrar:</label>
-                                <input type="text" class="form-control" [(ngModel)]="filterQuery">
-                            </div>
-                            <table class="table" [mfData]="data" #mf="mfDataTable"
-                                   [mfRowsOnPage]="rowsOnPage" [(mfSortBy)]="sortBy" [mfIsServerPagination]="false" [(mfSortOrder)]="sortOrder">
-                                <thead>
-                                <tr>
-                                    <!--  -->
-                                    <th style="font-weight: bold;">
-                                        <mfDefaultSorter by="nombre">Nombre</mfDefaultSorter>
-                                    </th>
-                                    <th style="font-weight: bold">
-                                        <mfDefaultSorter by="correo">Correo</mfDefaultSorter>
-                                    </th>
-                                    <th style="font-weight: bold">
-                                        <mfDefaultSorter by="Telefono">Teléfono</mfDefaultSorter>
-                                    </th>
-                                    <th style="font-weight: bold">
-                                        <mfDefaultSorter [by]="sortByWordLength" style="font-weight: bold">Sexo</mfDefaultSorter>
-                                    </th> 
-                                    <th style="font-weight: bold"><!-- <mfDefaultSorter by="Acciones">Acciones</mfDefaultSorter> --></th>
-                                </tr>
+                            <div class="form-group" style="text-align: right;">
+                                     <label>Buscar: </label>
+                                     <input  type="text"  id="inputName" [(ngModel)]="inputName" (ngModelChange)="FilterByName()"/>
+                                     
+                                </div>
 
-                                </thead>
-                                <tbody>
-                                <tr *ngFor="let item of mf.data | filter : filterQuery">
-                                    <!-- <td>
-                                        <button (click)="remove(item)" class="btn btn-danger">x</button>
-                                    </td> -->
-                                    <td>{{item.nombre}}</td>
-                                    <td>{{item.correo}}</td>
-                                    <td>{{item.telefono}}</td>
-                                    <!-- <td>{{item.ubicacion | uppercase}}</td> -->
-                                    <td class="td-actions text-right">
-                                        <button type="button" rel="tooltip" title="Edit Task" class="btn btn-info btn-simple btn-xs">
-                                            <i class="material-icons" (click)="getUsuario(item)">remove_red_eye</i>
-                                        </button>
-                                        <button type="button" rel="tooltip" title="Remove" class="btn btn-danger btn-simple btn-xs" (click)="remove(item)">
-                                            <i class="material-icons">close</i>
-                                        </button>
-                                    </td>
-
-                                </tr>
-                                </tbody>
-                                <tfoot>
-                                <tr>
-                                    <td colspan="5">
-                                        <mfBootstrapPaginator [rowsOnPageSet]="[5,10,15]" ></mfBootstrapPaginator>
-                                    </td>
-                                </tr>
-                                </tfoot>
-                            </table>
+                                <table class="table table-striped">
+                                  <thead>
+                                     <th></th>
+                                     <th style="text-align: center;">ID</th>
+                                     <th style="text-align: center;">Nombre</th>
+                                     <th style="text-align: center;">Teléfono</th>
+                                     <th style="text-align: center;">Correo</th>
+                                     <th style="text-align: center;">Acciones</th>
+                                  </thead>
+                                  <tbody>
+                                     <tr *ngFor="let item of items">
+                                        <td></td>
+                                        <td style="text-align: center;">{{item.id}}</td>
+                                        
+                                        <td style="text-align: center;">{{item.nombre}}</td>
+                                        <td style="text-align: center;">{{item.telefono}}</td>
+                                        <td style="text-align: center;">{{item.correo}}</td>
+                                        <td style="text-align: center;">
+                                          <!-- <button type="button" rel="tooltip" title="Edit Task" class="btn btn-info btn-simple btn-xs" (click)="getSocio(item)">
+                                                    <i class="material-icons">remove_red_eye</i>
+                                          </button>
+                                          <button type="button" rel="tooltip" title="Remove" class="btn btn-danger btn-simple btn-xs" (click)="remove(item)">
+                                                    <i class="material-icons">close</i>
+                                          </button> -->
+                                          <button type="button" class="btn btn-success" (click)="getUsuario(item)"><i class="fa fa-eye"></i>&nbsp; Ver</button>
+                                          <button type="button" class="btn btn-danger" (click)="remove(item)"><i class="fa fa-trash"></i>&nbsp; Eliminar</button>
+                                          <!-- <button type="button" class="btn btn-danger"><i class="fa fa-trash"></i>&nbsp; Eliminar</button> -->
+                                        </td>
+                                     </tr>
+                                  </tbody>
+                                </table>
+                                <div class="btn-toolbar" role="toolbar" style="margin: 0;">
+                                    <div class="btn-group">
+                                       <label style="margin-top:10px">Página {{currentIndex}}/{{pageNumber}} </label>
+                                    </div>
+                                    <div class="btn-group pull-right">
+                                       <ul class="pagination" >
+                                          <li [ngClass]="{'disabled': (currentIndex == 1 || pageNumber == 0)}" ><a  (click)="prevPage()" >Atrás</a></li>
+                                             <li *ngFor="let page of pagesIndex"  [ngClass]="{'active': (currentIndex == page)}">
+                                                <a (click)="setPage(page)" >{{page}} </a>
+                                             </li>
+                                          <li [ngClass]="{'disabled': (currentIndex == pageNumber || pageNumber == 0)}" ><a   (click)="nextPage()" >Siguiente</a></li>
+                                       </ul>
+                                    </div>
+                                </div>
                         </div>  
                     </div>
                 </div> 
@@ -100,14 +99,14 @@
                         <form>
                             <div class="row">
                                 <div class="col-md-6">
-                                    <div class="form-group form-black label-floating is-empty">
-                                        <label class="control-label">Usuario</label>
+                                    <label class="control-label">Usuario</label>
+                                    <div class="form-group form-black label-floating">  
                                         <input type="text" class="form-control" [(ngModel)]="editUsuario" name="editUsuario" disabled>
                                     </div>
                                 </div>
                                 <div class="col-md-6">
-                                    <div class="form-group form-black label-floating is-empty">
-                                        <label class="control-label">Correo</label>
+                                    <label class="control-label">Correo</label>
+                                    <div class="form-group form-black label-floating">
                                         <input type="email" class="form-control" [(ngModel)]="editCorreo" name="editCorreo" disabled>
                                     </div>
                                 </div>
@@ -115,14 +114,14 @@
 
                             <div class="row">
                                 <div class="col-md-6">
-                                    <div class="form-group form-black label-floating is-empty">
-                                        <label class="control-label">Nombre</label>
+                                    <label class="control-label">Nombre</label>
+                                    <div class="form-group form-black label-floating">
                                         <input type="text" class="form-control" [(ngModel)]="editNombre" name="editNombre">
                                     </div>
                                 </div>
                                 <div class="col-md-6">
-                                    <div class="form-group form-black label-floating is-empty">
-                                        <label class="control-label">Sexo</label>
+                                    <label class="control-label">Sexo</label>
+                                    <div class="form-group form-black label-floating">
                                         <input type="text" class="form-control" [(ngModel)]="editSexo" name="editSexo">
                                     </div>
                                 </div>

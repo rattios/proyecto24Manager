@@ -61,3 +61,12 @@ a{
         margin: 30px auto;
     }
 }
+agm-map {
+  height: 300px;
+}
+
+.fixed{
+        position: sticky;
+        top:0;
+        z-index: 9;
+    }
