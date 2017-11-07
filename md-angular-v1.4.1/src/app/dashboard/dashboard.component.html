@@ -1,3 +1,4 @@
+
 <div class="wrapper">
 <div class="sidebar" data-color='blue' data-image="" style="background-color: #000 !important">
         <app-sidebar></app-sidebar>
@@ -6,7 +7,7 @@
 <div class="main-panel">
     <app-navbar></app-navbar>
     <div class="main-content">
-<!--             {{prueba}} -->
+<!--             {{prueba}} --><ngx-loading [show]="loading" [config]="{ backdropBorderRadius: '14px' }"></ngx-loading>
             <div class="container-fluid">
                 <div class="row">
                     <div class="col-lg-3 col-md-6 col-sm-6">
@@ -16,7 +17,7 @@
                             </div>
                             <div class="card-content">
                                 <p class="category">Servicios </p>
-                                <h3 class="title">49/50<small></small></h3>
+                                <h3 class="title">{{pedido0}}/{{pedido}}<small></small></h3>
                             </div>
                             <div class="card-footer">
                                 <div class="stats">
@@ -32,7 +33,7 @@
                             </div>
                             <div class="card-content">
                                 <p class="category">Dinero recaudado </p>
-                                <h3 class="title">$34,245</h3>
+                                <h3 class="title">${{dinero}}</h3>
                             </div>
                             <div class="card-footer">
                                 <div class="stats">
@@ -48,7 +49,7 @@
                             </div>
                             <div class="card-content">
                                 <p class="category">Servicios en curso</p>
-                                <h3 class="title">1</h3>
+                                <h3 class="title">{{pedido1}}</h3>
                             </div>
                             <div class="card-footer">
                                 <div class="stats">
@@ -65,7 +66,7 @@
                             </div>
                             <div class="card-content">
                                 <p class="category">Usuarios</p>
-                                <h3 class="title">245</h3>
+                                <h3 class="title">{{nUser}}</h3>
                             </div>
                             <div class="card-footer">
                                 <div class="stats">
@@ -84,11 +85,11 @@
                             </div>
                             <div class="card-content">
                                 <h4 class="title">Ultimos servicios</h4>
-                                <p class="category"><!-- <span class="text-success"><i class="fa fa-long-arrow-up"></i> 55%  </span> --> Gráfica de los últimos servicios</p>
+                                <p class="category"><!-- <span class="text-success"><i class="fa fa-long-arrow-up"></i> 55%  </span> --> Gráfica de los últimos 8 dias de servicios</p>
                             </div>
                             <div class="card-footer">
                                 <div class="stats">
-                                    <i class="material-icons">access_time</i> Ultimo servicio
+                                    <i class="material-icons">access_time</i> 8 Ultimos dias
                                 </div>
                             </div>
                         </div>
@@ -105,7 +106,7 @@
                             </div>
                             <div class="card-footer">
                                 <div class="stats">
-                                    <i class="material-icons">access_time</i> Ultima suscripción
+                                    <i class="material-icons">access_time</i> Ultima suscripción el: {{ultimaSus}}
                                 </div>
                             </div>
 
@@ -119,17 +120,17 @@
                             </div>
                             <div class="card-content">
                                 <h4 class="title">Servicios finalizados</h4>
-                                <p class="category">...</p>
+                                <p class="category">Servicios finalizados en las últimas 8 horas</p>
                             </div>
                             <div class="card-footer">
                                 <div class="stats">
-                                    <i class="material-icons">access_time</i> Ultimo servicio finalizado
+                                    <i class="material-icons">access_time</i> Ultimo servicio finalizado: {{ultimoPed}}
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
-
+                <br><br><br>
                 <div class="row">
                     <div class="col-lg-6 col-md-12">
                         <!-- <div class="card card-nav-tabs" >
@@ -349,7 +350,7 @@
                                 </div>
                             </div>
                         </div> -->
-                        <div class="card" >
+                    <!--     <div class="card" >
                             <div class="card-header" data-background-color="purple">
                                 <h4 class="title">Socios</h4>
                                 <p class="category">Tabla de socios</p>
@@ -440,7 +441,7 @@
                                 </table>
                             </div>
                         </div>
-                    </div>
+                    </div> -->
                 </div>
             </div>
     </div>

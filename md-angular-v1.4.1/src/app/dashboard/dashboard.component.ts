@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import * as Chartist from 'chartist';
 
 @Component({
@@ -8,8 +9,20 @@ import * as Chartist from 'chartist';
 })
 export class DashboardComponent implements OnInit {
 
+  public datos:any;
+  public nUser:any;
+  public pedido0:any;
+  public pedido1:any;
+  public pedido2:any;
+  public pedido:any;
+  public dinero:any;
+  public ultimaSus:any;
+  public ultimoPed:any;
+  public loading=false;
   prueba = localStorage.getItem("manappger");
-  constructor() { }
+  constructor(private http: HttpClient) { }
+
+
   startAnimationForLineChart(chart){
       let seq: any, delays: any, durations: any;
       seq = 0;
@@ -67,85 +80,135 @@ export class DashboardComponent implements OnInit {
       seq2 = 0;
   };
   ngOnInit() {
-      /* ----------==========     Daily Sales Chart initialization For Documentation    ==========---------- */
+    this.loading=true;
+    let OneSignal = window['OneSignal'] || [];
+    OneSignal.push(["init", {
+      appId: "64e71ccd-b5a1-40da-bc26-57bf6e9a45c2",
+      autoRegister: true, /* Set to true to automatically prompt visitors */
+      subdomainName: 'https://manappger.os.tc',
 
-      const dataDailySalesChart: any = {
-          labels: ['M', 'T', 'W', 'T', 'F', 'S', 'S'],
-          series: [
-              [12, 17, 7, 17, 23, 18, 38]
-          ]
-      };
+      httpPermissionRequest: {
+        enable: true,
+        modalTitle: 'Manappger',
+        modalMessage: 'Gracias por suscribirse a las notificaciones!',
+        modalButtonText:'OK'
 
-     const optionsDailySalesChart: any = {
-          lineSmooth: Chartist.Interpolation.cardinal({
-              tension: 0
-          }),
-          low: 0,
-          high: 50, // creative tim: we recommend you to set the high sa the biggest value + something for a better look
-          chartPadding: { top: 0, right: 0, bottom: 0, left: 0},
+      },
+      welcomeNotification:{
+         "title": "Manappger",
+        "message": "Gracias por suscribirse a las notificaciones!"
+      },
+      notifyButton: {
+          enable: false 
       }
+    }]);
 
-      var dailySalesChart = new Chartist.Line('#dailySalesChart', dataDailySalesChart, optionsDailySalesChart);
+    OneSignal.push(function() {
+      OneSignal.getUserId(function(userId) {
+        console.log("OneSignal User ID:", userId);
+      });
+    });
 
-      this.startAnimationForLineChart(dailySalesChart);
+    this.http.get('http://manappger.internow.com.mx/api/public/dash?token='+localStorage.getItem('manappger_token'))
+           .subscribe((data)=> {
+             console.log(data);
+              this.datos=data;
+              this.loading=false;
+              this.nUser=this.datos.nUser;
+              this.pedido0=this.datos.pedido0;
+              this.pedido1=this.datos.pedido1;
+              this.pedido2=this.datos.pedido2;
+              this.pedido=this.datos.pedido0+this.datos.pedido1+this.datos.pedido2;
+              this.dinero=this.datos.dinero;
+              this.ultimaSus=this.datos.ultimaSus;
+              this.ultimoPed=this.datos.ultimoPed;
+
+               /* ----------==========     Emails Subscription Chart initialization    ==========---------- */
+
+              var dataEmailsSubscriptionChart = {
+                labels: ['Ene', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Ago', 'Sep', 'Oct', 'Nov', 'Dic'],
+                series: [
+                  this.datos.suscritoMes
+                ]
+              };
+              var optionsEmailsSubscriptionChart = {
+                  axisX: {
+                      showGrid: false
+                  },
+                  low: 0,
+                  high: this.datos.iNumeroMayor,
+                  chartPadding: { top: 0, right: 5, bottom: 0, left: 0}
+              };
+              var responsiveOptions: any[] = [
+                ['screen and (max-width: 640px)', {
+                  seriesBarDistance: 5,
+                  axisX: {
+                    labelInterpolationFnc: function (value) {
+                      return value[0];
+                    }
+                  }
+                }]
+              ];
+              var emailsSubscriptionChart = new Chartist.Bar('#emailsSubscriptionChart', dataEmailsSubscriptionChart, optionsEmailsSubscriptionChart, responsiveOptions);
+
+              //start animation for the Emails Subscription Chart
+              this.startAnimationForBarChart(emailsSubscriptionChart);
+              /* ----------==========   FIN  Emails Subscription Chart initialization    ==========---------- */
+              /* ----------==========     Daily Sales Chart initialization For Documentation    ==========---------- */
+
+              const dataDailySalesChart: any = {
+                  labels: this.datos.ultimosDias,
+                  series: [
+                      this.datos.nUltimosDias
+                  ]
+              };
+
+             const optionsDailySalesChart: any = {
+                  lineSmooth: Chartist.Interpolation.cardinal({
+                      tension: 0
+                  }),
+                  low: 0,
+                  high: this.datos.nMayorUltimosDias, // creative tim: we recommend you to set the high sa the biggest value + something for a better look
+                  chartPadding: { top: 0, right: 0, bottom: 0, left: 0},
+              }
+
+              var dailySalesChart = new Chartist.Line('#dailySalesChart', dataDailySalesChart, optionsDailySalesChart);
+
+              this.startAnimationForLineChart(dailySalesChart);
+              /* ----------==========   FIN  Daily Sales Chart initialization For Documentation    ==========---------- */
+              /* ----------==========     Completed Tasks Chart initialization    ==========---------- */
+
+              const dataCompletedTasksChart: any = {
+                  labels: this.datos.horaServiciosFinalizados,
+                  series: [
+                      this.datos.serviciosFinalizados
+                  ]
+              };
+
+             const optionsCompletedTasksChart: any = {
+                  lineSmooth: Chartist.Interpolation.cardinal({
+                      tension: 0
+                  }),
+                  low: 0,
+                  high: this.datos.nServiciosFinalizados, // creative tim: we recommend you to set the high sa the biggest value + something for a better look
+                  chartPadding: { top: 0, right: 0, bottom: 0, left: 0}
+              }
+
+              var completedTasksChart = new Chartist.Line('#completedTasksChart', dataCompletedTasksChart, optionsCompletedTasksChart);
+
+              // start animation for the Completed Tasks Chart - Line Chart
+              this.startAnimationForLineChart(completedTasksChart);
+              /* ----------==========   FIN  Completed Tasks Chart initialization    ==========---------- */
+
+            });
 
 
-      /* ----------==========     Completed Tasks Chart initialization    ==========---------- */
 
-      const dataCompletedTasksChart: any = {
-          labels: ['12am', '3pm', '6pm', '9pm', '12pm', '3am', '6am', '9am'],
-          series: [
-              [230, 750, 450, 300, 280, 240, 200, 190]
-          ]
-      };
-
-     const optionsCompletedTasksChart: any = {
-          lineSmooth: Chartist.Interpolation.cardinal({
-              tension: 0
-          }),
-          low: 0,
-          high: 1000, // creative tim: we recommend you to set the high sa the biggest value + something for a better look
-          chartPadding: { top: 0, right: 0, bottom: 0, left: 0}
-      }
-
-      var completedTasksChart = new Chartist.Line('#completedTasksChart', dataCompletedTasksChart, optionsCompletedTasksChart);
-
-      // start animation for the Completed Tasks Chart - Line Chart
-      this.startAnimationForLineChart(completedTasksChart);
+      
 
 
 
-      /* ----------==========     Emails Subscription Chart initialization    ==========---------- */
-
-      var dataEmailsSubscriptionChart = {
-        labels: ['Jan', 'Feb', 'Mar', 'Apr', 'Mai', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
-        series: [
-          [542, 443, 320, 780, 553, 453, 326, 434, 568, 610, 756, 895]
-
-        ]
-      };
-      var optionsEmailsSubscriptionChart = {
-          axisX: {
-              showGrid: false
-          },
-          low: 0,
-          high: 1000,
-          chartPadding: { top: 0, right: 5, bottom: 0, left: 0}
-      };
-      var responsiveOptions: any[] = [
-        ['screen and (max-width: 640px)', {
-          seriesBarDistance: 5,
-          axisX: {
-            labelInterpolationFnc: function (value) {
-              return value[0];
-            }
-          }
-        }]
-      ];
-      var emailsSubscriptionChart = new Chartist.Bar('#emailsSubscriptionChart', dataEmailsSubscriptionChart, optionsEmailsSubscriptionChart, responsiveOptions);
-
-      //start animation for the Emails Subscription Chart
-      this.startAnimationForBarChart(emailsSubscriptionChart);
+      
   }
 
 }
