@@ -36,6 +36,16 @@ export class HistorialComponent implements OnInit {
     public pedidosUsuario:any;
     public loading=false;
 
+    public userF="";
+    public nombreF="";
+    public telefonoF="";
+    public direccionF="";
+    public referenciaF="";
+    public descripcionF="";
+    public latF="";
+    public lngF="";
+    public mostrarDatos=false;
+
     zoom: number = 14;
 
     constructor(private http: HttpClient) {
@@ -51,24 +61,44 @@ export class HistorialComponent implements OnInit {
              this.data=this.socios.pedidos;
              console.log(this.socios);
 
-
-             
-             //this.productList = this.data;
              this.productUser = this.data;
              
              console.log(this.productList);
 
              
              var users=[];
+             var fechas=[];
+             var anio='';
+             var mes='';
+             var dia='';
+             var hora='';
+             var min='';
+             var fecha:any;
+             var fechaCompara:any;
+
              for (var i = 0; i < this.data.length; i++) {
+               fecha=new Date(this.data[i].created_at);
+               anio=fecha.getFullYear();
+               mes=fecha.getMonth();
+               dia=fecha.getDay();
+               hora=fecha.getHours();
+               min=fecha.getMinutes();
+               fechaCompara=anio+'-'+mes+'-'+dia+' '+hora+':'+min;
+               this.data[i].fecha=fechaCompara;
                users.push({
                  'id':this.data[i].id,
                  'nombre':this.data[i].usuario.nombre,
                  'created_at':this.data[i].created_at,
+                 'fecha':fechaCompara,
                  'visible':true,
                  'pedidos':[]
                });
+               fechas.push({
+                 'fecha':fechaCompara
+               })
              }
+             console.log(this.data);
+             console.log(JSON.stringify(fechas));
 
             var hash = {};
             users = users.filter(function(current) {
@@ -77,12 +107,40 @@ export class HistorialComponent implements OnInit {
               return exists;
             });
 
+            var hash = {};
+            fechas = fechas.filter(function(current) {
+              var exists = !hash[current.fecha] || false;
+              hash[current.fecha] = true;
+              return exists;
+            });
             console.log(JSON.stringify(users));
-            // for (var i = 0; i < users.length; i++) {
-            //   this.productUser.push({
+            console.log(JSON.stringify(fechas));
 
-            //   });
-            // }
+            var pedidosFechas=[];
+            for (var i = 0; i < fechas.length; i++) {
+              pedidosFechas.push({
+                'fecha': fechas[i].fecha,
+                'nombre':'',
+                'id':'',
+                'visible':true,
+                'created_at': '',
+                'pedidos':[]
+                  });
+              for (var j = 0; j < this.data.length; j++) {
+                for (var k = 0; k < users.length; k++) {
+
+                  if ((fechas[i].fecha==this.data[j].fecha)&&(users[k].nombre==this.data[j].usuario.nombre)) {
+                    pedidosFechas[i].nombre=this.data[j].usuario.nombre;
+                    pedidosFechas[i].id=this.data[j].id;
+                    pedidosFechas[i].created_at=this.data[j].created_at;
+                    pedidosFechas[i].pedidos.push(
+                      this.data[j]
+                      );
+                  }
+                }
+              }
+            }
+            console.log(pedidosFechas);
             for (var i = 0; i < users.length; i++) {
               for (var j = 0; j < this.data.length; j++) {
                 if (this.data[j].usuario.nombre==users[i].nombre) {
@@ -92,14 +150,15 @@ export class HistorialComponent implements OnInit {
             }
              //setTimeout(function(){
               console.log(users);
-              this.productList=users;
+
+              this.productList=pedidosFechas;
               this.filteredItems = this.productList;
               for (var i = 0; i < this.filteredItems.length; ++i) {
                 this.productList[i].tam=this.productList[i].pedidos.length;
               }
               this.init();
             //},250);
-             this.loading=false;
+            this.loading=false;
             
             });
     }
@@ -135,14 +194,25 @@ export class HistorialComponent implements OnInit {
         }
     }
     public getUsuario(pedidos){
-      console.log(pedidos);
+        this.mostrarDatos=true;
+        console.log(pedidos);
         this.pedidosUsuario=pedidos;
         for (var i = 0; i < pedidos.length; ++i) {
           this.pedidosUsuario[i].lat=parseFloat(this.pedidosUsuario[i].lat);
           this.pedidosUsuario[i].lng=parseFloat(this.pedidosUsuario[i].lng);
-          
         }
+        this.userF=this.pedidosUsuario[0].usuario.user;
+        this.nombreF=this.pedidosUsuario[0].usuario.nombre;
+        this.telefonoF=this.pedidosUsuario[0].usuario.telefono;
+        this.direccionF=this.pedidosUsuario[0].direccion;
+        this.referenciaF=this.pedidosUsuario[0].referencia;
+        this.descripcionF=this.pedidosUsuario[0].descripcion;
+        this.latF=this.pedidosUsuario[0].lat;
+        this.lngF=this.pedidosUsuario[0].lng;
         
+    }
+    public volver(pedidos){
+      this.mostrarDatos=false;  
     }
     public asignarUsuario(usuario,i){
         this.IDmodal=usuario.id;
