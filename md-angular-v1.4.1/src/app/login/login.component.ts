@@ -37,7 +37,7 @@ export class LoginComponent implements OnInit {
     	password: this.password
     }
 
-     this.http.post('http://manappger.internow.com.mx/api/public/login/web', datos)
+     this.http.post('http://apimanappger.internow.com.mx/api/public/login/web', datos)
        .toPromise()
        .then(
          data => { // Success

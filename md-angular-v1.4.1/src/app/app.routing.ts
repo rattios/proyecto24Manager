@@ -7,15 +7,13 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { UserProfileComponent } from './user-profile/user-profile.component';
 import { TableListComponent } from './table-list/table-list.component';
 import { TypographyComponent } from './typography/typography.component';
-import { IconsComponent } from './icons/icons.component';
-import { MapsComponent } from './maps/maps.component';
-import { NotificationsComponent } from './notifications/notifications.component';
-import { UpgradeComponent } from './upgrade/upgrade.component';
 import { LoginComponent } from './login/login.component';
 import { SociosComponent } from './socios/socios.component';
 import { HistorialComponent } from './historial/historial.component';
 import { ServiciosComponent } from './servicios/servicios.component';
 import { EncursoComponent } from './encurso/encurso.component';
+import { CalificacionesComponent } from './calificaciones/calificaciones.component';
+import { SliderComponent } from './slider/slider.component';
 
 const routes: Routes =[
     { path: '',          redirectTo: '/login', pathMatch: 'full' },
@@ -25,12 +23,8 @@ const routes: Routes =[
     { path: 'Servicios',     component: ServiciosComponent },
     { path: 'Historial-servicios',     component: HistorialComponent },
     { path: 'En-curso',     component: EncursoComponent },
-    { path: 'table-list',     component: TableListComponent },
-    { path: 'typography',     component: TypographyComponent },
-    { path: 'icons',          component: IconsComponent },
-    { path: 'maps',           component: MapsComponent },
-    { path: 'notifications',  component: NotificationsComponent },
-    { path: 'upgrade',        component: UpgradeComponent },
+    { path: 'Calificaciones',     component: CalificacionesComponent },
+    { path: 'Slider',     component: SliderComponent },
     { path: 'login',        component: LoginComponent },
     { path: '**', redirectTo: '/login' }
       

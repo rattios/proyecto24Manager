@@ -109,8 +109,10 @@ export class DashboardComponent implements OnInit {
       });
     });
 
-    this.http.get('http://manappger.internow.com.mx/api/public/dash?token='+localStorage.getItem('manappger_token'))
-           .subscribe((data)=> {
+    this.http.get('http://apimanappger.internow.com.mx/api/public/dash?token='+localStorage.getItem('manappger_token'))
+           .toPromise()
+           .then(
+           data => { // Success
              console.log(data);
               this.datos=data;
               this.loading=false;
@@ -199,8 +201,13 @@ export class DashboardComponent implements OnInit {
               // start animation for the Completed Tasks Chart - Line Chart
               this.startAnimationForLineChart(completedTasksChart);
               /* ----------==========   FIN  Completed Tasks Chart initialization    ==========---------- */
-
-            });
+             console.log(data);  
+           },
+           msg => { // Error
+             console.log(msg.error);
+             alert(JSON.stringify(msg.error));
+           });
+           
 
 
 

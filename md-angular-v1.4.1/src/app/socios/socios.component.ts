@@ -44,7 +44,7 @@ export class SociosComponent implements OnInit {
 
     ngOnInit(): void {
       this.loading=true;
-      this.http.get('http://manappger.internow.com.mx/api/public/socios/servicios?token='+localStorage.getItem('manappger_token'))
+      this.http.get('http://apimanappger.internow.com.mx/api/public/socios/servicios?token='+localStorage.getItem('manappger_token'))
          .toPromise()
          .then(
            data => { // Success
@@ -64,8 +64,7 @@ export class SociosComponent implements OnInit {
            msg => { // Error
              console.log(msg.error.error);
 
-           }
-         );
+           });
      
 
       /*const headers2 = new HttpHeaders().set('Authorization' , 'Beader {eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjAsImlzcyI6Imh0dHBzOlwvXC93d3cubGllYnJlZXhwcmVzcy5jb21cL2FwaVwvdG9rZW40XC9MYXJhdmVsXC9wdWJsaWNcL2FwaVwvYXV0aFwvbG9naW4iLCJpYXQiOjE1MDk0MTA2MDUsImV4cCI6MTUyMjQwNjYwNSwibmJmIjoxNTA5NDEwNjA1LCJqdGkiOiJmMWZkN2M1NWVhOTQwZDVmY2FiOTA4NjVhZWUwMGM2MiJ9.KxZvTImULkCQnA0ENYijC-rhexqaHzd3jw-eva7v-Bg}');
@@ -126,7 +125,7 @@ export class SociosComponent implements OnInit {
     }
 
     public remove(item) {
-        this.http.delete('http://manappger.internow.com.mx/api/public/socios/'+item.id)
+        this.http.delete('http://apimanappger.internow.com.mx/api/public/socios/'+item.id)
          .toPromise()
          .then(
            data => { // Success

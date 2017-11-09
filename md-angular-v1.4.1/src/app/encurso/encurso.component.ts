@@ -55,7 +55,7 @@ export class EncursoComponent implements OnInit {
 
     ngOnInit(): void {
         this.loading=true;
-        this.http.get("http://manappger.internow.com.mx/api/public/pedidos/informacion1?token="+localStorage.getItem('manappger_token'))
+        this.http.get("http://apimanappger.internow.com.mx/api/public/pedidos/informacion1?token="+localStorage.getItem('manappger_token'))
             .subscribe((data)=> {
                console.log(data);
              this.socios=data;
@@ -124,7 +124,9 @@ export class EncursoComponent implements OnInit {
                 'nombre':'',
                 'id':'',
                 'visible':true,
+                'socio': '',
                 'created_at': '',
+                'updated_at': '',
                 'pedidos':[]
                   });
               for (var j = 0; j < this.data.length; j++) {
@@ -132,8 +134,10 @@ export class EncursoComponent implements OnInit {
 
                   if ((fechas[i].fecha==this.data[j].fecha)&&(users[k].nombre==this.data[j].usuario.nombre)) {
                     pedidosFechas[i].nombre=this.data[j].usuario.nombre;
+                    pedidosFechas[i].socio=this.data[j].socio.nombre;
                     pedidosFechas[i].id=this.data[j].id;
                     pedidosFechas[i].created_at=this.data[j].created_at;
+                    pedidosFechas[i].updated_at=this.data[j].updated_at;
                     pedidosFechas[i].pedidos.push(
                       this.data[j]
                       );
@@ -161,7 +165,9 @@ export class EncursoComponent implements OnInit {
             //},250);
             this.loading=false;
             
-            });
+            },msg => { // Error
+             console.log(msg.error.error);
+           });
     }
 
     showNotification(from, align, mensaje,colors){
@@ -222,7 +228,7 @@ export class EncursoComponent implements OnInit {
         this.serviciosFiltradosModal = [];
         this.serviciosModal = [];
         console.log(usuario.subcategoria_id);
-        this.http.get("http://manappger.internow.com.mx/api/public/servicios/socio/subcategoria/"+usuario.subcategoria_id+"?token="+localStorage.getItem('manappger_token'))
+        this.http.get("http://apimanappger.internow.com.mx/api/public/servicios/socio/subcategoria/"+usuario.subcategoria_id+"?token="+localStorage.getItem('manappger_token'))
             .subscribe((data)=> {
                     console.log(data)
                     this.serviciosModal = data;
@@ -241,7 +247,7 @@ export class EncursoComponent implements OnInit {
             estado:2
         }
 
-        this.http.put("http://manappger.internow.com.mx/api/public/pedidos/"+servicio.id+"?token="+localStorage.getItem('manappger_token'), datos)
+        this.http.put("http://apimanappger.internow.com.mx/api/public/pedidos/"+servicio.id+"?token="+localStorage.getItem('manappger_token'), datos)
             .subscribe((data)=> {
                     this.showNotification('top','center','Pedido finalizado con éxito',2);
                     console.log(data)
@@ -258,7 +264,7 @@ export class EncursoComponent implements OnInit {
     }
 
     public resetTable(){
-    	this.http.get("http://manappger.internow.com.mx/api/public/pedidos/informacion1?token="+localStorage.getItem('manappger_token'))
+    	this.http.get("http://apimanappger.internow.com.mx/api/public/pedidos/informacion1?token="+localStorage.getItem('manappger_token'))
             .subscribe((data)=> {
                console.log(data);
              this.socios=data;

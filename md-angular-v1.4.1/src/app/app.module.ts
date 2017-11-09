@@ -11,6 +11,7 @@ import { Ng2SearchPipeModule } from 'ng2-search-filter';
 import { BsModalModule } from 'ng2-bs3-modal';
 import { AgmCoreModule } from '@agm/core';
 import { LoadingModule, ANIMATION_TYPES } from 'ngx-loading';
+import { RatingModule } from 'ngx-bootstrap/rating';
 
 import { AppRoutingModule } from './app.routing';
 import { ComponentsModule } from './components/components.module';
@@ -31,6 +32,9 @@ import { HistorialComponent } from './historial/historial.component';
 import { ServiciosComponent } from './servicios/servicios.component';
 import { DataFilterPipe } from "./data-filter.pipe";
 import { EncursoComponent } from './encurso/encurso.component';
+import { CalificacionesComponent } from './calificaciones/calificaciones.component';
+import { SliderComponent } from './slider/slider.component';
+import { CarouselModule } from 'ngx-bootstrap/carousel';
 
 @NgModule({
   declarations: [
@@ -49,6 +53,8 @@ import { EncursoComponent } from './encurso/encurso.component';
     ServiciosComponent,
     DataFilterPipe,
     EncursoComponent,
+    CalificacionesComponent,
+    SliderComponent,
 
   ],
   imports: [
@@ -78,9 +84,9 @@ import { EncursoComponent } from './encurso/encurso.component';
         primaryColour: '#ffffff', 
         secondaryColour: '#ffffff', 
         tertiaryColour: '#ffffff'
-    })
-
-
+    }),
+    RatingModule.forRoot(),
+    CarouselModule.forRoot(),
   ],
   exports: [
 

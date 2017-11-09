@@ -4,38 +4,31 @@ import { HttpClient, HttpParams  } from '@angular/common/http';
 declare const $: any;
 
 @Component({
-  selector: 'app-user-profile',
-  templateUrl: './user-profile.component.html',
-  styleUrls: ['./user-profile.component.css']
+  selector: 'app-calificaciones',
+  templateUrl: './calificaciones.component.html',
+  styleUrls: ['./calificaciones.component.css']
 })
-export class UserProfileComponent implements OnInit {
+export class CalificacionesComponent implements OnInit {
 
-    public data: any;
-    public filterQuery = "";
-    public rowsOnPage = 5;
-    public sortBy = "nombre";
-    public sortOrder = "asc";
-    public usuarios:any;
-    public editUsuario='';
-    public editCorreo='';
-    public editNombre='';
-    public editSexo='';
-    public socios:any;
-    public productList:any;
-    public loading=false;
-    constructor(private http: HttpClient) {
-    }
+  max: number = 5;
+  rate: number = 4;
+  public data: any;
+  public filterQuery = "";
+  public socios:any;
+  public productList:any;
+  public loading=false;
+  //isReadonly: boolean = true;
+  constructor(private http: HttpClient) { }
 
-
-    ngOnInit(): void {
-      this.loading=true;
-      this.http.get('http://apimanappger.internow.com.mx/api/public/usuarios?token='+localStorage.getItem('manappger_token'))
+  ngOnInit() {
+  	this.loading=true;
+      this.http.get('http://apimanappger.internow.com.mx/api/public/calificaciones?token='+localStorage.getItem('manappger_token'))
          .toPromise()
          .then(
            data => { // Success
              console.log(data);
              this.socios=data;
-             this.data=this.socios.usuarios;
+             this.data=this.socios.calificaciones;
              console.log(this.socios);
              
              this.productList = this.data;
@@ -49,40 +42,10 @@ export class UserProfileComponent implements OnInit {
            msg => { // Error
              console.log(msg.error.error);
            });
-    }
+  }
 
-    public getUsuario(usuario){
-        this.editCorreo = usuario.correo;
-        this.editNombre = usuario.nombre;
-        this.editUsuario = usuario.user;
-        this.editSexo = usuario.sexo;
-    }
-    public toInt(num: string) {
-        return +num;
-    }
 
-    public sortByWordLength = (a: any) => {
-        return a.city.length;
-    }
-
-    public remove(item) {
-        this.http.delete('http://apimanappger.internow.com.mx/api/public/usuarios/'+item.id)
-         .toPromise()
-         .then(
-           data => { // Success
-               console.log(data);
-               let index = this.data.indexOf(item);
-                if(index>-1) {
-                    this.data.splice(index, 1);
-                }
-           },
-           msg => { // Error
-             console.log(msg);
-           }
-         );
-    }
-
-    filteredItems : any;
+   filteredItems : any;
    pages : number = 4;
    pageSize : number = 5;
    pageNumber : number = 0;
@@ -114,11 +77,15 @@ export class UserProfileComponent implements OnInit {
       this.filteredItems = [];
       if(this.inputName != ""){
             for (var i = 0; i < this.productList.length; ++i) {
-              if (this.productList[i].nombre.toUpperCase().indexOf(this.inputName.toUpperCase())>=0) {
+              if (this.productList[i].servicio.servicio.toUpperCase().indexOf(this.inputName.toUpperCase())>=0) {
                  this.filteredItems.push(this.productList[i]);
-              }else if (this.productList[i].ubicacion.toUpperCase().indexOf(this.inputName.toUpperCase())>=0) {
+              }else if (this.productList[i].subcategorias.nombre.toUpperCase().indexOf(this.inputName.toUpperCase())>=0) {
                  this.filteredItems.push(this.productList[i]);
-              }else if (this.productList[i].telefono.indexOf(this.inputName)>=0) {
+              }else if (this.productList[i].socio.nombre.toUpperCase().indexOf(this.inputName.toUpperCase())>=0) {
+                 this.filteredItems.push(this.productList[i]);
+              }else if (this.productList[i].comentario.toUpperCase().indexOf(this.inputName.toUpperCase())>=0) {
+                 this.filteredItems.push(this.productList[i]);
+              }else if (this.productList[i].puntaje.toString().toUpperCase().indexOf(this.inputName.toUpperCase())>=0) {
                  this.filteredItems.push(this.productList[i]);
               }
             }

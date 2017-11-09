@@ -54,7 +54,7 @@ export class ServiciosComponent implements OnInit {
 
     ngOnInit(): void {
         this.loading=true;
-        this.http.get("http://manappger.internow.com.mx/api/public/pedidos/informacion0?token="+localStorage.getItem('manappger_token'))
+        this.http.get("http://apimanappger.internow.com.mx/api/public/pedidos/informacion0?token="+localStorage.getItem('manappger_token'))
             .subscribe((data)=> {
                console.log(data);
              this.socios=data;
@@ -221,7 +221,7 @@ export class ServiciosComponent implements OnInit {
         this.serviciosFiltradosModal = [];
         this.serviciosModal = [];
         console.log(usuario.subcategoria_id);
-        this.http.get("http://manappger.internow.com.mx/api/public/servicios/socio/subcategoria/"+usuario.subcategoria_id+"?token="+localStorage.getItem('manappger_token'))
+        this.http.get("http://apimanappger.internow.com.mx/api/public/servicios/socio/subcategoria/"+usuario.subcategoria_id+"?token="+localStorage.getItem('manappger_token'))
             .subscribe((data)=> {
                     console.log(data)
                     this.serviciosModal = data;
@@ -243,7 +243,7 @@ export class ServiciosComponent implements OnInit {
             estado:1
         }
 
-        this.http.put("http://manappger.internow.com.mx/api/public/pedidos/"+this.IDmodal+"?token="+localStorage.getItem('manappger_token'), datos)
+        this.http.put("http://apimanappger.internow.com.mx/api/public/pedidos/"+this.IDmodal+"?token="+localStorage.getItem('manappger_token'), datos)
             .subscribe((data)=> {
                     this.showNotification('top','center','Se ha asignado el pedido con éxito',2);
                     console.log(data);
@@ -262,7 +262,7 @@ export class ServiciosComponent implements OnInit {
 
 
     public resetTable(){
-      this.http.get("http://manappger.internow.com.mx/api/public/pedidos/informacion0?token="+localStorage.getItem('manappger_token'))
+      this.http.get("http://apimanappger.internow.com.mx/api/public/pedidos/informacion0?token="+localStorage.getItem('manappger_token'))
             .subscribe((data)=> {
                console.log(data);
              this.socios=data;

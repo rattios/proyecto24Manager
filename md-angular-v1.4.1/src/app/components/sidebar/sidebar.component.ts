@@ -12,6 +12,8 @@ export const ROUTES: RouteInfo[] = [
     { path: '/Servicios', title: 'Pedidos',  icon:'format_paint', class: '' },
     { path: '/En-curso', title: 'En curso',  icon:'directions_car', class: '' },
     { path: '/Historial-servicios', title: 'Historial',  icon:'content_paste', class: '' },
+    { path: '/Calificaciones', title: 'Calificaciones',  icon:'grade', class: '' },
+    { path: '/Slider', title: 'Slider',  icon:'view_carousel', class: '' },
     { path: '/Usuarios', title: 'Usuarios',  icon:'supervisor_account', class: '' },
     { path: '/Socios', title: 'Socios',  icon:'person', class: '' },
     

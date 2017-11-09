@@ -54,7 +54,7 @@ export class HistorialComponent implements OnInit {
 
     ngOnInit(): void {
         this.loading=true;
-        this.http.get("http://manappger.internow.com.mx/api/public/pedidos/informacion2?token="+localStorage.getItem('manappger_token'))
+        this.http.get("http://apimanappger.internow.com.mx/api/public/pedidos/informacion2?token="+localStorage.getItem('manappger_token'))
             .subscribe((data)=> {
                console.log(data);
              this.socios=data;
@@ -160,7 +160,9 @@ export class HistorialComponent implements OnInit {
             //},250);
             this.loading=false;
             
-            });
+            },msg => { // Error
+             console.log(msg.error.error);
+           });
     }
 
     showNotification(from, align, mensaje,colors){
@@ -219,8 +221,10 @@ export class HistorialComponent implements OnInit {
         this.serviciosFiltradosModal = [];
         this.serviciosModal = [];
         console.log(usuario.subcategoria_id);
-        this.http.get("http://manappger.internow.com.mx/api/public/servicios/socio/subcategoria/"+usuario.subcategoria_id+"?token="+localStorage.getItem('manappger_token'))
-            .subscribe((data)=> {
+        this.http.get("http://apimanappger.internow.com.mx/api/public/servicios/socio/subcategoria/"+usuario.subcategoria_id+"?token="+localStorage.getItem('manappger_token'))
+             .toPromise()
+             .then(
+             data => {
                     console.log(data)
                     this.serviciosModal = data;
                     this.serviciosFiltradosModal = data;
@@ -231,7 +235,10 @@ export class HistorialComponent implements OnInit {
                     this.serviciosFiltradosModal = this.serviciosFiltradosModal.serviciosFiltrados;
                     console.log(this.serviciosModal);
                     console.log(this.serviciosFiltradosModal);
-            });
+            },
+           msg => { // Error
+             console.log(msg.error.error);
+           });
 
     }
     public asignarSocio(servicio){
@@ -241,7 +248,7 @@ export class HistorialComponent implements OnInit {
             estado:1
         }
 
-        this.http.put("http://manappger.internow.com.mx/api/public/pedidos/"+this.IDmodal+"?token="+localStorage.getItem('manappger_token'), datos)
+        this.http.put("http://apimanappger.internow.com.mx/api/public/pedidos/"+this.IDmodal+"?token="+localStorage.getItem('manappger_token'), datos)
             .subscribe((data)=> {
                     this.showNotification('top','center','Se ha asignado el pedido con éxito',2);
                     console.log(data);
@@ -253,14 +260,13 @@ export class HistorialComponent implements OnInit {
              this.showNotification('top','center','Ha ocurrido un error intente más tarde',4);
              console.log(msg);
 
-           }
-         );
+           });
     }
 
 
 
     public resetTable(){
-      this.http.get("http://manappger.internow.com.mx/api/public/pedidos/informacion0?token="+localStorage.getItem('manappger_token'))
+      this.http.get("http://apimanappger.internow.com.mx/api/public/pedidos/informacion0?token="+localStorage.getItem('manappger_token'))
             .subscribe((data)=> {
                console.log(data);
              this.socios=data;
@@ -316,7 +322,9 @@ export class HistorialComponent implements OnInit {
               this.init();
             //},250);
             
-            });
+            },msg => { // Error
+             console.log(msg.error.error);
+           });
     }
     public toInt(num: string) {
         return +num;

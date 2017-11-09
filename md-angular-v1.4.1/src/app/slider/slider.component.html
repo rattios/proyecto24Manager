@@ -1,0 +1,29 @@
+<ngx-loading [show]="loading" [config]="{ backdropBorderRadius: '14px' }"></ngx-loading>
+<div class="wrapper">
+<div class="sidebar" data-color='blue' data-image="" style="background-color: #000 !important">
+        <app-sidebar></app-sidebar>
+        <div class="sidebar-background" style="background-image: url(../assets/img/sidebar-4.jpg)"></div>
+</div>
+<div class="main-panel">
+    <app-navbar></app-navbar>
+    <div class="main-content">
+    <div class="container-fluid">
+
+        <carousel>
+          <slide>
+            <img src="http://wowslider.com/sliders/demo-5/data/images/sweden.jpg" alt="First slide" style="display: block; width: 100%;">
+          </slide>
+          <slide>
+            <img src="http://wowslider.com/sliders/demo-5/data/images/sur.jpg" alt="Second slide" style="display: block; width: 100%;">
+          </slide>
+          <slide>
+            <img src="http://wowslider.com/sliders/demo-11/data/images/krasivyi_korabl_-1024x768.jpg" alt="Third slide" style="display: block; width: 100%;">
+          </slide>
+        </carousel>
+    </div>
+    </div>
+    <app-footer></app-footer>
+ </div>
+ </div>
+
+
