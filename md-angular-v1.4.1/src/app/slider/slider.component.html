@@ -8,18 +8,98 @@
     <app-navbar></app-navbar>
     <div class="main-content">
     <div class="container-fluid">
+        <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header" data-background-color="green">
+                        <h4 class="title">Slider</h4>
+                        <p class="category">Selecciona las fotos del slider de publicidad</p>
+                    </div>
+                    <div class="row">
+                        <br>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-1"></div>
+                        <div class="col-md-10">
+                            <carousel>
+                              <slide>
+                                <img src="http://wowslider.com/sliders/demo-5/data/images/sweden.jpg" alt="First slide" style="display: block; width: 100%;">
+                              </slide>
+                              <slide>
+                                <img src="http://wowslider.com/sliders/demo-5/data/images/sur.jpg" alt="Second slide" style="display: block; width: 100%;">
+                              </slide>
+                              <slide>
+                                <img src="http://wowslider.com/sliders/demo-11/data/images/krasivyi_korabl_-1024x768.jpg" alt="Third slide" style="display: block; width: 100%;">
+                              </slide>
+                            </carousel>
+                        </div>
+                        <div class="col-md-1"></div>
+                    </div>
+                    <div class="row card-content">
+                        <div class="row">
+                            <div class="col-md-1">
+                            </div>
+                            <div class="col-md-10">
+                                <h3>  Selecciona las fotos del slider:</h3>
+                            </div>
+                            <div class="col-md-1">
+                            </div>
+                        </div>
+                        <form [formGroup]="sliderForm" (ngSubmit)="editarAfiliado(sliderForm)">
+                            <div formArrayName="slider">
+                                <div *ngFor="let client of sliderForm.controls.slider.controls; let i=index" [formGroupName]="i">
+                                    <div class="row">
+                                        <div class="col-md-1">
+                                        </div>
+                                        <div class="col-md-2">
+                                            <label class="labels">Posición</label>
+                                            <div class="form-group form-black label-floating is-empty">  
+                                               <input type="text" name="pos" class="form-control" formControlName="pos">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-5">
+                                            <label class="labels">Imagen</label>
+                                            <div class="form-group form-black label-floating is-empty">  
+                                               <input type="text" name="img" class="form-control" formControlName="img">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-3">
+                                            <div class="form-group form-black label-floating is-empty">
+                                                
+                                                <button class="btn btn-warning btn-block" >    Seleccionar imagen    </button>
+                                                <input type="file" ngFileSelect [options]="options" (onUpload)="handleUpload($event)" (beforeUpload)="beforeUpload($event)">
+                                                 
 
-        <carousel>
-          <slide>
-            <img src="http://wowslider.com/sliders/demo-5/data/images/sweden.jpg" alt="First slide" style="display: block; width: 100%;">
-          </slide>
-          <slide>
-            <img src="http://wowslider.com/sliders/demo-5/data/images/sur.jpg" alt="Second slide" style="display: block; width: 100%;">
-          </slide>
-          <slide>
-            <img src="http://wowslider.com/sliders/demo-11/data/images/krasivyi_korabl_-1024x768.jpg" alt="Third slide" style="display: block; width: 100%;">
-          </slide>
-        </carousel>
+                                                <style>
+                                                  .file-over { border: dotted 3px red; } /* Default class applied to drop zones on over */
+                                                </style> 
+                                                <div class=".btn-block .btn-success" ngFileDrop [options]="options" (onUpload)="handleUpload($event)" [ngClass]="{'file-over': hasBaseDropZoneOver}" (onFileOver)="fileOverBase($event)" (beforeUpload)="beforeUpload($event)"> 
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-1">
+                                        </div>
+                                    </div>
+                                    
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="row">
+                                    <div class="col-md-1">
+                                    </div>
+                                    <div class="col-md-10" >
+                                        <div class="btn btn-warning pull-right" style="border-radius: 55px" (click)=agregar()><i class="material-icons" >add_circle</i></div>
+                                    </div>
+                                    <div class="col-md-1">
+                                    </div>
+                                </div>
+                                <div class="col-md-12" align="center">
+                                    <button type="submit" class="btn btn-danger" [disabled]="!sliderForm.valid">Guardar</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+        </div>
     </div>
     </div>
     <app-footer></app-footer>

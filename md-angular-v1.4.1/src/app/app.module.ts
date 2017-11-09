@@ -12,6 +12,8 @@ import { BsModalModule } from 'ng2-bs3-modal';
 import { AgmCoreModule } from '@agm/core';
 import { LoadingModule, ANIMATION_TYPES } from 'ngx-loading';
 import { RatingModule } from 'ngx-bootstrap/rating';
+import { ReactiveFormsModule } from "@angular/forms";
+import { Ng2UploaderModule } from 'ng2-uploader';
 
 import { AppRoutingModule } from './app.routing';
 import { ComponentsModule } from './components/components.module';
@@ -87,6 +89,8 @@ import { CarouselModule } from 'ngx-bootstrap/carousel';
     }),
     RatingModule.forRoot(),
     CarouselModule.forRoot(),
+    ReactiveFormsModule,
+    Ng2UploaderModule,
   ],
   exports: [
 
