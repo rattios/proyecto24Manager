@@ -1,7 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit,HostListener } from '@angular/core';
 import { HttpClient, HttpParams, HttpHeaders} from '@angular/common/http';
 import {Http, Headers, RequestOptions} from '@angular/http';
-
+import {Router} from '@angular/router';
 declare var $: any;
 
 @Component({
@@ -10,7 +10,14 @@ declare var $: any;
   styleUrls: ['./socios.component.css']
 })
 export class SociosComponent implements OnInit {
-
+    ESCAPE_KEYCODE = 27;
+    @HostListener('document:keydown', ['$event']) onKeydownHandler(event: KeyboardEvent) {
+        //console.log(event);
+        if (event.keyCode === this.ESCAPE_KEYCODE) {
+            console.log(event.keyCode);
+            this.loading=false;
+        }
+      }
   	public data: any;
     public filterQuery = "";
     public rowsOnPage = 5;
@@ -30,7 +37,7 @@ export class SociosComponent implements OnInit {
     public productList:any;
     public loading=false;
 
-    constructor(private http: HttpClient,private http2: Http) {
+    constructor(private http: HttpClient,private http2: Http,private router: Router) {
       /*let headers3 = new Headers();
         //headers3.append('Content-Type', 'application/json');
         headers3.append('Authorization' , 'Beader {eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjAsImlzcyI6Imh0dHBzOlwvXC93d3cubGllYnJlZXhwcmVzcy5jb21cL2FwaVwvdG9rZW40XC9MYXJhdmVsXC9wdWJsaWNcL2FwaVwvYXV0aFwvbG9naW4iLCJpYXQiOjE1MDk0MTA2MDUsImV4cCI6MTUyMjQwNjYwNSwibmJmIjoxNTA5NDEwNjA1LCJqdGkiOiJmMWZkN2M1NWVhOTQwZDVmY2FiOTA4NjVhZWUwMGM2MiJ9.KxZvTImULkCQnA0ENYijC-rhexqaHzd3jw-eva7v-Bg}');
@@ -63,7 +70,11 @@ export class SociosComponent implements OnInit {
            },
            msg => { // Error
              console.log(msg.error.error);
-
+             this.loading=false;
+             if (msg.status==401) {
+               this.router.navigate(['/login']);
+             }
+             this.showNotification('top','center'+JSON.stringify(msg.error),4);
            });
      
 

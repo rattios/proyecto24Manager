@@ -1,7 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit,HostListener } from '@angular/core';
 import { HttpClient, HttpParams  } from '@angular/common/http';
 import { FormGroup, FormArray, FormBuilder, Validators  } from '@angular/forms';
-
+import {Router} from '@angular/router';
 declare const $: any;
 
 @Component({
@@ -10,7 +10,14 @@ declare const $: any;
   styleUrls: ['./slider.component.css']
 })
 export class SliderComponent implements OnInit {
-
+  ESCAPE_KEYCODE = 27;
+    @HostListener('document:keydown', ['$event']) onKeydownHandler(event: KeyboardEvent) {
+        //console.log(event);
+        if (event.keyCode === this.ESCAPE_KEYCODE) {
+            console.log(event.keyCode);
+            this.loading=false;
+        }
+      }
 	private data:any;
 	public data2:any;
 	public socios:any;
@@ -20,7 +27,7 @@ export class SliderComponent implements OnInit {
 	public sliderF:any;
 	public i:any;
 
-	constructor(private http: HttpClient, private builder: FormBuilder) {
+	constructor(private http: HttpClient, private builder: FormBuilder,private router: Router) {
 	  	this.sliderForm = this.builder.group({
             slider: this.builder.array([this.slider()])
 	    })
@@ -28,7 +35,7 @@ export class SliderComponent implements OnInit {
 
 	slider(){
         return this.builder.group({
-            pos: [""],
+            //pos: [""],
             img: [""]
         })
     }
@@ -52,12 +59,21 @@ export class SliderComponent implements OnInit {
 
                for (var i = 0; i < this.sliderF.length; i++) {
             		(<FormArray>this.sliderForm.controls['slider']).at(i).patchValue({img: this.sliderF[i].img });
-            		(<FormArray>this.sliderForm.controls['slider']).at(i).patchValue({pos: i+1 });
+            		//(<FormArray>this.sliderForm.controls['slider']).at(i).patchValue({pos: i+1 });
             	}
-            });
+            },msg => { // Error
+             console.log(msg.error.error);
+             this.loading=false;
+             if (msg.status==401) {
+               this.router.navigate(['/login']);
+             }
+             this.showNotification('top','center',msg.error.error,3);
+           });
 	}
 
-	agregar(){
+    get formData() { return <FormArray>this.sliderForm.get('slider'); }
+
+	  agregar(){
         const control= <FormArray>this.sliderForm.controls["slider"];
         var index=control.value.length-1;
         if (false) {

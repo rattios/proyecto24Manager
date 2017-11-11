@@ -1,6 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit,HostListener } from '@angular/core';
 import { HttpClient, HttpParams  } from '@angular/common/http';
-
+import {Router} from '@angular/router';
 declare const $: any;
 
 @Component({
@@ -10,6 +10,14 @@ declare const $: any;
 })
 export class UserProfileComponent implements OnInit {
 
+    ESCAPE_KEYCODE = 27;
+      @HostListener('document:keydown', ['$event']) onKeydownHandler(event: KeyboardEvent) {
+        //console.log(event);
+        if (event.keyCode === this.ESCAPE_KEYCODE) {
+            console.log(event.keyCode);
+            this.loading=false;
+        }
+      }
     public data: any;
     public filterQuery = "";
     public rowsOnPage = 5;
@@ -23,7 +31,7 @@ export class UserProfileComponent implements OnInit {
     public socios:any;
     public productList:any;
     public loading=false;
-    constructor(private http: HttpClient) {
+    constructor(private http: HttpClient,private router: Router) {
     }
 
 
@@ -48,7 +56,31 @@ export class UserProfileComponent implements OnInit {
            },
            msg => { // Error
              console.log(msg.error.error);
+             this.loading=false;
+             if (msg.status==401) {
+               this.router.navigate(['/login']);
+             }
+             this.showNotification('top','center'+JSON.stringify(msg.error),4);
            });
+    }
+
+    showNotification(from, align, mensaje){
+          const type = ['','info','success','warning','danger'];
+
+          const color = 4;
+          console.log(color);
+          $.notify({
+              icon: "notifications",
+              message: mensaje
+
+          },{
+              type: type[color],
+              timer: 4000,
+              placement: {
+                  from: from,
+                  align: align
+              }
+          });
     }
 
     public getUsuario(usuario){

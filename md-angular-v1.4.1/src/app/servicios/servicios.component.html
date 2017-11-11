@@ -192,8 +192,8 @@
                         <div class="card">
                             <div class="card-header row" data-background-color="purple">
                                 <div class="col-md-6">
-                                    <h4 class="title">Pedido {{pedido.id}}</h4>
-                                    <p class="category">Información del pedido</p>
+                                    <h4 class="title">{{pedido.categoria.nombre}}</h4>
+                                    <p class="category">{{pedido.subcategoria.nombre}}</p>
                                 </div>
                                 <div class="col-md-6" style="text-align: right;">
                                     <button type="button" rel="tooltip" title="Edit Task" class="btn btn-warning" (click)="modal.open(); asignarUsuario(pedido,i)">
@@ -233,7 +233,7 @@
                 <div class="card">
                             <div class="card-header row" data-background-color="purple">
                                 <div class="col-md-6">
-                                    <h4 class="title">Pedido</h4>
+                                    <h4 class="title">Pedido {{idPedido}}</h4>
                                     <p class="category">Información general del pedido</p>
                                 </div>
                                 <div class="col-md-6" style="text-align: right;">
@@ -274,7 +274,7 @@
                                 </div>
                             </div>
 
-                             <div class="row">
+                             <div class="row" *ngIf="latF==0">
                                 
                                 <div class="col-md-12">
                                     <label class="control-label">Referencia</label>
@@ -284,7 +284,7 @@
                                 </div>
                             </div>
 
-                             <div class="row">
+                             <div class="row" *ngIf="latF==0">
                                 
                                 <div class="col-md-12">
                                     <label class="control-label">Descripción</label>

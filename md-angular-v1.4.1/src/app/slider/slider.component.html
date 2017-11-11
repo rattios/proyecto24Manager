@@ -28,7 +28,7 @@
                         </div>
                         <div class="col-md-1"></div>
                     </div>
-                    <div class="row card-content">
+                    <div class="row card-content" >
                         <div class="row">
                             <div class="col-md-1">
                             </div>
@@ -40,7 +40,8 @@
                         </div>
                         <form [formGroup]="sliderForm" (ngSubmit)="guardar(sliderForm)">
                             <div formArrayName="slider">
-                                <div *ngFor="let client of sliderForm.controls.slider.controls; let i=index" [formGroupName]="i">
+                             
+                                <div *ngFor="let client of formData.controls; let i=index;" [formGroupName]="i">
                                     <div class="row">
                                         <div class="col-md-1">
                                         </div>
@@ -85,7 +86,7 @@
                                     </div>
                                 </div>
                                 <div class="col-md-12" align="center">
-                                    <button type="submit" class="btn btn-danger" [disabled]="!sliderForm.valid">Guardar</button>
+                                    <button type="submit" class="btn btn-danger">Guardar</button>
                                 </div>
                             </div>
                         </form>

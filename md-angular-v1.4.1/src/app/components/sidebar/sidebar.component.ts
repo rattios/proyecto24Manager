@@ -16,6 +16,7 @@ export const ROUTES: RouteInfo[] = [
     { path: '/Slider', title: 'Slider',  icon:'view_carousel', class: '' },
     { path: '/Usuarios', title: 'Usuarios',  icon:'supervisor_account', class: '' },
     { path: '/Socios', title: 'Socios',  icon:'person', class: '' },
+    { path: '/login', title: 'Cerrar Sesión',  icon:'input', class: '' },
     
      // { path: '../table-list', title: 'Typography',  icon:'library_books', class: '' },
      // { path: '../typography', title: 'Typography',  icon:'library_books', class: '' },

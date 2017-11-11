@@ -1,6 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit,HostListener } from '@angular/core';
 import { HttpClient, HttpParams  } from '@angular/common/http';
-
+import {Router} from '@angular/router';
 declare const $: any;
 
 @Component({
@@ -9,7 +9,14 @@ declare const $: any;
   styleUrls: ['./calificaciones.component.css']
 })
 export class CalificacionesComponent implements OnInit {
-
+  ESCAPE_KEYCODE = 27;
+      @HostListener('document:keydown', ['$event']) onKeydownHandler(event: KeyboardEvent) {
+        //console.log(event);
+        if (event.keyCode === this.ESCAPE_KEYCODE) {
+            console.log(event.keyCode);
+            this.loading=false;
+        }
+      }
   max: number = 5;
   rate: number = 4;
   public data: any;
@@ -18,7 +25,7 @@ export class CalificacionesComponent implements OnInit {
   public productList:any;
   public loading=false;
   //isReadonly: boolean = true;
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient,private router: Router) { }
 
   ngOnInit() {
   	this.loading=true;
@@ -41,9 +48,31 @@ export class CalificacionesComponent implements OnInit {
            },
            msg => { // Error
              console.log(msg.error.error);
+             this.loading=false;
+             this.showNotification('top','center',JSON.stringify(msg.error),4);
+             if (msg.status==401) {
+               this.router.navigate(['/login']);
+             }
            });
   }
+  showNotification(from, align, mensaje,colors){
+          const type = ['','info','success','warning','danger'];
 
+          const color = colors;
+          
+          $.notify({
+              icon: "notifications",
+              message: mensaje
+
+          },{
+              type: type[color],
+              timer: 4000,
+              placement: {
+                  from: from,
+                  align: align
+              }
+          });
+    }
 
    filteredItems : any;
    pages : number = 4;

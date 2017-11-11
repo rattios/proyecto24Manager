@@ -23,6 +23,29 @@ export class LoginComponent implements OnInit {
   }
 
   ngOnInit() {
+    let OneSignal = window['OneSignal'] || [];
+    
+    
+    OneSignal.push(["init", {
+      appId: "64e71ccd-b5a1-40da-bc26-57bf6e9a45c2",
+      autoRegister: true, /* Set to true to automatically prompt visitors */
+      subdomainName: 'https://manappger.os.tc',
+
+      httpPermissionRequest: {
+        enable: true,
+        modalTitle: 'Manappger',
+        modalMessage: 'Gracias por suscribirse a las notificaciones!',
+        modalButtonText:'OK'
+
+      },
+      welcomeNotification:{
+         "title": "Manappger",
+        "message": "Gracias por suscribirse a las notificaciones!"
+      },
+      notifyButton: {
+          enable: false 
+      }
+    }]);
   }
 
 
@@ -41,7 +64,7 @@ export class LoginComponent implements OnInit {
        .toPromise()
        .then(
          data => { // Success
-           console.log(data);
+           
            this.token=data;
            localStorage.setItem('manappger_token', this.token.token);
            //console.log(res.token);

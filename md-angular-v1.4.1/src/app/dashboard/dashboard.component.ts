@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit,HostListener } from '@angular/core';
 import { HttpClient, HttpParams } from '@angular/common/http';
+import {Router} from '@angular/router';
 import * as Chartist from 'chartist';
 
 @Component({
@@ -20,8 +21,16 @@ export class DashboardComponent implements OnInit {
   public ultimoPed:any;
   public loading=false;
   prueba = localStorage.getItem("manappger");
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient,private router: Router) { }
 
+  ESCAPE_KEYCODE = 27;
+    @HostListener('document:keydown', ['$event']) onKeydownHandler(event: KeyboardEvent) {
+      //console.log(event);
+      if (event.keyCode === this.ESCAPE_KEYCODE) {
+          console.log(event.keyCode);
+          this.loading=false;
+      }
+    }
 
   startAnimationForLineChart(chart){
       let seq: any, delays: any, durations: any;
@@ -82,32 +91,13 @@ export class DashboardComponent implements OnInit {
   ngOnInit() {
     this.loading=true;
     let OneSignal = window['OneSignal'] || [];
-    OneSignal.push(["init", {
-      appId: "64e71ccd-b5a1-40da-bc26-57bf6e9a45c2",
-      autoRegister: true, /* Set to true to automatically prompt visitors */
-      subdomainName: 'https://manappger.os.tc',
-
-      httpPermissionRequest: {
-        enable: true,
-        modalTitle: 'Manappger',
-        modalMessage: 'Gracias por suscribirse a las notificaciones!',
-        modalButtonText:'OK'
-
-      },
-      welcomeNotification:{
-         "title": "Manappger",
-        "message": "Gracias por suscribirse a las notificaciones!"
-      },
-      notifyButton: {
-          enable: false 
-      }
-    }]);
-
     OneSignal.push(function() {
       OneSignal.getUserId(function(userId) {
         console.log("OneSignal User ID:", userId);
       });
     });
+
+    
 
     this.http.get('http://apimanappger.internow.com.mx/api/public/dash?token='+localStorage.getItem('manappger_token'))
            .toPromise()
@@ -205,6 +195,10 @@ export class DashboardComponent implements OnInit {
            },
            msg => { // Error
              console.log(msg.error);
+             console.log(msg);
+             if (msg.status==401) {
+               this.router.navigate(['/login']);
+             }
              alert(JSON.stringify(msg.error));
            });
            

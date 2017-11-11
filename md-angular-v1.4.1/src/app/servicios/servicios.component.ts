@@ -1,7 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit,HostListener } from '@angular/core';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { DialogComponent, DialogService } from "ng2-bootstrap-modal";
-
+import {Router} from '@angular/router';
 declare const $: any;
 
 @Component({
@@ -10,7 +10,14 @@ declare const $: any;
   styleUrls: ['./servicios.component.css']
 })
 export class ServiciosComponent implements OnInit {
-
+    ESCAPE_KEYCODE = 27;
+    @HostListener('document:keydown', ['$event']) onKeydownHandler(event: KeyboardEvent) {
+        //console.log(event);
+        if (event.keyCode === this.ESCAPE_KEYCODE) {
+            console.log(event.keyCode);
+            this.loading=false;
+        }
+      }
     public data: any;
     public filterQuery = "";
     public rowsOnPage = 5;
@@ -34,6 +41,7 @@ export class ServiciosComponent implements OnInit {
     public productList:any;
     public productUser:any;
     public pedidosUsuario:any;
+    public idPedido:any;
     public loading=false;
 
     public userF="";
@@ -48,7 +56,7 @@ export class ServiciosComponent implements OnInit {
 
     zoom: number = 14;
 
-    constructor(private http: HttpClient) {
+    constructor(private http: HttpClient,private router: Router) {
     }
 
 
@@ -157,10 +165,19 @@ export class ServiciosComponent implements OnInit {
                 this.productList[i].tam=this.productList[i].pedidos.length;
               }
               this.init();
+
+
             //},250);
             this.loading=false;
             
-            });
+            },msg => { // Error
+             console.log(msg.error.error);
+             this.loading=false;
+             if (msg.status==401) {
+               this.router.navigate(['/login']);
+             }
+             this.showNotification('top','center','No hay pedidos en este momento',3);
+           });
     }
 
     showNotification(from, align, mensaje,colors){
@@ -201,6 +218,9 @@ export class ServiciosComponent implements OnInit {
           this.pedidosUsuario[i].lat=parseFloat(this.pedidosUsuario[i].lat);
           this.pedidosUsuario[i].lng=parseFloat(this.pedidosUsuario[i].lng);
         }
+        var count=pedidos.length;
+        console.log(count);
+        this.idPedido=this.pedidosUsuario[count-1].id;
         this.userF=this.pedidosUsuario[0].usuario.user;
         this.nombreF=this.pedidosUsuario[0].usuario.nombre;
         this.telefonoF=this.pedidosUsuario[0].usuario.telefono;

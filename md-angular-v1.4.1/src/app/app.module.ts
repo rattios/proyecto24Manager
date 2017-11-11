@@ -4,9 +4,10 @@ import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { HttpClientModule } from '@angular/common/http';
 import { RouterModule } from '@angular/router';
-import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
-import { MatButtonModule, MatMenuModule, MatToolbarModule, MatIconModule,MatCardModule } from '@angular/material';
-import {NG2DataTableModule} from "angular2-datatable-pagination";
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MatButtonModule, MatToolbarModule, MatIconModule,MatCardModule } from '@angular/material';
+import { MatMenuModule } from '@angular/material/menu';
+import { NG2DataTableModule } from "angular2-datatable-pagination";
 import { Ng2SearchPipeModule } from 'ng2-search-filter';
 import { BsModalModule } from 'ng2-bs3-modal';
 import { AgmCoreModule } from '@agm/core';
@@ -82,10 +83,11 @@ import { CarouselModule } from 'ngx-bootstrap/carousel';
     LoadingModule.forRoot({
         animationType: ANIMATION_TYPES.wanderingCubes,
         backdropBackgroundColour: 'rgba(0,0,0,0.5)', 
-        backdropBorderRadius: '8px',
+        backdropBorderRadius: '0px',
         primaryColour: '#ffffff', 
         secondaryColour: '#ffffff', 
-        tertiaryColour: '#ffffff'
+        tertiaryColour: '#ffffff',
+        fullScreenBackdrop: true
     }),
     RatingModule.forRoot(),
     CarouselModule.forRoot(),
