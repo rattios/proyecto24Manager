@@ -14,6 +14,7 @@ import { ServiciosComponent } from './servicios/servicios.component';
 import { EncursoComponent } from './encurso/encurso.component';
 import { CalificacionesComponent } from './calificaciones/calificaciones.component';
 import { SliderComponent } from './slider/slider.component';
+import { DatosComponent } from './datos/datos.component';
 
 const routes: Routes =[
     { path: '',          redirectTo: '/login', pathMatch: 'full' },
@@ -25,6 +26,7 @@ const routes: Routes =[
     { path: 'En-curso',     component: EncursoComponent },
     { path: 'Calificaciones',     component: CalificacionesComponent },
     { path: 'Slider',     component: SliderComponent },
+    { path: 'Datos',     component: DatosComponent },
     { path: 'login',        component: LoginComponent },
     { path: '**', redirectTo: '/login' }
       

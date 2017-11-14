@@ -6,7 +6,9 @@ import { HttpClientModule } from '@angular/common/http';
 import { RouterModule } from '@angular/router';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatButtonModule, MatToolbarModule, MatIconModule,MatCardModule } from '@angular/material';
+import { MatTabsModule } from '@angular/material/tabs';
 import { MatMenuModule } from '@angular/material/menu';
+import { MatExpansionModule } from '@angular/material/expansion';
 import { NG2DataTableModule } from "angular2-datatable-pagination";
 import { Ng2SearchPipeModule } from 'ng2-search-filter';
 import { BsModalModule } from 'ng2-bs3-modal';
@@ -38,6 +40,7 @@ import { EncursoComponent } from './encurso/encurso.component';
 import { CalificacionesComponent } from './calificaciones/calificaciones.component';
 import { SliderComponent } from './slider/slider.component';
 import { CarouselModule } from 'ngx-bootstrap/carousel';
+import { DatosComponent } from './datos/datos.component';
 
 @NgModule({
   declarations: [
@@ -58,6 +61,7 @@ import { CarouselModule } from 'ngx-bootstrap/carousel';
     EncursoComponent,
     CalificacionesComponent,
     SliderComponent,
+    DatosComponent,
 
   ],
   imports: [
@@ -74,6 +78,8 @@ import { CarouselModule } from 'ngx-bootstrap/carousel';
     MatCardModule,
     MatToolbarModule,
     MatIconModule,
+    MatTabsModule,
+    MatExpansionModule,
     NG2DataTableModule,
     Ng2SearchPipeModule,
     BsModalModule,

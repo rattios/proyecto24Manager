@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {Router} from '@angular/router';
 
 declare const $: any;
 declare interface RouteInfo {
@@ -13,7 +14,7 @@ export const ROUTES: RouteInfo[] = [
     { path: '/En-curso', title: 'En curso',  icon:'directions_car', class: '' },
     { path: '/Historial-servicios', title: 'Historial',  icon:'content_paste', class: '' },
     { path: '/Calificaciones', title: 'Calificaciones',  icon:'grade', class: '' },
-    { path: '/Slider', title: 'Slider',  icon:'view_carousel', class: '' },
+    //{ path: '/Slider', title: 'Slider',  icon:'view_carousel', class: '' },
     { path: '/Usuarios', title: 'Usuarios',  icon:'supervisor_account', class: '' },
     { path: '/Socios', title: 'Socios',  icon:'person', class: '' },
     { path: '/login', title: 'Cerrar Sesión',  icon:'input', class: '' },
@@ -34,7 +35,7 @@ export const ROUTES: RouteInfo[] = [
 export class SidebarComponent implements OnInit {
   menuItems: any[];
 
-  constructor() { }
+  constructor(private router: Router) { }
 
   ngOnInit() {
     this.menuItems = ROUTES.filter(menuItem => menuItem);
@@ -45,5 +46,11 @@ export class SidebarComponent implements OnInit {
           return false;
       }
       return true;
+  };
+  slider() {
+    this.router.navigate(['/Slider']);
+  };
+  datos() {
+    this.router.navigate(['/Datos']);
   };
 }

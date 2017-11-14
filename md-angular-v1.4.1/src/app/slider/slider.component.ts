@@ -48,7 +48,7 @@ export class SliderComponent implements OnInit {
            	   this.sliderF=data;
            	   this.sliderF=this.sliderF.slider;
            	   console.log(this.sliderF);
-           	   console.log(this.sliderF.length);
+           	   //console.log(this.sliderF.length);
                this.loading=false;
 
                const control= <FormArray>this.sliderForm.controls["slider"];

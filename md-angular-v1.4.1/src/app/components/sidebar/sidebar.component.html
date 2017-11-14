@@ -1,5 +1,5 @@
 <div class="logo">
-    <a routerLink='../Panel-principal' class="simple-text" style="color: #FFF">
+    <a routerLink='../Panel-principal' class="simple-text" style="color: #FFF !important">
         <div class="logo-img">
             <img src="/assets/img/manappger-.png"/>
         </div>
@@ -48,12 +48,27 @@
 
     <div class="nav-container">
         <ul class="nav">
-            <li routerLinkActive="active" *ngFor="let menuItem of menuItems" class="{{menuItem.class}}" [routerLinkActiveOptions]="{exact: true}">
+            <li routerLinkActive="active" *ngFor="let menuItem of menuItems; let i = index"  class="{{menuItem.class}}" [routerLinkActiveOptions]="{exact: true}">
                 <a  [routerLink]="[menuItem.path]">
                     <i class="material-icons" style="color: #FFF">{{menuItem.icon}}</i>
                     <p style="color: #FFF">{{menuItem.title}}</p>
                 </a>
+                <div *ngIf="i==5">
+                    <mat-accordion style="color: #FFF;padding-top: 10px">
+                      <mat-expansion-panel>
+                        <mat-expansion-panel-header>
+                          <mat-panel-title>
+                            &nbsp;<i class="material-icons">settings</i> &nbsp; Configuración del sistema
+                          </mat-panel-title>
+                        </mat-expansion-panel-header>
+                            <button (click)="slider()" style="padding-top: 10px">&nbsp;<i class="material-icons">view_carousel</i>&nbsp;Slider</button><br>
+                            <button (click)="datos()" style="padding-top: 10px">&nbsp;<i class="material-icons">settings_phone</i>&nbsp;Contacto</button>
+                      </mat-expansion-panel>
+                    </mat-accordion>
+                </div>
             </li>
         </ul>
+        
+        
     </div>
 </div>
