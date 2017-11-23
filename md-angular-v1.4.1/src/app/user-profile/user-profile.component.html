@@ -9,6 +9,17 @@
     <div class="main-content">
     <div class="container-fluid">
         <div class="col-md-12">
+            <bs-modal #modal >
+              <bs-modal-header [showDismiss]="true">
+                  Esta seguro de realizar esta acción?
+              </bs-modal-header> 
+              <bs-modal-body >
+                <p>Eliminar a: {{aEliminar.nombre}}</p>
+                <button class="btn btn-danger pull-right" (click)="modal.close()">No</button>
+                <button class="btn btn-success pull-right" (click)="remove(); modal.close()">Sí</button>
+              </bs-modal-body>
+              <bs-modal-footer ></bs-modal-footer>
+            </bs-modal> 
                 <div class="card">
                     <div class="card-header" data-background-color="orange">
                         <h4 class="title">Lista de los usuarios.</h4>
@@ -49,7 +60,7 @@
                                      <th style="text-align: center;">Acciones</th>
                                   </thead>
                                   <tbody>
-                                     <tr *ngFor="let item of items">
+                                     <tr *ngFor="let item of items; let i=index">
                                         <td></td>
                                         <td style="text-align: center;">{{item.id}}</td>
                                         
@@ -64,7 +75,7 @@
                                                     <i class="material-icons">close</i>
                                           </button> -->
                                           <button type="button" class="btn btn-success" (click)="getUsuario(item)"><i class="fa fa-eye"></i>&nbsp; Ver</button>
-                                          <button type="button" class="btn btn-danger" (click)="remove(item)"><i class="fa fa-trash"></i>&nbsp; Eliminar</button>
+                                          <button type="button" class="btn btn-danger" (click)="preRemove(item,i); modal.open()"><i class="fa fa-trash"></i>&nbsp; Eliminar</button>
                                           <!-- <button type="button" class="btn btn-danger"><i class="fa fa-trash"></i>&nbsp; Eliminar</button> -->
                                         </td>
                                      </tr>

@@ -49,7 +49,7 @@ export class CalificacionesComponent implements OnInit {
            msg => { // Error
              console.log(msg.error.error);
              this.loading=false;
-             this.showNotification('top','center',JSON.stringify(msg.error),4);
+             this.showNotification('top','center',msg.error.error,4);
              if (msg.status==401) {
                this.router.navigate(['/login']);
              }

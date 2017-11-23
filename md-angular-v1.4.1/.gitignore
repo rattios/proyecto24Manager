@@ -1,6 +1,8 @@
 /node_modules
 /dist
 /dist.zip
+dist 2.zip
 /cuetoAPI.zip
 /package-lock.json
 package-lock.json
+/md-angular-v1.4.1.zip

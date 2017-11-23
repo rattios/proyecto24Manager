@@ -30,6 +30,10 @@ export class UserProfileComponent implements OnInit {
     public editSexo='';
     public socios:any;
     public productList:any;
+    public aEliminar={
+      id: 0,
+      nombre:''
+    };
     public loading=false;
     constructor(private http: HttpClient,private router: Router) {
     }
@@ -96,20 +100,53 @@ export class UserProfileComponent implements OnInit {
     public sortByWordLength = (a: any) => {
         return a.city.length;
     }
+    preRemove(item,i){
+      console.log(item);
+      console.log(i);
+      this.aEliminar=item;
+    }
 
-    public remove(item) {
-        this.http.delete('http://apimanappger.internow.com.mx/api/public/usuarios/'+item.id)
+    public remove() {
+      var item=this.aEliminar;
+      this.loading=true;
+        this.http.delete('http://apimanappger.internow.com.mx/api/public/usuarios/'+item.id+'?token='+localStorage.getItem('manappger_token'))
          .toPromise()
          .then(
            data => { // Success
                console.log(data);
-               let index = this.data.indexOf(item);
-                if(index>-1) {
-                    this.data.splice(index, 1);
-                }
+              
+                
+                    this.http.get('http://apimanappger.internow.com.mx/api/public/usuarios?token='+localStorage.getItem('manappger_token'))
+                     .toPromise()
+                     .then(
+                       data => { // Success
+                         console.log(data);
+                         this.socios=data;
+                         this.data=this.socios.usuarios;
+                         console.log(this.socios);
+                         
+                         this.productList = this.data;
+                         this.filteredItems = this.productList;
+                         console.log(this.productList);
+
+                         this.init();
+                         this.loading=false;
+
+                       },
+                       msg => { // Error
+                         console.log(msg.error.error);
+                         this.loading=false;
+                         if (msg.status==401) {
+                           this.router.navigate(['/login']);
+                         }
+                         this.showNotification('top','center'+JSON.stringify(msg.error),4);
+                       });
+                
+                //this.loading=false;
            },
            msg => { // Error
              console.log(msg);
+             this.loading=false;
            }
          );
     }
