@@ -1,0 +1,125 @@
+// http://ionicframework.com/docs/theming/
+
+
+// App Global Sass
+// --------------------------------------------------
+// Put style rules here that you want to apply globally. These
+// styles are for the entire app and not just one component.
+// Additionally, this file can be also used as an entry point
+// to import other Sass files to be included in the output CSS.
+//
+// Shared Sass variables, which can be used to adjust Ionic's
+// default Sass variables, belong in "theme/variables.scss".
+//
+// To declare rules for a specific mode, create a child rule
+// for the .md, .ios, or .wp mode classes. The mode class is
+// automatically applied to the <body> element in the app.
+
+
+@font-face {
+  font-family: 'Hasta grotesk';
+  font-weight: normal;
+  font-style: normal;
+  src: url('../assets/fonts/Hasta grotesk.ttf');
+}
+
+@font-face {
+  font-family: 'HH Samuel';
+  font-weight: normal;
+  font-style: normal;
+  src: url('../assets/fonts/HH Samuel.ttf');
+}
+
+.alert-md .alert-wrapper, .alert-ios .alert-wrapper{
+	background-color: #fff;
+}
+.alert-md .alert-title, .alert-ios .alert-title{
+	color: #d5bf03;
+	border-bottom: 2px solid;
+	font-size: 20px;
+	margin-bottom: 10px;
+}
+.alert-md .alert-button, .alert-ios .alert-button{
+	color: #d5bf03;
+}
+.alert-md [aria-checked=true] .alert-radio-icon, .alert-ios [aria-checked=true] .alert-radio-icon {
+    border-color: #d5bf03;
+}
+.alert-md [aria-checked=true] .alert-radio-label, .alert-ios [aria-checked=true] .alert-radio-label {
+    color: #d5bf03;
+}
+.alert-md .alert-radio-inner, .alert-ios .alert-radio-inner{
+	background-color: #d5bf03;
+}
+.alert-md .alert-radio-group, .alert-md .alert-checkbox-group, .alert-ios .alert-radio-group, .alert-ios .alert-checkbox-group {
+    border-top: 1px solid #9E9E9E;
+    border-bottom: 1px solid #9E9E9E;
+}
+.toolbar-background-md, .toolbar-background-ios {
+    border-color: #000000;
+    background: #000000;
+}
+.button-md.activated, .button-ios.activated{
+  background-color: #000000;
+  color: #fff;
+} 
+.loading-md .spinner-crescent circle, .loading-ios .spinner-crescent circle {
+  stroke: #1e6594;
+}
+.loading-ios .spinner-ios line, .loading-ios .spinner-ios-small line {
+  stroke: #1e6594;
+}
+.toolbar-title{
+  overflow: visible;
+}
+.item-md.item-input.ng-valid.item-input-has-value:not(.input-has-focus):not(.item-input-has-focus) .item-inner, .item-md.item-input.ng-valid.input-has-value:not(.input-has-focus):not(.item-input-has-focus) .item-inner, .list-md .item-input.ng-valid.item-input-has-value:not(.input-has-focus):not(.item-input-has-focus):last-child, .list-md .item-input.ng-valid.input-has-value:not(.input-has-focus):not(.item-input-has-focus):last-child, .item-ios.item-input.ng-valid.item-input-has-value:not(.input-has-focus):not(.item-input-has-focus) .item-inner, .item-ios.item-input.ng-valid.input-has-value:not(.input-has-focus):not(.item-input-has-focus) .item-inner, .list-ios .item-input.ng-valid.item-input-has-value:not(.input-has-focus):not(.item-input-has-focus):last-child, .list-ios .item-input.ng-valid.input-has-value:not(.input-has-focus):not(.item-input-has-focus):last-child {
+    border-bottom-color: #1e6594;
+    -webkit-box-shadow: inset 0 -1px 0 0 #1e6594;
+    box-shadow: inset 0 -1px 0 0 #1e6594;
+}
+.center{
+  text-align: center;
+}
+.item-menu{
+  font-size: 22px;
+  color: #fff;
+  font-family: 'HH Samuel';
+  background-color: transparent !important;
+}
+.menu-inner, .md .menu-inner, .ios .menu-inner{
+  background-color: rgba(82, 103, 117, 0.7) !important;
+}
+.header-menu .toolbar-background-md, .header-menu .toolbar-background-ios{
+  background-color: rgba(82, 103, 117, 0.7) !important; 
+}
+.badge-md, .badge-ios {
+  background-color: #07b2c7;
+}
+.badge-calificacion{
+  position: absolute;
+  top: 6px;
+  margin-left: 3px;
+  border-radius: 50%;
+  height: 17px;
+  width: 17px;
+  padding: 2px;
+  font-size: 11px;
+  background-color: #D32F2F !important;
+}
+@media screen and (min-width: 768px) and (min-height: 1024px){
+  ion-slides{
+    height: 450px !important;
+  }
+  .img-slide{
+    height: 456px !important;
+  }
+  .img-subcategory{
+    height: 60px !important;
+    width: auto !important;
+  }
+}
+@media screen and (min-width: 375px) and (min-height: 667px){
+  .content_img img{
+    margin-top: 10%;
+  }
+}

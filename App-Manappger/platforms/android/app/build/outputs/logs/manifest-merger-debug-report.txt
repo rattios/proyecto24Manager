@@ -1,0 +1,224 @@
+-- Merging decision tree log ---
+manifest
+ADDED from /Users/fatimapaolaboetabreu/proyectosIonic/KIEN-MANAPPGER/Manappger1/platforms/android/app/src/main/AndroidManifest.xml:2:1-22:12
+INJECTED from /Users/fatimapaolaboetabreu/proyectosIonic/KIEN-MANAPPGER/Manappger1/platforms/android/app/src/main/AndroidManifest.xml:2:1-22:12
+INJECTED from /Users/fatimapaolaboetabreu/proyectosIonic/KIEN-MANAPPGER/Manappger1/platforms/android/app/src/main/AndroidManifest.xml:2:1-22:12
+INJECTED from /Users/fatimapaolaboetabreu/proyectosIonic/KIEN-MANAPPGER/Manappger1/platforms/android/app/src/main/AndroidManifest.xml:2:1-22:12
+MERGED from [com.google.android.gms:play-services-maps:11.8.0] /Users/fatimapaolaboetabreu/.gradle/caches/transforms-1/files-1.1/play-services-maps-11.8.0.aar/d5ffdf02d3b2b06e6f651930e56b4494/AndroidManifest.xml:17:1-32:12
+MERGED from [com.google.android.gms:play-services-location:11.8.0] /Users/fatimapaolaboetabreu/.gradle/caches/transforms-1/files-1.1/play-services-location-11.8.0.aar/43188f6bcfceb36c5477dfaebae5188e/AndroidManifest.xml:2:1-9:12
+MERGED from [:CordovaLib] /Users/fatimapaolaboetabreu/proyectosIonic/KIEN-MANAPPGER/Manappger1/platforms/android/CordovaLib/build/intermediates/manifests/full/debug/AndroidManifest.xml:20:1-27:12
+MERGED from [com.google.android.gms:play-services-base:11.8.0] /Users/fatimapaolaboetabreu/.gradle/caches/transforms-1/files-1.1/play-services-base-11.8.0.aar/db05b6f5ad698a3c774fe14ea075bd23/AndroidManifest.xml:17:1-29:12
+MERGED from [com.google.android.gms:play-services-tasks:11.8.0] /Users/fatimapaolaboetabreu/.gradle/caches/transforms-1/files-1.1/play-services-tasks-11.8.0.aar/6b9df76744f793ff414bd4c634ae7a1d/AndroidManifest.xml:2:1-9:12
+MERGED from [com.google.android.gms:play-services-basement:11.8.0] /Users/fatimapaolaboetabreu/.gradle/caches/transforms-1/files-1.1/play-services-basement-11.8.0.aar/353dff69f3f4c07f58b5901423ede86f/AndroidManifest.xml:17:1-28:12
+MERGED from [com.google.android.gms:play-services-maps-license:11.8.0] /Users/fatimapaolaboetabreu/.gradle/caches/transforms-1/files-1.1/play-services-maps-license-11.8.0.aar/ba1a39cc26b478117bef18be0ae28c2f/AndroidManifest.xml:2:1-6:12
+MERGED from [com.google.android.gms:play-services-location-license:11.8.0] /Users/fatimapaolaboetabreu/.gradle/caches/transforms-1/files-1.1/play-services-location-license-11.8.0.aar/3fff5c01be5032a9daf3a1e9b84477e0/AndroidManifest.xml:2:1-6:12
+MERGED from [com.google.android.gms:play-services-base-license:11.8.0] /Users/fatimapaolaboetabreu/.gradle/caches/transforms-1/files-1.1/play-services-base-license-11.8.0.aar/3f98c6413dd22c061eda314b3643b87a/AndroidManifest.xml:2:1-6:12
+MERGED from [com.android.support:support-v4:25.2.0] /Users/fatimapaolaboetabreu/.gradle/caches/transforms-1/files-1.1/support-v4-25.2.0.aar/ef427b2a7dbe035bb46ab5fb6074356c/AndroidManifest.xml:17:1-27:12
+MERGED from [com.google.android.gms:play-services-basement-license:11.8.0] /Users/fatimapaolaboetabreu/.gradle/caches/transforms-1/files-1.1/play-services-basement-license-11.8.0.aar/16f5a416a6beef5963cee0677f7df62e/AndroidManifest.xml:2:1-6:12
+MERGED from [com.google.android.gms:play-services-tasks-license:11.8.0] /Users/fatimapaolaboetabreu/.gradle/caches/transforms-1/files-1.1/play-services-tasks-license-11.8.0.aar/9490c21064665ce44f13624f7ca691cf/AndroidManifest.xml:2:1-6:12
+MERGED from [com.android.support:support-fragment:25.2.0] /Users/fatimapaolaboetabreu/.gradle/caches/transforms-1/files-1.1/support-fragment-25.2.0.aar/8c5a0890e06f02896bb409824deba530/AndroidManifest.xml:17:1-27:12
+MERGED from [com.android.support:support-media-compat:25.2.0] /Users/fatimapaolaboetabreu/.gradle/caches/transforms-1/files-1.1/support-media-compat-25.2.0.aar/5788b94eb8be08788e73025252ff8a48/AndroidManifest.xml:17:1-27:12
+MERGED from [com.android.support:support-core-utils:25.2.0] /Users/fatimapaolaboetabreu/.gradle/caches/transforms-1/files-1.1/support-core-utils-25.2.0.aar/5b20737aa820901ee464b061e6cbb602/AndroidManifest.xml:17:1-27:12
+MERGED from [com.android.support:support-core-ui:25.2.0] /Users/fatimapaolaboetabreu/.gradle/caches/transforms-1/files-1.1/support-core-ui-25.2.0.aar/c962ec80c25c42b4c2c8d2b9cb68f20c/AndroidManifest.xml:17:1-27:12
+MERGED from [com.android.support:support-compat:25.2.0] /Users/fatimapaolaboetabreu/.gradle/caches/transforms-1/files-1.1/support-compat-25.2.0.aar/c9aa530de4527df375c5a50046c402bf/AndroidManifest.xml:17:1-27:12
+INJECTED from /Users/fatimapaolaboetabreu/proyectosIonic/KIEN-MANAPPGER/Manappger1/platforms/android/app/src/main/AndroidManifest.xml:2:1-22:12
+INJECTED from /Users/fatimapaolaboetabreu/proyectosIonic/KIEN-MANAPPGER/Manappger1/platforms/android/app/src/main/AndroidManifest.xml:2:1-22:12
+INJECTED from /Users/fatimapaolaboetabreu/proyectosIonic/KIEN-MANAPPGER/Manappger1/platforms/android/app/src/main/AndroidManifest.xml:2:1-22:12
+	package
+		ADDED from /Users/fatimapaolaboetabreu/proyectosIonic/KIEN-MANAPPGER/Manappger1/platforms/android/app/src/main/AndroidManifest.xml:2:98-121
+		INJECTED from /Users/fatimapaolaboetabreu/proyectosIonic/KIEN-MANAPPGER/Manappger1/platforms/android/app/src/main/AndroidManifest.xml
+		INJECTED from /Users/fatimapaolaboetabreu/proyectosIonic/KIEN-MANAPPGER/Manappger1/platforms/android/app/src/main/AndroidManifest.xml
+	android:versionName
+		ADDED from /Users/fatimapaolaboetabreu/proyectosIonic/KIEN-MANAPPGER/Manappger1/platforms/android/app/src/main/AndroidManifest.xml:2:70-97
+		INJECTED from /Users/fatimapaolaboetabreu/proyectosIonic/KIEN-MANAPPGER/Manappger1/platforms/android/app/src/main/AndroidManifest.xml
+		INJECTED from /Users/fatimapaolaboetabreu/proyectosIonic/KIEN-MANAPPGER/Manappger1/platforms/android/app/src/main/AndroidManifest.xml
+	android:hardwareAccelerated
+		ADDED from /Users/fatimapaolaboetabreu/proyectosIonic/KIEN-MANAPPGER/Manappger1/platforms/android/app/src/main/AndroidManifest.xml:2:11-45
+	xmlns:android
+		ADDED from /Users/fatimapaolaboetabreu/proyectosIonic/KIEN-MANAPPGER/Manappger1/platforms/android/app/src/main/AndroidManifest.xml:2:122-180
+	android:versionCode
+		ADDED from /Users/fatimapaolaboetabreu/proyectosIonic/KIEN-MANAPPGER/Manappger1/platforms/android/app/src/main/AndroidManifest.xml:2:46-69
+		INJECTED from /Users/fatimapaolaboetabreu/proyectosIonic/KIEN-MANAPPGER/Manappger1/platforms/android/app/src/main/AndroidManifest.xml
+		INJECTED from /Users/fatimapaolaboetabreu/proyectosIonic/KIEN-MANAPPGER/Manappger1/platforms/android/app/src/main/AndroidManifest.xml
+supports-screens
+ADDED from /Users/fatimapaolaboetabreu/proyectosIonic/KIEN-MANAPPGER/Manappger1/platforms/android/app/src/main/AndroidManifest.xml:3:5-191
+	android:largeScreens
+		ADDED from /Users/fatimapaolaboetabreu/proyectosIonic/KIEN-MANAPPGER/Manappger1/platforms/android/app/src/main/AndroidManifest.xml:3:49-76
+	android:smallScreens
+		ADDED from /Users/fatimapaolaboetabreu/proyectosIonic/KIEN-MANAPPGER/Manappger1/platforms/android/app/src/main/AndroidManifest.xml:3:132-159
+	android:normalScreens
+		ADDED from /Users/fatimapaolaboetabreu/proyectosIonic/KIEN-MANAPPGER/Manappger1/platforms/android/app/src/main/AndroidManifest.xml:3:77-105
+	android:xlargeScreens
+		ADDED from /Users/fatimapaolaboetabreu/proyectosIonic/KIEN-MANAPPGER/Manappger1/platforms/android/app/src/main/AndroidManifest.xml:3:160-188
+	android:resizeable
+		ADDED from /Users/fatimapaolaboetabreu/proyectosIonic/KIEN-MANAPPGER/Manappger1/platforms/android/app/src/main/AndroidManifest.xml:3:106-131
+	android:anyDensity
+		ADDED from /Users/fatimapaolaboetabreu/proyectosIonic/KIEN-MANAPPGER/Manappger1/platforms/android/app/src/main/AndroidManifest.xml:3:23-48
+uses-permission#android.permission.INTERNET
+ADDED from /Users/fatimapaolaboetabreu/proyectosIonic/KIEN-MANAPPGER/Manappger1/platforms/android/app/src/main/AndroidManifest.xml:4:5-67
+MERGED from [com.google.android.gms:play-services-maps:11.8.0] /Users/fatimapaolaboetabreu/.gradle/caches/transforms-1/files-1.1/play-services-maps-11.8.0.aar/d5ffdf02d3b2b06e6f651930e56b4494/AndroidManifest.xml:24:5-67
+MERGED from [com.google.android.gms:play-services-maps:11.8.0] /Users/fatimapaolaboetabreu/.gradle/caches/transforms-1/files-1.1/play-services-maps-11.8.0.aar/d5ffdf02d3b2b06e6f651930e56b4494/AndroidManifest.xml:24:5-67
+	android:name
+		ADDED from /Users/fatimapaolaboetabreu/proyectosIonic/KIEN-MANAPPGER/Manappger1/platforms/android/app/src/main/AndroidManifest.xml:4:22-64
+application
+ADDED from /Users/fatimapaolaboetabreu/proyectosIonic/KIEN-MANAPPGER/Manappger1/platforms/android/app/src/main/AndroidManifest.xml:5:5-14:19
+MERGED from [com.google.android.gms:play-services-maps:11.8.0] /Users/fatimapaolaboetabreu/.gradle/caches/transforms-1/files-1.1/play-services-maps-11.8.0.aar/d5ffdf02d3b2b06e6f651930e56b4494/AndroidManifest.xml:30:5-20
+MERGED from [com.google.android.gms:play-services-maps:11.8.0] /Users/fatimapaolaboetabreu/.gradle/caches/transforms-1/files-1.1/play-services-maps-11.8.0.aar/d5ffdf02d3b2b06e6f651930e56b4494/AndroidManifest.xml:30:5-20
+MERGED from [com.google.android.gms:play-services-location:11.8.0] /Users/fatimapaolaboetabreu/.gradle/caches/transforms-1/files-1.1/play-services-location-11.8.0.aar/43188f6bcfceb36c5477dfaebae5188e/AndroidManifest.xml:7:5-20
+MERGED from [com.google.android.gms:play-services-location:11.8.0] /Users/fatimapaolaboetabreu/.gradle/caches/transforms-1/files-1.1/play-services-location-11.8.0.aar/43188f6bcfceb36c5477dfaebae5188e/AndroidManifest.xml:7:5-20
+MERGED from [com.google.android.gms:play-services-base:11.8.0] /Users/fatimapaolaboetabreu/.gradle/caches/transforms-1/files-1.1/play-services-base-11.8.0.aar/db05b6f5ad698a3c774fe14ea075bd23/AndroidManifest.xml:22:5-27:19
+MERGED from [com.google.android.gms:play-services-base:11.8.0] /Users/fatimapaolaboetabreu/.gradle/caches/transforms-1/files-1.1/play-services-base-11.8.0.aar/db05b6f5ad698a3c774fe14ea075bd23/AndroidManifest.xml:22:5-27:19
+MERGED from [com.google.android.gms:play-services-tasks:11.8.0] /Users/fatimapaolaboetabreu/.gradle/caches/transforms-1/files-1.1/play-services-tasks-11.8.0.aar/6b9df76744f793ff414bd4c634ae7a1d/AndroidManifest.xml:7:5-20
+MERGED from [com.google.android.gms:play-services-tasks:11.8.0] /Users/fatimapaolaboetabreu/.gradle/caches/transforms-1/files-1.1/play-services-tasks-11.8.0.aar/6b9df76744f793ff414bd4c634ae7a1d/AndroidManifest.xml:7:5-20
+MERGED from [com.google.android.gms:play-services-basement:11.8.0] /Users/fatimapaolaboetabreu/.gradle/caches/transforms-1/files-1.1/play-services-basement-11.8.0.aar/353dff69f3f4c07f58b5901423ede86f/AndroidManifest.xml:22:5-26:19
+MERGED from [com.google.android.gms:play-services-basement:11.8.0] /Users/fatimapaolaboetabreu/.gradle/caches/transforms-1/files-1.1/play-services-basement-11.8.0.aar/353dff69f3f4c07f58b5901423ede86f/AndroidManifest.xml:22:5-26:19
+MERGED from [com.google.android.gms:play-services-maps-license:11.8.0] /Users/fatimapaolaboetabreu/.gradle/caches/transforms-1/files-1.1/play-services-maps-license-11.8.0.aar/ba1a39cc26b478117bef18be0ae28c2f/AndroidManifest.xml:5:5-20
+MERGED from [com.google.android.gms:play-services-maps-license:11.8.0] /Users/fatimapaolaboetabreu/.gradle/caches/transforms-1/files-1.1/play-services-maps-license-11.8.0.aar/ba1a39cc26b478117bef18be0ae28c2f/AndroidManifest.xml:5:5-20
+MERGED from [com.google.android.gms:play-services-location-license:11.8.0] /Users/fatimapaolaboetabreu/.gradle/caches/transforms-1/files-1.1/play-services-location-license-11.8.0.aar/3fff5c01be5032a9daf3a1e9b84477e0/AndroidManifest.xml:5:5-20
+MERGED from [com.google.android.gms:play-services-location-license:11.8.0] /Users/fatimapaolaboetabreu/.gradle/caches/transforms-1/files-1.1/play-services-location-license-11.8.0.aar/3fff5c01be5032a9daf3a1e9b84477e0/AndroidManifest.xml:5:5-20
+MERGED from [com.google.android.gms:play-services-base-license:11.8.0] /Users/fatimapaolaboetabreu/.gradle/caches/transforms-1/files-1.1/play-services-base-license-11.8.0.aar/3f98c6413dd22c061eda314b3643b87a/AndroidManifest.xml:5:5-20
+MERGED from [com.google.android.gms:play-services-base-license:11.8.0] /Users/fatimapaolaboetabreu/.gradle/caches/transforms-1/files-1.1/play-services-base-license-11.8.0.aar/3f98c6413dd22c061eda314b3643b87a/AndroidManifest.xml:5:5-20
+MERGED from [com.android.support:support-v4:25.2.0] /Users/fatimapaolaboetabreu/.gradle/caches/transforms-1/files-1.1/support-v4-25.2.0.aar/ef427b2a7dbe035bb46ab5fb6074356c/AndroidManifest.xml:25:5-20
+MERGED from [com.android.support:support-v4:25.2.0] /Users/fatimapaolaboetabreu/.gradle/caches/transforms-1/files-1.1/support-v4-25.2.0.aar/ef427b2a7dbe035bb46ab5fb6074356c/AndroidManifest.xml:25:5-20
+MERGED from [com.google.android.gms:play-services-basement-license:11.8.0] /Users/fatimapaolaboetabreu/.gradle/caches/transforms-1/files-1.1/play-services-basement-license-11.8.0.aar/16f5a416a6beef5963cee0677f7df62e/AndroidManifest.xml:5:5-20
+MERGED from [com.google.android.gms:play-services-basement-license:11.8.0] /Users/fatimapaolaboetabreu/.gradle/caches/transforms-1/files-1.1/play-services-basement-license-11.8.0.aar/16f5a416a6beef5963cee0677f7df62e/AndroidManifest.xml:5:5-20
+MERGED from [com.google.android.gms:play-services-tasks-license:11.8.0] /Users/fatimapaolaboetabreu/.gradle/caches/transforms-1/files-1.1/play-services-tasks-license-11.8.0.aar/9490c21064665ce44f13624f7ca691cf/AndroidManifest.xml:5:5-20
+MERGED from [com.google.android.gms:play-services-tasks-license:11.8.0] /Users/fatimapaolaboetabreu/.gradle/caches/transforms-1/files-1.1/play-services-tasks-license-11.8.0.aar/9490c21064665ce44f13624f7ca691cf/AndroidManifest.xml:5:5-20
+MERGED from [com.android.support:support-fragment:25.2.0] /Users/fatimapaolaboetabreu/.gradle/caches/transforms-1/files-1.1/support-fragment-25.2.0.aar/8c5a0890e06f02896bb409824deba530/AndroidManifest.xml:25:5-20
+MERGED from [com.android.support:support-fragment:25.2.0] /Users/fatimapaolaboetabreu/.gradle/caches/transforms-1/files-1.1/support-fragment-25.2.0.aar/8c5a0890e06f02896bb409824deba530/AndroidManifest.xml:25:5-20
+MERGED from [com.android.support:support-media-compat:25.2.0] /Users/fatimapaolaboetabreu/.gradle/caches/transforms-1/files-1.1/support-media-compat-25.2.0.aar/5788b94eb8be08788e73025252ff8a48/AndroidManifest.xml:25:5-20
+MERGED from [com.android.support:support-media-compat:25.2.0] /Users/fatimapaolaboetabreu/.gradle/caches/transforms-1/files-1.1/support-media-compat-25.2.0.aar/5788b94eb8be08788e73025252ff8a48/AndroidManifest.xml:25:5-20
+MERGED from [com.android.support:support-core-utils:25.2.0] /Users/fatimapaolaboetabreu/.gradle/caches/transforms-1/files-1.1/support-core-utils-25.2.0.aar/5b20737aa820901ee464b061e6cbb602/AndroidManifest.xml:25:5-20
+MERGED from [com.android.support:support-core-utils:25.2.0] /Users/fatimapaolaboetabreu/.gradle/caches/transforms-1/files-1.1/support-core-utils-25.2.0.aar/5b20737aa820901ee464b061e6cbb602/AndroidManifest.xml:25:5-20
+MERGED from [com.android.support:support-core-ui:25.2.0] /Users/fatimapaolaboetabreu/.gradle/caches/transforms-1/files-1.1/support-core-ui-25.2.0.aar/c962ec80c25c42b4c2c8d2b9cb68f20c/AndroidManifest.xml:25:5-20
+MERGED from [com.android.support:support-core-ui:25.2.0] /Users/fatimapaolaboetabreu/.gradle/caches/transforms-1/files-1.1/support-core-ui-25.2.0.aar/c962ec80c25c42b4c2c8d2b9cb68f20c/AndroidManifest.xml:25:5-20
+MERGED from [com.android.support:support-compat:25.2.0] /Users/fatimapaolaboetabreu/.gradle/caches/transforms-1/files-1.1/support-compat-25.2.0.aar/c9aa530de4527df375c5a50046c402bf/AndroidManifest.xml:25:5-20
+MERGED from [com.android.support:support-compat:25.2.0] /Users/fatimapaolaboetabreu/.gradle/caches/transforms-1/files-1.1/support-compat-25.2.0.aar/c9aa530de4527df375c5a50046c402bf/AndroidManifest.xml:25:5-20
+	android:supportsRtl
+		ADDED from /Users/fatimapaolaboetabreu/proyectosIonic/KIEN-MANAPPGER/Manappger1/platforms/android/app/src/main/AndroidManifest.xml:5:114-140
+	android:label
+		ADDED from /Users/fatimapaolaboetabreu/proyectosIonic/KIEN-MANAPPGER/Manappger1/platforms/android/app/src/main/AndroidManifest.xml:5:81-113
+	android:hardwareAccelerated
+		ADDED from /Users/fatimapaolaboetabreu/proyectosIonic/KIEN-MANAPPGER/Manappger1/platforms/android/app/src/main/AndroidManifest.xml:5:18-52
+	android:icon
+		ADDED from /Users/fatimapaolaboetabreu/proyectosIonic/KIEN-MANAPPGER/Manappger1/platforms/android/app/src/main/AndroidManifest.xml:5:53-80
+activity#com.manappger.MainActivity
+ADDED from /Users/fatimapaolaboetabreu/proyectosIonic/KIEN-MANAPPGER/Manappger1/platforms/android/app/src/main/AndroidManifest.xml:6:9-11:20
+	android:label
+		ADDED from /Users/fatimapaolaboetabreu/proyectosIonic/KIEN-MANAPPGER/Manappger1/platforms/android/app/src/main/AndroidManifest.xml:6:97-134
+	android:launchMode
+		ADDED from /Users/fatimapaolaboetabreu/proyectosIonic/KIEN-MANAPPGER/Manappger1/platforms/android/app/src/main/AndroidManifest.xml:6:135-165
+	android:windowSoftInputMode
+		ADDED from /Users/fatimapaolaboetabreu/proyectosIonic/KIEN-MANAPPGER/Manappger1/platforms/android/app/src/main/AndroidManifest.xml:6:257-299
+	android:configChanges
+		ADDED from /Users/fatimapaolaboetabreu/proyectosIonic/KIEN-MANAPPGER/Manappger1/platforms/android/app/src/main/AndroidManifest.xml:6:19-96
+	android:theme
+		ADDED from /Users/fatimapaolaboetabreu/proyectosIonic/KIEN-MANAPPGER/Manappger1/platforms/android/app/src/main/AndroidManifest.xml:6:194-256
+	android:name
+		ADDED from /Users/fatimapaolaboetabreu/proyectosIonic/KIEN-MANAPPGER/Manappger1/platforms/android/app/src/main/AndroidManifest.xml:6:166-193
+intent-filter#android.intent.action.MAIN+android.intent.category.LAUNCHER
+ADDED from /Users/fatimapaolaboetabreu/proyectosIonic/KIEN-MANAPPGER/Manappger1/platforms/android/app/src/main/AndroidManifest.xml:7:13-10:29
+	android:label
+		ADDED from /Users/fatimapaolaboetabreu/proyectosIonic/KIEN-MANAPPGER/Manappger1/platforms/android/app/src/main/AndroidManifest.xml:7:28-65
+action#android.intent.action.MAIN
+ADDED from /Users/fatimapaolaboetabreu/proyectosIonic/KIEN-MANAPPGER/Manappger1/platforms/android/app/src/main/AndroidManifest.xml:8:17-69
+	android:name
+		ADDED from /Users/fatimapaolaboetabreu/proyectosIonic/KIEN-MANAPPGER/Manappger1/platforms/android/app/src/main/AndroidManifest.xml:8:25-66
+category#android.intent.category.LAUNCHER
+ADDED from /Users/fatimapaolaboetabreu/proyectosIonic/KIEN-MANAPPGER/Manappger1/platforms/android/app/src/main/AndroidManifest.xml:9:17-77
+	android:name
+		ADDED from /Users/fatimapaolaboetabreu/proyectosIonic/KIEN-MANAPPGER/Manappger1/platforms/android/app/src/main/AndroidManifest.xml:9:27-74
+meta-data#com.google.android.geo.API_KEY
+ADDED from /Users/fatimapaolaboetabreu/proyectosIonic/KIEN-MANAPPGER/Manappger1/platforms/android/app/src/main/AndroidManifest.xml:12:9-124
+	android:value
+		ADDED from /Users/fatimapaolaboetabreu/proyectosIonic/KIEN-MANAPPGER/Manappger1/platforms/android/app/src/main/AndroidManifest.xml:12:66-121
+	android:name
+		ADDED from /Users/fatimapaolaboetabreu/proyectosIonic/KIEN-MANAPPGER/Manappger1/platforms/android/app/src/main/AndroidManifest.xml:12:20-65
+meta-data#com.google.android.gms.version
+ADDED from /Users/fatimapaolaboetabreu/proyectosIonic/KIEN-MANAPPGER/Manappger1/platforms/android/app/src/main/AndroidManifest.xml:13:9-122
+MERGED from [com.google.android.gms:play-services-basement:11.8.0] /Users/fatimapaolaboetabreu/.gradle/caches/transforms-1/files-1.1/play-services-basement-11.8.0.aar/353dff69f3f4c07f58b5901423ede86f/AndroidManifest.xml:23:9-25:69
+MERGED from [com.google.android.gms:play-services-basement:11.8.0] /Users/fatimapaolaboetabreu/.gradle/caches/transforms-1/files-1.1/play-services-basement-11.8.0.aar/353dff69f3f4c07f58b5901423ede86f/AndroidManifest.xml:23:9-25:69
+	android:value
+		ADDED from /Users/fatimapaolaboetabreu/proyectosIonic/KIEN-MANAPPGER/Manappger1/platforms/android/app/src/main/AndroidManifest.xml:13:66-119
+	android:name
+		ADDED from /Users/fatimapaolaboetabreu/proyectosIonic/KIEN-MANAPPGER/Manappger1/platforms/android/app/src/main/AndroidManifest.xml:13:20-65
+uses-sdk
+ADDED from /Users/fatimapaolaboetabreu/proyectosIonic/KIEN-MANAPPGER/Manappger1/platforms/android/app/src/main/AndroidManifest.xml:15:5-74
+MERGED from [com.google.android.gms:play-services-maps:11.8.0] /Users/fatimapaolaboetabreu/.gradle/caches/transforms-1/files-1.1/play-services-maps-11.8.0.aar/d5ffdf02d3b2b06e6f651930e56b4494/AndroidManifest.xml:20:5-44
+MERGED from [com.google.android.gms:play-services-maps:11.8.0] /Users/fatimapaolaboetabreu/.gradle/caches/transforms-1/files-1.1/play-services-maps-11.8.0.aar/d5ffdf02d3b2b06e6f651930e56b4494/AndroidManifest.xml:20:5-44
+MERGED from [com.google.android.gms:play-services-location:11.8.0] /Users/fatimapaolaboetabreu/.gradle/caches/transforms-1/files-1.1/play-services-location-11.8.0.aar/43188f6bcfceb36c5477dfaebae5188e/AndroidManifest.xml:5:5-44
+MERGED from [com.google.android.gms:play-services-location:11.8.0] /Users/fatimapaolaboetabreu/.gradle/caches/transforms-1/files-1.1/play-services-location-11.8.0.aar/43188f6bcfceb36c5477dfaebae5188e/AndroidManifest.xml:5:5-44
+MERGED from [:CordovaLib] /Users/fatimapaolaboetabreu/proyectosIonic/KIEN-MANAPPGER/Manappger1/platforms/android/CordovaLib/build/intermediates/manifests/full/debug/AndroidManifest.xml:25:5-44
+MERGED from [:CordovaLib] /Users/fatimapaolaboetabreu/proyectosIonic/KIEN-MANAPPGER/Manappger1/platforms/android/CordovaLib/build/intermediates/manifests/full/debug/AndroidManifest.xml:25:5-44
+MERGED from [com.google.android.gms:play-services-base:11.8.0] /Users/fatimapaolaboetabreu/.gradle/caches/transforms-1/files-1.1/play-services-base-11.8.0.aar/db05b6f5ad698a3c774fe14ea075bd23/AndroidManifest.xml:20:5-44
+MERGED from [com.google.android.gms:play-services-base:11.8.0] /Users/fatimapaolaboetabreu/.gradle/caches/transforms-1/files-1.1/play-services-base-11.8.0.aar/db05b6f5ad698a3c774fe14ea075bd23/AndroidManifest.xml:20:5-44
+MERGED from [com.google.android.gms:play-services-tasks:11.8.0] /Users/fatimapaolaboetabreu/.gradle/caches/transforms-1/files-1.1/play-services-tasks-11.8.0.aar/6b9df76744f793ff414bd4c634ae7a1d/AndroidManifest.xml:5:5-44
+MERGED from [com.google.android.gms:play-services-tasks:11.8.0] /Users/fatimapaolaboetabreu/.gradle/caches/transforms-1/files-1.1/play-services-tasks-11.8.0.aar/6b9df76744f793ff414bd4c634ae7a1d/AndroidManifest.xml:5:5-44
+MERGED from [com.google.android.gms:play-services-basement:11.8.0] /Users/fatimapaolaboetabreu/.gradle/caches/transforms-1/files-1.1/play-services-basement-11.8.0.aar/353dff69f3f4c07f58b5901423ede86f/AndroidManifest.xml:20:5-44
+MERGED from [com.google.android.gms:play-services-basement:11.8.0] /Users/fatimapaolaboetabreu/.gradle/caches/transforms-1/files-1.1/play-services-basement-11.8.0.aar/353dff69f3f4c07f58b5901423ede86f/AndroidManifest.xml:20:5-44
+MERGED from [com.google.android.gms:play-services-maps-license:11.8.0] /Users/fatimapaolaboetabreu/.gradle/caches/transforms-1/files-1.1/play-services-maps-license-11.8.0.aar/ba1a39cc26b478117bef18be0ae28c2f/AndroidManifest.xml:4:5-43
+MERGED from [com.google.android.gms:play-services-maps-license:11.8.0] /Users/fatimapaolaboetabreu/.gradle/caches/transforms-1/files-1.1/play-services-maps-license-11.8.0.aar/ba1a39cc26b478117bef18be0ae28c2f/AndroidManifest.xml:4:5-43
+MERGED from [com.google.android.gms:play-services-location-license:11.8.0] /Users/fatimapaolaboetabreu/.gradle/caches/transforms-1/files-1.1/play-services-location-license-11.8.0.aar/3fff5c01be5032a9daf3a1e9b84477e0/AndroidManifest.xml:4:5-43
+MERGED from [com.google.android.gms:play-services-location-license:11.8.0] /Users/fatimapaolaboetabreu/.gradle/caches/transforms-1/files-1.1/play-services-location-license-11.8.0.aar/3fff5c01be5032a9daf3a1e9b84477e0/AndroidManifest.xml:4:5-43
+MERGED from [com.google.android.gms:play-services-base-license:11.8.0] /Users/fatimapaolaboetabreu/.gradle/caches/transforms-1/files-1.1/play-services-base-license-11.8.0.aar/3f98c6413dd22c061eda314b3643b87a/AndroidManifest.xml:4:5-43
+MERGED from [com.google.android.gms:play-services-base-license:11.8.0] /Users/fatimapaolaboetabreu/.gradle/caches/transforms-1/files-1.1/play-services-base-license-11.8.0.aar/3f98c6413dd22c061eda314b3643b87a/AndroidManifest.xml:4:5-43
+MERGED from [com.android.support:support-v4:25.2.0] /Users/fatimapaolaboetabreu/.gradle/caches/transforms-1/files-1.1/support-v4-25.2.0.aar/ef427b2a7dbe035bb46ab5fb6074356c/AndroidManifest.xml:21:5-23:54
+MERGED from [com.android.support:support-v4:25.2.0] /Users/fatimapaolaboetabreu/.gradle/caches/transforms-1/files-1.1/support-v4-25.2.0.aar/ef427b2a7dbe035bb46ab5fb6074356c/AndroidManifest.xml:21:5-23:54
+MERGED from [com.google.android.gms:play-services-basement-license:11.8.0] /Users/fatimapaolaboetabreu/.gradle/caches/transforms-1/files-1.1/play-services-basement-license-11.8.0.aar/16f5a416a6beef5963cee0677f7df62e/AndroidManifest.xml:4:5-43
+MERGED from [com.google.android.gms:play-services-basement-license:11.8.0] /Users/fatimapaolaboetabreu/.gradle/caches/transforms-1/files-1.1/play-services-basement-license-11.8.0.aar/16f5a416a6beef5963cee0677f7df62e/AndroidManifest.xml:4:5-43
+MERGED from [com.google.android.gms:play-services-tasks-license:11.8.0] /Users/fatimapaolaboetabreu/.gradle/caches/transforms-1/files-1.1/play-services-tasks-license-11.8.0.aar/9490c21064665ce44f13624f7ca691cf/AndroidManifest.xml:4:5-43
+MERGED from [com.google.android.gms:play-services-tasks-license:11.8.0] /Users/fatimapaolaboetabreu/.gradle/caches/transforms-1/files-1.1/play-services-tasks-license-11.8.0.aar/9490c21064665ce44f13624f7ca691cf/AndroidManifest.xml:4:5-43
+MERGED from [com.android.support:support-fragment:25.2.0] /Users/fatimapaolaboetabreu/.gradle/caches/transforms-1/files-1.1/support-fragment-25.2.0.aar/8c5a0890e06f02896bb409824deba530/AndroidManifest.xml:21:5-23:60
+MERGED from [com.android.support:support-fragment:25.2.0] /Users/fatimapaolaboetabreu/.gradle/caches/transforms-1/files-1.1/support-fragment-25.2.0.aar/8c5a0890e06f02896bb409824deba530/AndroidManifest.xml:21:5-23:60
+MERGED from [com.android.support:support-media-compat:25.2.0] /Users/fatimapaolaboetabreu/.gradle/caches/transforms-1/files-1.1/support-media-compat-25.2.0.aar/5788b94eb8be08788e73025252ff8a48/AndroidManifest.xml:21:5-23:63
+MERGED from [com.android.support:support-media-compat:25.2.0] /Users/fatimapaolaboetabreu/.gradle/caches/transforms-1/files-1.1/support-media-compat-25.2.0.aar/5788b94eb8be08788e73025252ff8a48/AndroidManifest.xml:21:5-23:63
+MERGED from [com.android.support:support-core-utils:25.2.0] /Users/fatimapaolaboetabreu/.gradle/caches/transforms-1/files-1.1/support-core-utils-25.2.0.aar/5b20737aa820901ee464b061e6cbb602/AndroidManifest.xml:21:5-23:61
+MERGED from [com.android.support:support-core-utils:25.2.0] /Users/fatimapaolaboetabreu/.gradle/caches/transforms-1/files-1.1/support-core-utils-25.2.0.aar/5b20737aa820901ee464b061e6cbb602/AndroidManifest.xml:21:5-23:61
+MERGED from [com.android.support:support-core-ui:25.2.0] /Users/fatimapaolaboetabreu/.gradle/caches/transforms-1/files-1.1/support-core-ui-25.2.0.aar/c962ec80c25c42b4c2c8d2b9cb68f20c/AndroidManifest.xml:21:5-23:58
+MERGED from [com.android.support:support-core-ui:25.2.0] /Users/fatimapaolaboetabreu/.gradle/caches/transforms-1/files-1.1/support-core-ui-25.2.0.aar/c962ec80c25c42b4c2c8d2b9cb68f20c/AndroidManifest.xml:21:5-23:58
+MERGED from [com.android.support:support-compat:25.2.0] /Users/fatimapaolaboetabreu/.gradle/caches/transforms-1/files-1.1/support-compat-25.2.0.aar/c9aa530de4527df375c5a50046c402bf/AndroidManifest.xml:21:5-23:58
+MERGED from [com.android.support:support-compat:25.2.0] /Users/fatimapaolaboetabreu/.gradle/caches/transforms-1/files-1.1/support-compat-25.2.0.aar/c9aa530de4527df375c5a50046c402bf/AndroidManifest.xml:21:5-23:58
+	tools:overrideLibrary
+		ADDED from [com.android.support:support-v4:25.2.0] /Users/fatimapaolaboetabreu/.gradle/caches/transforms-1/files-1.1/support-v4-25.2.0.aar/ef427b2a7dbe035bb46ab5fb6074356c/AndroidManifest.xml:23:9-51
+	android:targetSdkVersion
+		ADDED from /Users/fatimapaolaboetabreu/proyectosIonic/KIEN-MANAPPGER/Manappger1/platforms/android/app/src/main/AndroidManifest.xml:15:42-71
+	android:minSdkVersion
+		ADDED from /Users/fatimapaolaboetabreu/proyectosIonic/KIEN-MANAPPGER/Manappger1/platforms/android/app/src/main/AndroidManifest.xml:15:15-41
+uses-permission#android.permission.ACCESS_COARSE_LOCATION
+ADDED from /Users/fatimapaolaboetabreu/proyectosIonic/KIEN-MANAPPGER/Manappger1/platforms/android/app/src/main/AndroidManifest.xml:16:5-81
+	android:name
+		ADDED from /Users/fatimapaolaboetabreu/proyectosIonic/KIEN-MANAPPGER/Manappger1/platforms/android/app/src/main/AndroidManifest.xml:16:22-78
+uses-permission#android.permission.ACCESS_FINE_LOCATION
+ADDED from /Users/fatimapaolaboetabreu/proyectosIonic/KIEN-MANAPPGER/Manappger1/platforms/android/app/src/main/AndroidManifest.xml:17:5-79
+	android:name
+		ADDED from /Users/fatimapaolaboetabreu/proyectosIonic/KIEN-MANAPPGER/Manappger1/platforms/android/app/src/main/AndroidManifest.xml:17:22-76
+uses-feature#android.hardware.location.gps
+ADDED from /Users/fatimapaolaboetabreu/proyectosIonic/KIEN-MANAPPGER/Manappger1/platforms/android/app/src/main/AndroidManifest.xml:18:5-66
+	android:name
+		ADDED from /Users/fatimapaolaboetabreu/proyectosIonic/KIEN-MANAPPGER/Manappger1/platforms/android/app/src/main/AndroidManifest.xml:18:19-63
+uses-permission#android.permission.ACCESS_NETWORK_STATE
+ADDED from /Users/fatimapaolaboetabreu/proyectosIonic/KIEN-MANAPPGER/Manappger1/platforms/android/app/src/main/AndroidManifest.xml:19:5-79
+MERGED from [com.google.android.gms:play-services-maps:11.8.0] /Users/fatimapaolaboetabreu/.gradle/caches/transforms-1/files-1.1/play-services-maps-11.8.0.aar/d5ffdf02d3b2b06e6f651930e56b4494/AndroidManifest.xml:23:5-79
+MERGED from [com.google.android.gms:play-services-maps:11.8.0] /Users/fatimapaolaboetabreu/.gradle/caches/transforms-1/files-1.1/play-services-maps-11.8.0.aar/d5ffdf02d3b2b06e6f651930e56b4494/AndroidManifest.xml:23:5-79
+	android:name
+		ADDED from /Users/fatimapaolaboetabreu/proyectosIonic/KIEN-MANAPPGER/Manappger1/platforms/android/app/src/main/AndroidManifest.xml:19:22-76
+uses-feature#0x00020000
+ADDED from /Users/fatimapaolaboetabreu/proyectosIonic/KIEN-MANAPPGER/Manappger1/platforms/android/app/src/main/AndroidManifest.xml:20:5-78
+MERGED from [com.google.android.gms:play-services-maps:11.8.0] /Users/fatimapaolaboetabreu/.gradle/caches/transforms-1/files-1.1/play-services-maps-11.8.0.aar/d5ffdf02d3b2b06e6f651930e56b4494/AndroidManifest.xml:26:5-28:35
+MERGED from [com.google.android.gms:play-services-maps:11.8.0] /Users/fatimapaolaboetabreu/.gradle/caches/transforms-1/files-1.1/play-services-maps-11.8.0.aar/d5ffdf02d3b2b06e6f651930e56b4494/AndroidManifest.xml:26:5-28:35
+	android:glEsVersion
+		ADDED from /Users/fatimapaolaboetabreu/proyectosIonic/KIEN-MANAPPGER/Manappger1/platforms/android/app/src/main/AndroidManifest.xml:20:19-51
+	android:required
+		ADDED from /Users/fatimapaolaboetabreu/proyectosIonic/KIEN-MANAPPGER/Manappger1/platforms/android/app/src/main/AndroidManifest.xml:20:52-75
+uses-feature#android.hardware.location
+ADDED from /Users/fatimapaolaboetabreu/proyectosIonic/KIEN-MANAPPGER/Manappger1/platforms/android/app/src/main/AndroidManifest.xml:21:5-62
+	android:name
+		ADDED from /Users/fatimapaolaboetabreu/proyectosIonic/KIEN-MANAPPGER/Manappger1/platforms/android/app/src/main/AndroidManifest.xml:21:19-59
+activity#com.google.android.gms.common.api.GoogleApiActivity
+ADDED from [com.google.android.gms:play-services-base:11.8.0] /Users/fatimapaolaboetabreu/.gradle/caches/transforms-1/files-1.1/play-services-base-11.8.0.aar/db05b6f5ad698a3c774fe14ea075bd23/AndroidManifest.xml:23:9-26:75
+	android:exported
+		ADDED from [com.google.android.gms:play-services-base:11.8.0] /Users/fatimapaolaboetabreu/.gradle/caches/transforms-1/files-1.1/play-services-base-11.8.0.aar/db05b6f5ad698a3c774fe14ea075bd23/AndroidManifest.xml:25:13-37
+	android:theme
+		ADDED from [com.google.android.gms:play-services-base:11.8.0] /Users/fatimapaolaboetabreu/.gradle/caches/transforms-1/files-1.1/play-services-base-11.8.0.aar/db05b6f5ad698a3c774fe14ea075bd23/AndroidManifest.xml:26:13-72
+	android:name
+		ADDED from [com.google.android.gms:play-services-base:11.8.0] /Users/fatimapaolaboetabreu/.gradle/caches/transforms-1/files-1.1/play-services-base-11.8.0.aar/db05b6f5ad698a3c774fe14ea075bd23/AndroidManifest.xml:24:13-79

@@ -1,0 +1,79 @@
+page-encamino {
+	.content-md, .content-ios{
+		background-color: #1e6594;
+	}
+	.toolbar-background-md, .toolbar-background-ios {
+	    border-color: #000;
+	    background: #000;
+	} 
+	.content_img{
+		text-align: center;
+		background-color: #f2f2f2;
+		padding: 25px 0px 30px;
+	}
+	.content_img p {
+		font-family: 'HH Samuel';
+		text-align: center;
+		margin-bottom: 0px;
+    	font-size: 36px;
+    	margin-top: 25px;
+	}
+	.content_tlf{
+		background-color: #07b2c7;
+		box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 3px 1px -2px rgba(0, 0, 0, 0.2), 0 1px 5px 0 rgba(0, 0, 0, 0.12);
+	}
+	.img-header{
+		height: 45px;
+    	margin-top: 5px;
+	}
+	.content_info{
+		text-align: center;
+    	padding: 20px;
+    	p{
+    		font-size: 10px;
+    		font-weight: bold;
+    		color: #000;
+    		font-family: 'Hasta grotesk';
+    	}
+    	h2{
+    		font-size: 18px;
+    		font-weight: bold;
+    		color: #000;
+    		font-family: 'Hasta grotesk';
+    	}
+	}
+	.fab-md, .fab-ios{
+		background-color: #000;
+		color: #fff;
+		font-weight: bold;
+	}
+	.bar-button-default-ios,.bar-button-default-md{
+		color: #000;
+	}
+	.center{
+		text-align: center;
+	}
+
+	@-webkit-keyframes slideInBothWays {
+	  0% {
+	    -webkit-transform: translate3d(-100%,0,0);
+	  }
+	 
+	  50% {
+	    -webkit-transform: translate3d(50%,0,0);
+	  }
+	 
+	  100% {
+	    -webkit-transform: translate3d(0,0,0);
+	  }
+	}
+ 
+	.slide-in-both-ways {
+	   -webkit-animation: slideInBothWays ease-in 1;
+	  animation: slideInBothWays ease-in 1;
+	  -webkit-animation-fill-mode: forwards;
+	  animation-fill-mode: forwards;
+	  -webkit-animation-duration: 950ms;
+	  animation-duration: 950ms;
+	}
+}

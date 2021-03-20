@@ -1,0 +1,82 @@
+page-list-details {
+	.content-md, .content-ios, .item-md, .item-ios{
+		background-color: #1e6594 !important;
+	}
+	.toolbar-background-md, .toolbar-background-ios {
+	    border-color: #07b2c7 !important;
+	    background: #07b2c7 !important;
+	}
+	.center{
+		text-align: center;
+	}
+	.img-header{
+		height: 45px;
+    	margin-top: 5px;
+	}
+	.bar-button-default-ios, .bar-button-default-md{
+		color: #fff;
+	}
+	.title-home{
+		font-family: "HH Samuel";
+		font-size: 28px;
+		margin-top: 1rem !important;
+	}
+	.title-item{
+		font-size: 16px;
+		font-weight: bold;
+	}
+	.item-subcategory{
+		padding-top: 40%;
+	}
+	.img-subcategory{
+		width: 40px;
+		height: 40px;
+		display: inline-block !important;
+		margin-top: 10px;
+	}
+	.title-subcategory{
+		font-weight: bold;
+	    font-size: 18px;
+	    color: #000;
+	}
+	.b1-login{
+		border-radius: 80px;
+	    background-color: #d5bf03;
+	    color: #000000;
+	    font-size: 29px;
+	    height: 45px;
+	    font-family: "HH Samuel";
+	    margin: auto;
+	    display: block;
+	}
+	.b3-login{
+		background-color: #e94f3d;
+    	color: #ffffff;
+    	font-size: 12px;
+	    padding: 10px;
+	    line-height: 10px;
+	    float: right;
+	    min-height: 15px !important;
+	    height: 15px;
+	    border-radius: 80px;
+	    //margin-top: 0px;
+	}
+	.b2-login{
+		background-color: #07b2c7;
+    	color: #ffffff;
+    	font-size: 15px;
+	    border-radius: 80px;
+	    margin-top: 30px;
+	}
+	.title_order{
+		display:inline-block;
+		font-family:'HH Samuel';
+		font-size: 28px;
+	}
+	.button-ios.activated{
+		background-color: #d5bf03;
+	}
+	.list-ios .item-block .item-inner {
+	    border-bottom: 1px solid #c8c7cc;
+	}
+}

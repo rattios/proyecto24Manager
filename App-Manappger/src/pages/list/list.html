@@ -1,0 +1,24 @@
+<ion-header>
+  <ion-navbar>
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title><img src="{{category.imagen}}" alt="manappger" class="header-img"> <span class="header-title">{{category.nombre}}</span></ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+  <div *ngFor="let subcategory of category.subcategorias" (click)="itemTapped($event,subcategory)">
+  	<ion-row class="item-subcategory">
+      <ion-col col-2 class="back-img">
+        <img class="img-subcategory" src="{{subcategory.imagen}}">
+      </ion-col>
+      <ion-col col-9 class="content-arrow">
+        <p class="title-subcategory">{{subcategory.nombre}}</p>
+      </ion-col>
+      <ion-col col-1 class="content-arrow">
+         <ion-icon ios="ios-arrow-forward" md="ios-arrow-forward" class="icon-subcategory"></ion-icon>
+      </ion-col>
+    </ion-row>
+  </div>
+</ion-content>

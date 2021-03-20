@@ -1,0 +1,116 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title><img src="assets/img/logom.png" class="img-header"></ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+	<form [formGroup]="registerSocioForm" (ngSubmit)="register_socio(registerSocioForm)">
+		<ion-list>
+			<p class="item_label">NOMBRE COMPLETO*</p>
+		    <ion-item>
+		      <ion-label> <ion-icon ios="ios-person" md="md-person"></ion-icon></ion-label>
+		      <ion-input clearInput type="text" formControlName="nombre"></ion-input>
+		    </ion-item>
+		    <div *ngIf="formErrors.nombre" class="alert-danger">
+	          {{ formErrors.nombre }}
+	        </div>
+		    <p class="item_label">CORREO ELECTRÓNICO*</p>
+		    <ion-item>
+		      <ion-label><ion-icon name="mail" md="md-mail"></ion-icon></ion-label>
+		      <ion-input clearInput type="email" formControlName="correo"></ion-input>
+		    </ion-item>
+		    <div *ngIf="formErrors.correo" class="alert-danger">
+	          {{ formErrors.correo }}
+	        </div>
+		    <p class="item_label">TELÉFONO (Opcional)</p>
+		    <ion-item>
+		      <ion-label><ion-icon ios="ios-call" md="md-call"></ion-icon></ion-label>
+		      <ion-input clearInput type="number" formControlName="telefono"></ion-input>
+		    </ion-item>
+		    <div *ngIf="formErrors.telefono" class="alert-danger">
+	          {{ formErrors.telefono }}
+	        </div>
+		    <p class="item_title">SERVICIOS*</p>
+		    <div formArrayName="servicios">
+		    	<div *ngFor="let serv of registerSocioForm.controls.servicios.controls; let i=index;" [formGroupName]="i">
+			    	<p class="item_label">TIPO DE SERVICIO {{i+1}}*</p>
+			    	<ion-item>
+			    		<ion-label><ion-icon name="man"></ion-icon></ion-label>
+						<ion-select (ionChange)="setServices(serv,i)" formControlName="servicio" interface="popover">
+						  <ion-option [value]="category.nombre" *ngFor = "let category of categories">{{category.nombre}}</ion-option>
+						</ion-select>
+			    	</ion-item>	
+				    <p class="item_label">DETALLE SERVICIO {{i+1}}*</p>
+					<ion-item>
+						<ion-label><ion-icon name="man"></ion-icon></ion-label>
+						<ion-select formControlName="subcategoria_id" interface="popover">
+							<ion-option [value]="subcategory.id" *ngFor = "let subcategory of subcategories[i]">
+								{{subcategory.nombre}}
+							</ion-option>
+						</ion-select>
+					</ion-item>
+				</div>
+				<div class="content-button">
+					<ion-icon (click)="removeServicio(i)" class="button-service" ios="ios-remove-circle" md="md-remove-circle" *ngIf="registerSocioForm.controls.servicios.controls.length > 1"></ion-icon>
+					<ion-icon (click)="addServicio()" class="button-service" ios="ios-add-circle" md="md-add-circle"></ion-icon>
+				</div>
+			</div>
+		    <p class="item_title">HORARIOS Y DÍAS DE SU SERVICIO*</p> 
+		   	<div formArrayName="horario">
+		    	<div *ngFor="let horario of registerSocioForm.controls.horario.controls; let i=index" [formGroupName]="i">
+		    		<p class="item_label">HORARIO {{i+1}}*</p>
+			    	<ion-item class="mb-0">
+			    		<ion-label><ion-icon ios="ios-calendar" md="md-calendar"></ion-icon></ion-label>
+						<ion-select formControlName="dia" interface="popover">
+						  <ion-option value="Domingo">Domingo</ion-option>
+						  <ion-option value="Lunes">Lunes</ion-option>
+						  <ion-option value="Martes">Martes</ion-option>
+						  <ion-option value="Miercoles">Miércoles</ion-option>
+						  <ion-option value="Jueves">Jueves</ion-option>
+						  <ion-option value="Viernes">Viernes</ion-option>
+						  <ion-option value="Sabado">Sábado</ion-option>
+						</ion-select>
+			    	</ion-item>	
+					<ion-grid>
+					  <ion-row>
+					  	<ion-col col-6>
+					  		<p class="ml-25 item_label">HORA INICIO</p>
+							<ion-item class="mb-0">
+					    		<ion-label><ion-icon ios="ios-time" md="md-time"></ion-icon></ion-label>
+								<ion-select formControlName="horaInicio" interface="popover">
+								  <ion-option [value]="horaInicio.hora" *ngFor = "let horaInicio of hora">{{horaInicio.hora}}</ion-option>
+								</ion-select>
+							</ion-item>
+					    </ion-col>
+					    <ion-col col-6>
+					    	<p class="ml-25 item_label">HORA FIN</p>
+					    	<ion-item class="mb-0">
+					    		<ion-label><ion-icon ios="ios-time" md="md-time"></ion-icon></ion-label>
+						    	<ion-select formControlName="horaFin" interface="popover">
+								  <ion-option [value]="horaFin.hora" *ngFor = "let horaFin of hora">{{horaFin.hora}}</ion-option>
+								</ion-select>
+							</ion-item>
+						</ion-col>
+					  </ion-row>
+					</ion-grid>
+				</div>
+				<div class="content-button">
+					<ion-icon (click)="removeHorario()" class="button-service" ios="ios-remove-circle" md="md-remove-circle" *ngIf="registerSocioForm.controls.horario.controls.length > 1"></ion-icon>
+					<ion-icon (click)="addHorario()" class="button-service" ios="ios-add-circle" md="md-add-circle"></ion-icon>
+				</div>
+			</div> 
+			<p class="item_label">UBICACIÓN DE SU SERVICIO*</p>
+		    <ion-item>
+		      <ion-label> <ion-icon name="pin"></ion-icon></ion-label>
+		      <ion-input clearInput type="text" formControlName="ubicacion"></ion-input>
+		    </ion-item>
+		    <div *ngIf="formErrors.ubicacion" class="alert-danger">
+	          {{ formErrors.ubicacion }}
+	        </div>
+	  	</ion-list>
+	  	<div class="center">
+			<button ion-button class="b1-login" type="submit">REGISTRAR</button>
+		</div>
+	</form>
+</ion-content>

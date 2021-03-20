@@ -1,0 +1,75 @@
+page-list {
+	.bar-button-default-ios,.bar-button-default-md{
+		color: #fff;
+	}
+	.content-md, .content-ios{
+		background-color: #1e6594 !important;
+	}
+	.toolbar-background-md, .toolbar-background-ios {
+	    border-color: #07b2c7 !important;
+	    background: #07b2c7 !important;
+	}
+	.header-title{
+		font-family: 'HH Samuel', sans-serif;
+    	font-size: 40px;
+    	margin-left: 15px;
+    	color: #000;
+    	position: absolute;
+    	margin-top: 15px;
+	}
+	.header-img{
+		border-radius: 50%;
+    	width: 60px;
+    	height: 60px;
+    	margin-top: 10px;
+    	border: 2px solid #fff;
+    	box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 3px 1px -2px rgba(0, 0, 0, 0.2), 0 1px 5px 0 rgba(0, 0, 0, 0.12);
+	}
+	.toolbar-md{
+		height: 80px !important;
+	}
+	.toolbar-ios {
+		height: 97px !important; 
+	}
+	.scroll-content{
+		margin-top: 97px !important;
+	}
+	.toolbar-ios ion-title{
+		top: 15px;
+		margin-left: -13%;
+	}
+	.item-subcategory{
+		background-color: #fff;
+    	border-radius: 15px;
+    	margin-bottom: 20px;
+    	box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 3px 1px -2px rgba(0, 0, 0, 0.2), 0 1px 5px 0 rgba(0, 0, 0, 0.12);
+	}
+	.img-subcategory{
+		width: 100%;
+	    margin: auto;
+	    display: block;
+	    height: auto;
+	    padding: 5px;
+	}
+	.icon-subcategory{
+    	font-size: 21px;
+    	font-weight: bold;
+	}
+	.title-subcategory{
+		font-weight: bold;
+    	font-size: 14px;
+    	margin: 10px;
+	}
+	.back-img{
+		//background-color: rgb(43, 59, 78);
+		background-color: #000000;
+    	border-top-left-radius: 12px;
+    	border-bottom-left-radius: 12px;
+    	align-items: center;
+    	display: flex;
+	}
+	.content-arrow{
+		align-items: center;
+    	display: flex;
+	}
+}

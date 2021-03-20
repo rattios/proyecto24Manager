@@ -1,0 +1,110 @@
+ion-app._gmaps_cdv_ .nav-decor{
+	background-color: transparent !important;
+}
+page-pedido {
+	#map{
+		height: 100%;
+	}
+	.hide {
+		display: none !important;
+	}
+	.icon-refresh{
+		position: absolute;
+	    top: 100px;
+	    font-size: 55px;
+	    left: 0px;
+	    right: 0px;
+	    margin: auto;
+	}
+	.content-order{
+		height: 250px;
+		margin: 30px 15px !important;
+	}
+	.content_img{
+		text-align: center;
+		margin-top: 10%;
+	}
+	.center{
+		text-align: center;
+	}
+	.bg-color {
+	    border-color: #1e6594 !important;
+	    background: #1e6594 !important;
+	}
+	.bar-button-default-ios, .bar-button-default-md{
+		color: #fff;
+	}
+	.img-header{
+		height: 45px;
+    	margin-top: 5px;
+	}
+	.toolbar-background-md, .toolbar-background-ios {
+	    border-color: #000000 !important;
+	    background: #000000 !important;
+	}
+	.segment-md .segment-button.segment-activated, .segment-ios .segment-button{
+		border-color: #d5bf03;
+		color: #ffffff;
+	}
+	.segment-ios .segment-button.segment-activated{
+		background-color: #d5bf03;
+		color: #000000;
+	}
+	.toolbar-ios .segment-button{
+		max-width: 120px;
+	}
+	.segment-md .segment-button{
+		color: #ffffff;
+	}
+	.item-md, .item-ios{
+		border-radius: 80px;
+		background-color: #eeeeee;
+		color: #000000;
+		width: 90%;
+		margin: auto;
+		margin-bottom: 10px;
+		font-size: 13px;
+	}
+	.list-md .item-input:last-child, .list-md .item-block .item-inner, .list-ios > .item-block:first-child, .list-ios .item-block .item-inner, .list-ios > .item-block:last-child{
+		border-bottom: none;
+		border-top: none;
+	}
+	.bar-button-default-ios, .bar-button-default-md{
+		color: #fff;
+	}
+	.item-input .label-md, .label-ios{
+		color: #000;
+	}
+	.item_label{
+		width: 80%;
+    	margin: auto;
+    	margin-bottom: 5px;
+    	font-size: 11px;
+	}
+	.b1-login{
+		border-radius: 13px;
+	    width: 50%;
+	    background-color: #d5bf03;
+	    color: #000000;
+	    font-size: 36px;
+		font-family: "HH Samuel";
+		height: 45px;
+		margin-bottom: 15px;
+	}
+	.title-total{
+		font-size: 31px;
+		font-family: "HH Samuel";
+		color: #ffffff;
+		margin-bottom: 0px;
+		margin-top: 5px;
+	}
+	.price-total{
+		color: #ffffff;
+		margin-bottom: 15px;
+		font-size: 19px;
+		margin-top: 5px;
+	}
+	.mt-30{
+		margin-top: 30px !important;
+	}
+}

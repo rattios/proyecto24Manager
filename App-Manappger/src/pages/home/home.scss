@@ -1,0 +1,62 @@
+page-home {
+	.content-md, .content-ios{
+		background-color: #1e6594;
+	}
+	.content_img{
+		text-align: center;
+		margin-top: 10%;
+	}
+	.center{
+		text-align: center;
+	}
+	.toolbar-background-md, .toolbar-background-ios {
+	    border-color: #07b2c7;
+	    background: #07b2c7;
+	}
+	.img-header{
+		height: 45px;
+    	margin-top: 5px;
+	}
+	.bar-button-default-ios, .bar-button-default-md{
+		color: #fff;
+	}
+	.title-home{
+		font-family: "HH Samuel";
+	    font-size: 30px;
+	    margin-top: 0px !important;
+	    color: #000;
+	    background-color: rgba(7, 178, 199, 0.85);
+	    padding: 10px 0px;
+	    box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 3px 1px -2px rgba(0, 0, 0, 0.2), 0 1px 5px 0 rgba(0, 0, 0, 0.12);
+	}
+	.img-category {
+		margin: auto;
+    	display: block;
+	    border-radius: 50%;
+	    width: 90px;
+	    height: 90px;
+	    margin-top: 5px;
+	    border: 3px solid #fff;
+	}
+	.title-category{
+		text-align: center;
+		margin: 0px;
+		font-family: "HH Samuel";
+		font-size: 23px;
+		color: #000;
+	}
+	ion-slides{
+		height: 220px;
+		width: 100% !important;
+		padding: 0px;
+	}
+	.img-slide{
+  		width: 100% !important;
+  		height: 226px;
+	}
+	.swiper-pagination-bullet-active {
+	    background: #000;
+	}
+}
+
+

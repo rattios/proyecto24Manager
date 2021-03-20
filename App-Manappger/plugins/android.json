@@ -1,0 +1,44 @@
+{
+  "prepare_queue": {
+    "installed": [],
+    "uninstalled": []
+  },
+  "config_munge": {
+    "files": {}
+  },
+  "installed_plugins": {
+    "cordova-plugin-add-swift-support": {
+      "PACKAGE_NAME": "com.manappger"
+    },
+    "cordova-plugin-device": {
+      "PACKAGE_NAME": "com.manappger"
+    },
+    "cordova-plugin-geolocation": {
+      "PACKAGE_NAME": "com.manappger"
+    },
+    "cordova-plugin-googlemaps": {
+      "API_KEY_FOR_ANDROID": "AIzaSyDkqskkMqqDA8S-TQHIy4fSrhiUU47IVmE",
+      "PACKAGE_NAME": "com.manappger"
+    },
+    "cordova-plugin-nativegeocoder": {
+      "PACKAGE_NAME": "com.manappger"
+    },
+    "cordova-plugin-splashscreen": {
+      "PACKAGE_NAME": "com.manappger"
+    },
+    "cordova-plugin-whitelist": {
+      "PACKAGE_NAME": "com.manappger"
+    },
+    "ionic-plugin-keyboard": {
+      "PACKAGE_NAME": "com.manappger"
+    },
+    "cordova-plugin-statusbar": {
+      "PACKAGE_NAME": "com.manappger"
+    }
+  },
+  "dependent_plugins": {
+    "com.googlemaps.ios": {
+      "PACKAGE_NAME": "com.manappger"
+    }
+  }
+}

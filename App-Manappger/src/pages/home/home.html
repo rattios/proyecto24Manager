@@ -1,0 +1,31 @@
+<ion-header>
+  <ion-navbar>
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title><img src="assets/img/logom.png" class="img-header"></ion-title>
+    <ion-buttons end >
+      <button ion-button icon-only (click)="goToCart()">
+        <ion-badge *ngIf="itemsInCart > 0">{{itemsInCart}}</ion-badge>
+        <ion-icon ios="ios-cart" md="md-cart"></ion-icon>
+      </button>
+    </ion-buttons>
+  </ion-navbar>
+</ion-header>
+
+<ion-content class="has-header">
+  <ion-slides pager="true" autoplay="4000" loop="true" *ngIf="haveData">
+    <ion-slide *ngFor="let slide of slides">
+      <img [src]="slide.img" class="img-slide">
+    </ion-slide>
+  </ion-slides>
+  <div class="center">
+    <h3 class="title-home">¿QUÉ SERVICIO BUSCAS?</h3>
+  </div>  
+  <ion-row wrap>
+    <ion-col col-6 col-sm-4 *ngFor="let category of categories" (click)="goToSubcategory(category)">
+      <img class="img-category" src="{{category.imagen}}">
+      <p class="title-category">{{category.nombre}}</p>
+    </ion-col>
+  </ion-row>
+</ion-content>

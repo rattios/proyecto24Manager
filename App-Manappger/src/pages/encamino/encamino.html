@@ -1,0 +1,29 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title><img src="assets/img/logom.png" class="img-header"></ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content>
+	<div class="content_img">
+	    <img src="assets/img/delivery.gif" alt="manappger" width="100%">
+		<br>
+		<p class="slide-in-both-ways">ESTAMOS EN CAMINO...</p>
+	</div>
+	<div>
+		<ion-list>
+		  <ion-item no-lines class="content_tlf">
+		    <ion-label class="center">
+		     <img src="assets/img/callc.png" alt="manappger" width="50px">
+		    </ion-label>
+		    <div item-content class="content_info">
+		      <p>NÚMERO DE CONTACTO</p>
+		      <h2>{{contact}}</h2>
+		    </div>
+		  </ion-item>
+	  </ion-list>
+	</div>
+	<ion-fab bottom right>
+   		<button ion-fab (click)="closeModal()">OK</button>
+ 	</ion-fab>
+</ion-content>

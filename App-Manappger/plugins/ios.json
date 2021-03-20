@@ -1,0 +1,51 @@
+{
+  "prepare_queue": {
+    "installed": [],
+    "uninstalled": []
+  },
+  "config_munge": {
+    "files": {}
+  },
+  "installed_plugins": {
+    "cordova-plugin-device": {
+      "PACKAGE_NAME": "com.manappger"
+    },
+    "cordova-plugin-geolocation": {
+      "GEOLOCATION_USAGE_DESCRIPTION": "The app need the geolocation",
+      "PACKAGE_NAME": "com.manappger"
+    },
+    "cordova-plugin-googlemaps": {
+      "API_KEY_FOR_IOS": "AIzaSyACcTeWp4T5t-4ZSU6NWrzbSS3_bCocHCc",
+      "LOCATION_WHEN_IN_USE_DESCRIPTION": "Show your location on the map",
+      "LOCATION_ALWAYS_USAGE_DESCRIPTION": "Trace your location on the map",
+      "PACKAGE_NAME": "com.manappger"
+    },
+    "cordova-plugin-nativegeocoder": {
+      "LOCATION_WHEN_IN_USE_DESCRIPTION": "Use geocoder service",
+      "PACKAGE_NAME": "com.manappger"
+    },
+    "cordova-plugin-splashscreen": {
+      "PACKAGE_NAME": "com.manappger"
+    },
+    "cordova-plugin-statusbar": {
+      "PACKAGE_NAME": "com.manappger"
+    },
+    "cordova-plugin-whitelist": {
+      "PACKAGE_NAME": "com.manappger"
+    },
+    "ionic-plugin-keyboard": {
+      "PACKAGE_NAME": "com.manappger"
+    }
+  },
+  "dependent_plugins": {
+    "com.googlemaps.ios": {
+      "PACKAGE_NAME": "com.manappger"
+    },
+    "cordova-plugin-add-swift-support": {
+      "PACKAGE_NAME": "com.manappger"
+    },
+    "cordova-plugin-compat": {
+      "PACKAGE_NAME": "com.manappger"
+    }
+  }
+}

@@ -1,0 +1,22 @@
+<ion-menu [content]="content">
+  <ion-header>
+    <ion-toolbar class="header-menu" style="background-color: rgba(82, 103, 117, 0.7) !important">
+        <div class="center">
+          <img src="assets/img/manappger.png" alt="manappger" width="150px">
+        </div>
+    </ion-toolbar>
+  </ion-header>
+
+  <ion-content style="margin-top:0px; background-color:rgba(82, 103, 117, 0.7) !important;">
+    <ion-list>
+      <button class="item-menu" menuClose ion-item *ngFor="let p of pages" (click)="openPage(p)">
+        <ion-badge class="badge-calificacion" *ngIf="p.title === 'Califica Servicio' && rating > 0">{{rating}}</ion-badge>
+        <ion-icon name="{{p.icon}}" style="margin-right:10px;"></ion-icon> {{p.title}}
+      </button>
+    </ion-list>
+  </ion-content>
+
+</ion-menu>
+
+<!-- Disable swipe-to-go-back because it's poor UX to combine STGB with side menus -->
+<ion-nav [root]="rootPage" #content swipeBackEnabled="false"></ion-nav>

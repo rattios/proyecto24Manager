@@ -1,0 +1,25 @@
+<ion-content padding>
+	<div class="content_img">
+		<img src="assets/img/manappger.png" alt="manappger" width="55%">
+	</div>
+	<form #loginForm="ngForm" class="mt-20">
+		<ion-list>
+		    <ion-item>
+		      <ion-label> <ion-icon ios="ios-person" md="md-person"></ion-icon></ion-label>
+		      <ion-input clearInput type="text" placeholder="USUARIO" name="user" [(ngModel)]="loginCredentials.user"></ion-input>
+		    </ion-item>
+
+		    <ion-item>
+		      <ion-label><ion-icon ios="ios-lock" md="md-lock"></ion-icon></ion-label>
+		      <ion-input clearInput type="password"  placeholder="CONTRASEÑA" name="password" [(ngModel)]="loginCredentials.password"></ion-input>
+		    </ion-item>
+	  	</ion-list>
+
+		<div class="center">
+			<button ion-button class="b1-login" (click)="login()">ENTRAR</button>
+			<button ion-button class="b1-login" (click)="registrar_usuario()">REGÍSTRATE</button>
+			<button ion-button class="b2-login mt-20" (click)="olvido_password()">¿OLVIDASTE CONTRASEÑA?</button>
+			<button ion-button class="b2-login" (click)="registrar_socio()">OFRECE TUS SERVICIOS</button>
+		</div>
+	</form>
+</ion-content>

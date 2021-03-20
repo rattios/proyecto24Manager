@@ -1,0 +1,43 @@
+<ion-header>
+  <ion-navbar>
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title><img src="assets/img/logom.png" class="img-header"></ion-title>
+    <ion-buttons end>
+      <button ion-button icon-only>
+        <ion-badge *ngIf="itemsInCart > 0">{{itemsInCart}}</ion-badge>
+        <ion-icon ios="ios-cart" md="md-cart"></ion-icon>
+      </button>
+    </ion-buttons>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+  <div>
+    <h3 class="title_order">Pedidos</h3>
+    <button ion-button class="b3-login" *ngIf="itemsInCart > 0" (click)="delete_car()">VACIAR CARRITO</button>
+  </div>
+  <br>
+  <ion-list>
+    <ion-item-sliding *ngFor="let item of subcategory">
+      <ion-item>
+        <ion-avatar item-start>
+          <img class="img-subcategory" src="{{item.imagen}}">
+        </ion-avatar>
+        <p class="title-subcategory">{{item.nombre}}</p>
+      </ion-item>
+      <ion-item-options side="right">
+        <button ion-button color="danger" (click)="delete(item)"><ion-icon name="trash"></ion-icon> Quitar</button>
+      </ion-item-options>
+    </ion-item-sliding>
+    <div class="center">
+      <button ion-button class="b2-login" *ngIf="itemsInCart > 0" (click)="agregar()"><ion-icon name="add"></ion-icon>&nbsp;AGREGAR SERVICIO</button>
+    </div>
+    <ion-item-divider></ion-item-divider>
+  </ion-list>
+  <div>
+    <br>
+    <button ion-button class="b1-login" *ngIf="itemsInCart > 0" (click)="pedido($event)">SOLICITAR SERVICIO</button>
+  </div>
+</ion-content>
